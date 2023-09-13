@@ -1,8 +1,8 @@
+import { nunito } from '@/fonts/fonts'
+import { Navbar } from '../components/Navbar'
 import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
 	title: 'quiz4u',
@@ -11,8 +11,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang='en'>
-			<body className={inter.className}>{children}</body>
+		<html lang='en' className={nunito.className}>
+			<body className={`bg-main-backgorund w-[1200px] min-h-full`}>
+				<Navbar />
+				{children}
+			</body>
 		</html>
 	)
 }
