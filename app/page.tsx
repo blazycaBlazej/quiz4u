@@ -1,3 +1,4 @@
+import { MostPopularQuizis } from '@/components'
 import Image from 'next/image'
 
 export default function Home() {
@@ -41,6 +42,7 @@ export default function Home() {
 					<Image src={'/chart.svg'} width={400} height={400} alt='chart' />
 				</div>
 			</div>
+			<MostPopularQuizis />
 		</main>
 	)
 }

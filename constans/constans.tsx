@@ -20,11 +20,12 @@ export const menuElements = [
 	{ name: 'Rejestracja', isNew: false, pathname: '/rejestracja', icon: register },
 ]
 export const quizzes = [
-	{ name: 'Quiz 1', isNew: false, pathname: '/quiz1', image: './hotel.jpg' },
-	{ name: 'Quiz 2', isNew: false, pathname: '/quiz2', image: './hotel.jpg' },
-	{ name: 'Quiz 3', isNew: true, pathname: '/quiz3', image: './hotel.jpg' },
-	{ name: 'Quiz 4', isNew: true, pathname: '/quiz4', image: './hotel.jpg' },
-	{ name: 'Quiz 5', isNew: true, pathname: '/quiz5', image: './hotel.jpg' },
+	{ name: 'Technik Informatyk', isNew: false, pathname: '/quiz1', image: '/it.png' },
+	{ name: 'Technik Kucharz', isNew: false, pathname: '/quiz2', image: '/cooker.png' },
+	{ name: 'Technik Mechanik', isNew: true, pathname: '/quiz3', image: '/mechanic.png' },
+	{ name: 'Aplikacja prawnicza', isNew: true, pathname: '/quiz4', image: '/judge.png' },
+	{ name: 'Technik Hotelarstwa', isNew: true, pathname: '/quiz5', image: '/hotel.png' },
+	{ name: 'Technik Dekarz', isNew: true, pathname: '/quiz5', image: '/roofer.png' },
 ]
 export const userMenuElements = [
 	{ name: 'Profil', pathname: '/profil', icon: settings },
