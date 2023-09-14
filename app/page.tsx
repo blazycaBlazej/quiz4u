@@ -1,4 +1,5 @@
 import { MostPopularQuizis } from '@/components'
+import { LearnGuide } from '@/components/LearnGuide'
 import Image from 'next/image'
 
 export default function Home() {
@@ -43,6 +44,7 @@ export default function Home() {
 				</div>
 			</div>
 			<MostPopularQuizis />
+			<LearnGuide />
 		</main>
 	)
 }

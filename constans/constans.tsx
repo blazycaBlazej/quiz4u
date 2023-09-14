@@ -32,3 +32,25 @@ export const userMenuElements = [
 	{ name: 'Ustawienia', pathname: '/ustawienia', icon: user },
 	{ name: 'Wyloguj', pathname: '/wyloguj', icon: logout },
 ]
+
+export const learnTrick = [
+	'Wyciszenie Telefonu: Warto wyciszyć lub wyłączyć telefon podczas nauki. Powiadomienia z mediów społecznościowych i wiadomości mogą być rozpraszające. Jeśli musisz korzystać z telefonu do nauki, wyłącz powiadomienia, aby skoncentrować się na materiale.',
+
+	'Planowanie i Organizacja: Stwórz plan nauki, który obejmuje określone godziny i cele. Dzięki temu unikniesz chaosu i pozwolisz sobie na skupienie się na konkretnej dziedzinie w danym czasie.',
+
+	'Zapisywanie Pytań: Wykorzystaj funkcję zapisywania pytań na których nie znasz odpowiedzi. To świetny sposób na śledzenie luk w Twojej wiedzy i późniejsze skoncentrowanie się na tych obszarach.',
+
+	'Rozumienie Materiału: Nie ucz się na pamięć, ale staraj się zrozumieć materiał. Zamiast powtarzać tekst bezmyślnie, próbuj wyjaśnić go sobie w własnych słowach. To pomaga w lepszym zrozumieniu i utrwaleniu informacji.',
+
+	'Variety in Learning: Urozmaicaj swoją naukę. Nie polegaj tylko na jednym źródle materiałów. Korzystaj z podręczników, notatek, konspektów, filmów, czy też aplikacji edukacyjnych.',
+
+	'Przerwy i Regeneracja: Nie zapominaj o przerwach. Krótkie przerwy co godzinę pomagają zachować skoncentrowanie. Pamiętaj też o regularnym snu i odpowiednim odżywianiu.',
+
+	'Ćwiczenia i Zdrowy Tryb Życia: Aktywność fizyczna ma ogromny wpływ na mózg. Staraj się regularnie ćwiczyć i dbać o zdrową dietę.',
+
+	'Testowanie Siebie: Wykorzystuj testy i quizy do sprawdzania swojej wiedzy. To pomoże Ci ocenić, które obszary wymagają więcej uwagi.',
+
+	'Nauczanie Innych: Spróbuj nauczyć kogoś innego materiału, który się uczysz. Nauczanie jest doskonałym sposobem na utrwalenie wiedzy.',
+
+	'Motywacja i Pozytywne Myślenie: Zawsze pamiętaj o swoim celu i motywacji do nauki. Pozytywne myślenie może znacząco wpłynąć na Twoje wyniki.',
+]

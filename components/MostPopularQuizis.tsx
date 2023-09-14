@@ -4,9 +4,9 @@ import React from 'react'
 
 export const MostPopularQuizis = () => {
 	return (
-		<section>
+		<section className=''>
 			<h2 className='text-white text-4xl'>Popularne Quizy:</h2>
-			<div className='flex flex-wrap gap-3  max-w-[1200px] w-full mt-[40px]'>
+			<div className='flex justify-center flex-wrap gap-3  max-w-[1200px] w-full mt-[40px]'>
 				{quizzes.map((quiz, index) => (
 					<div
 						className='relative max-w-[360px] h-[243px] w-full border border-border-btn rounded-[20px] overflow-hidden group cursor-pointer'
