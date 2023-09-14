@@ -11,7 +11,7 @@ import { userMenuElements } from '@/constans/constans'
 export const UserSection = () => {
 	const pathname = usePathname()
 	return (
-		<div className='flex h-[76px] py-[12px] border-b border-solid border-border-color w-full '>
+		<div className=' flex h-[76px] py-[12px] border-b border-solid border-border-color w-full '>
 			<div className=' flex items-center gap-4 ml-auto pr-[80px]'>
 				<span className='text-white'>
 					Cześć, <span className='text-btn-violet-color'>UserName!</span>

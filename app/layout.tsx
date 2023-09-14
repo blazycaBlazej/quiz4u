@@ -13,10 +13,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang='en' className={nunito.className}>
-			<body className={`flex z-10 bg-main-backgorund  min-h-full text-main-font-color`}>
-				<Navbar />
-				<UserSection />
-				{children}
+			<body className={`flex bg-main-backgorund  min-h-screen text-main-font-color`}>
+				<div className='sticky  h-1 left-0 top-0 z-[1]'>
+					<Navbar />
+				</div>
+				<div className='flex flex-col w-full'>
+					<div className='sticky bg-main-backgorund top-0 z-[1]'>
+						<UserSection />
+					</div>
+					{children}
+				</div>
 			</body>
 		</html>
 	)

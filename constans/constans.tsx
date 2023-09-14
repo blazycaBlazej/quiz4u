@@ -19,6 +19,13 @@ export const menuElements = [
 	{ name: 'Logowanie', isNew: false, pathname: '/logowanie', icon: login },
 	{ name: 'Rejestracja', isNew: false, pathname: '/rejestracja', icon: register },
 ]
+export const quizzes = [
+	{ name: 'Quiz 1', isNew: false, pathname: '/quiz1', image: './hotel.jpg' },
+	{ name: 'Quiz 2', isNew: false, pathname: '/quiz2', image: './hotel.jpg' },
+	{ name: 'Quiz 3', isNew: true, pathname: '/quiz3', image: './hotel.jpg' },
+	{ name: 'Quiz 4', isNew: true, pathname: '/quiz4', image: './hotel.jpg' },
+	{ name: 'Quiz 5', isNew: true, pathname: '/quiz5', image: './hotel.jpg' },
+]
 export const userMenuElements = [
 	{ name: 'Profil', pathname: '/profil', icon: settings },
 	{ name: 'Ustawienia', pathname: '/ustawienia', icon: user },

@@ -11,7 +11,7 @@ export const Navbar = () => {
 	const pathname = usePathname()
 
 	return (
-		<nav className={`w-[360px] px-4 bg-element-backgorund h-full white border-r border-solid border-border-color`}>
+		<nav className={`w-[280px] h-screen px-4 bg-element-backgorund  white border-r border-solid border-border-color`}>
 			<Logo />
 			<ul>
 				{menuElements.map((element, index) => {
