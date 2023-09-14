@@ -1,10 +1,13 @@
 import React from 'react'
-import { IconHome, IconLogin, IconUserPlus, IconAbc } from '@tabler/icons-react'
+import { IconHome, IconLogin, IconUserPlus, IconAbc, IconSettings, IconUser, IconLogout } from '@tabler/icons-react'
 
 const home = <IconHome />
 const login = <IconLogin />
 const register = <IconUserPlus />
 const quiz = <IconAbc />
+const settings = <IconSettings />
+const user = <IconUser />
+const logout = <IconLogout />
 
 export const menuElements = [
 	{ name: 'Strona główna', isNew: false, pathname: '/', icon: home },
@@ -15,4 +18,9 @@ export const menuElements = [
 	{ name: 'Quiz 5', isNew: true, pathname: '/quiz5', icon: quiz },
 	{ name: 'Logowanie', isNew: false, pathname: '/logowanie', icon: login },
 	{ name: 'Rejestracja', isNew: false, pathname: '/rejestracja', icon: register },
+]
+export const userMenuElements = [
+	{ name: 'Profil', pathname: '/profil', icon: settings },
+	{ name: 'Ustawienia', pathname: '/ustawienia', icon: user },
+	{ name: 'Wyloguj', pathname: '/wyloguj', icon: logout },
 ]

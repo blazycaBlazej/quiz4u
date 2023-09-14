@@ -5,7 +5,7 @@ export const NavbarElement = ({ index, name, isNew, isActive, icon }: NavbarElem
 	return (
 		<li
 			key={index}
-			className={`flex justify-between px-5 text-main-font-color text-m py-[10px] transition-colors hover:bg-element-hover-backgorund 
+			className={`flex justify-between px-5 text-main-font-color text-m py-[13px] transition-colors hover:bg-element-hover-backgorund 
                
                rounded-[12px] ${isActive ? `text-white bg-element-active-backgorund` : ``}`}>
 			<span className='flex gap-3'>
