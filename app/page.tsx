@@ -1,4 +1,4 @@
-import { MostPopularQuizis } from '@/components'
+import { MostPopularQuizis, Testimonials } from '@/components'
 import { LearnGuide } from '@/components/LearnGuide'
 import Image from 'next/image'
 
@@ -45,6 +45,7 @@ export default function Home() {
 			</div>
 			<MostPopularQuizis />
 			<LearnGuide />
+			<Testimonials />
 		</main>
 	)
 }

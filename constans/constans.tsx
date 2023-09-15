@@ -54,3 +54,18 @@ export const learnTrick = [
 
 	'Motywacja i Pozytywne Myślenie: Zawsze pamiętaj o swoim celu i motywacji do nauki. Pozytywne myślenie może znacząco wpłynąć na Twoje wyniki.',
 ]
+
+export const testimonials = [
+	{
+		id: 0,
+		name: 'Wojtek K.',
+		image: '/feedbakcFemale.png',
+		text: 'NaukaQuizy4U to strona, która uratowała mi skórę! Gdy zbliżał się mój egzamin na poziomie B, poczułem się zdezorientowany ogromem materiału. Na szczęście, trafiłem na tę stronę, która oferowała losowanie zestawów pytań. To dało mi możliwość efektywnej nauki i skupienia się na słabych punktach. Rywalizacja z moimi kolegami była świetnym dodatkiem, który dodatkowo motywował mnie do nauki. Dzięki "NaukaQuizy4U" zdałem egzamin z doskonałym wynikiem, a teraz polecam ją każdemu, kto potrzebuje pomocy w nauce',
+	},
+	{
+		id: 1,
+		name: 'Anna S.',
+		image: '/feedbakcMale.png',
+		text: 'NaukaQuizy4U to moje tajne narzędzie do sukcesów na egzaminach! Dzięki tej stronie, którą odkryłam niedawno, miałam dostęp do praktycznych quizów, które świetnie przygotowały mnie do egzaminu na poziomie C. Losowanie jednego pytania po drugim było dla mnie niesamowicie pomocne, ponieważ mogłam skupić się na zagadnieniach, które sprawiały mi najwięcej problemów. Efekty? Zdałam egzamin z wysokim wynikiem! Polecam każdemu, kto potrzebuje solidnej nauki',
+	},
+]

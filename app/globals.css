@@ -11,8 +11,12 @@ body {
 	/* font-family: sans-serif; */
 }
 
-.colorful-title {
-	background-image: linear-gradient(101.97deg, #55b1f8 20.61%, #6c14f2 46.13%, #9e14f2 73.88%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: rgba(0, 0, 0, 0);
+.colorful-box {
+	background: linear-gradient(136.08deg, rgb(30, 20, 67) 0%, rgb(20, 21, 23) 100%) padding-box,
+		linear-gradient(160deg, #5721f2, #793ae0) border-box;
+	border-style: solid;
+	border-color: transparent;
+	border-width: 2px;
+	border-radius: 16px;
+	box-shadow: 4px 4px 16px #5721f240;
 }

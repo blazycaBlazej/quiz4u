@@ -6,3 +6,9 @@ export interface NavbarElementProps {
 	icon?: JSX.Element
 	// pathname: string
 }
+export interface TestimonialProps {
+	id: number
+	name: string
+	text: string
+	image: string
+}
