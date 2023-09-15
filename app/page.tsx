@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export default function Home() {
 	return (
-		<main className=' max-w-[1200px] w-full mx-auto p-[40px] text-base xl:text-lg'>
+		<main className='text-base xl:text-lg'>
 			<div className='relative flex justify-between items-center flex-col-reverse gap-[50px] lg:flex-row '>
 				<Image src={'/rocket.png'} width={300} height={300} alt='rocket' />
 				<div>

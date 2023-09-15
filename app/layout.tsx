@@ -1,5 +1,5 @@
 import { nunito } from '@/fonts/fonts'
-import { Navbar } from '../components'
+import { Footer, Navbar } from '../components'
 import './globals.css'
 
 import type { Metadata } from 'next'
@@ -21,7 +21,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<div className='fixed w-full right-0 top-0 z-[998] bg-main-backgorund '>
 						<UserSection />
 					</div>
-					<div className='mt-[50px]'>{children}</div>
+
+					<div className='max-w-[1200px] w-full mx-auto p-[40px]'>
+						<div className='mt-[50px]'>{children}</div>
+
+						<Footer />
+					</div>
 				</div>
 			</body>
 		</html>
