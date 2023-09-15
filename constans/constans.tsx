@@ -69,3 +69,26 @@ export const testimonials = [
 		text: 'NaukaQuizy4U to moje tajne narzędzie do sukcesów na egzaminach! Dzięki tej stronie, którą odkryłam niedawno, miałam dostęp do praktycznych quizów, które świetnie przygotowały mnie do egzaminu na poziomie C. Losowanie jednego pytania po drugim było dla mnie niesamowicie pomocne, ponieważ mogłam skupić się na zagadnieniach, które sprawiały mi najwięcej problemów. Efekty? Zdałam egzamin z wysokim wynikiem! Polecam każdemu, kto potrzebuje solidnej nauki',
 	},
 ]
+
+export const faq = [
+	{
+		title: 'Czym jest Quizy4U?',
+		answer:
+			'Quizy4U to platforma oferująca quizy przygotowane specjalnie do różnych egzaminów na różnych szczeblach nauki. Uczniowie i studenci mogą korzystać z naszych quizów, aby doskonalić swoją wiedzę i przygotować się do egzaminów.',
+	},
+	{
+		title: 'Jakie rodzaje quizów oferujemy?',
+		answer:
+			'Nasza platforma umożliwia dostęp do różnych rodzajów quizów, takich jak losowanie jednego pytania, zestaw 40 pytań do samodzielnego rozwiązania czy też niestandardowe zestawy pytań wybrane przez użytkownika. Możesz także wydrukować test z losowo wybranymi pytaniami.',
+	},
+	{
+		title: 'Jak działa opcja rywalizacji z przyjaciółmi?',
+		answer:
+			'Na Quizy4U możesz utworzyć pokój i zaprosić swoich znajomych do rywalizacji. Każdy z was będzie mógł rozwiązywać te same quizy, a wyniki zostaną porównane. To świetny sposób na wspólną naukę i rywalizację.',
+	},
+	{
+		title: 'Co to jest funkcja zapisywania pytań?',
+		answer:
+			'Jeśli napotkasz pytania, na które nie znasz odpowiedzi, możesz je zapisać na swoim koncie. Później będziesz mógł stworzyć z nich własny test, aby się do nich przygotować.',
+	},
+]
