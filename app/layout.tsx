@@ -22,10 +22,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 						<UserSection />
 					</div>
 
-					<div className='max-w-[1200px] w-full mx-auto p-[40px]'>
-						<div className='mt-[50px]'>{children}</div>
+					<div className='max-w-[1200px] w-full mx-auto p-[40px] '>
+						<div className='mt-[50px]'>
+							{children}
 
-						<Footer />
+							{/* <Footer /> */}
+						</div>
 					</div>
 				</div>
 			</body>

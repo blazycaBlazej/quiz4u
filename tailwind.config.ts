@@ -16,6 +16,7 @@ const config: Config = {
 				'border-color': '#2f3337',
 				'btn-violet-color': '#5721f2',
 				'main-font-color': '#75777b',
+				'error-color': '#e43d42',
 			},
 
 			boxShadow: {

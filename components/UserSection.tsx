@@ -39,7 +39,7 @@ export const UserSection = () => {
 							{userMenuElements.map((element, index) => {
 								const isActive = pathname === element.pathname
 								return (
-									<Menu.Item>
+									<Menu.Item key={index}>
 										<Link key={index} href={`${element.pathname}`}>
 											<NavbarElement
 												index={index}
