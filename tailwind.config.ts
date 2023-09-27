@@ -15,6 +15,7 @@ const config: Config = {
 				'element-active-backgorund': '#4b4c4e',
 				'border-color': '#2f3337',
 				'btn-violet-color': '#5721f2',
+				'btn-violet-color-hover': '#4719C1',
 				'main-font-color': '#75777b',
 				'error-color': '#e43d42',
 			},

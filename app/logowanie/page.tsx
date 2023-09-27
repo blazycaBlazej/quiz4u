@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
-import React, { useState, useRef } from 'react'
-import { IconEye, IconEyeOff } from '@tabler/icons-react'
+import React, { useState } from 'react'
+import { IconEye, IconEyeOff, IconLoader } from '@tabler/icons-react'
 import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 import Link from 'next/link'
@@ -21,7 +21,7 @@ export default function page() {
 		mode: 'onSubmit',
 	})
 	const { register, control, handleSubmit, formState, getValues } = form
-	const { errors, isDirty, isValid, isSubmitting } = formState
+	const { errors, isSubmitting } = formState
 
 	const onSubmit = (data: FormValues) => {
 		console.log('form sumbitted', data)
@@ -78,28 +78,30 @@ export default function page() {
 						onBlur={() => setPasswordIsActive(false)}
 					/>
 					<span
-						className='block absolute top-[12px] right-[20px] cursor-pointer'
+						className='block absolute top-[12px] right-[20px] cursor-pointer text-white transition-colors hover:text-main-font-color'
 						onClick={() => setShowPassword(!showPassword)}>
 						{showPassword ? <IconEyeOff /> : <IconEye />}
 					</span>
 					<span className='text-sm text-error-color  block my-[4px]'>{errors.password?.message}</span>
 				</div>
-				<Link href='/zmien-haslo'>
-					<span className='text-white underline cursor-pointer block text-right my-[10px]'>Zapomniałeś hasła ?</span>
+				<Link href='/resetuj-haslo'>
+					<span className='text-white underline cursor-pointer block text-right my-[10px] transition-colors hover:text-main-font-color'>
+						Zapomniałeś hasła ?
+					</span>
 				</Link>
 
 				<button
 					disabled={isSubmitting || Object.keys(errors).length > 0}
 					className={`h-[50px] max-w-[410px] w-full bg-btn-violet-color  rounded-[20px] text-white cursor-pointer ${
 						isSubmitting || Object.keys(errors).length > 0 ? 'bg-gray-600 cursor-not-allowed' : ''
-					}`}>
-					Zaloguj się
+					} transition-colors hover:bg-btn-violet-color-hover`}>
+					{isSubmitting ? <IconLoader /> : 'Zaloguj się'}
 				</button>
 			</form>
 			{/* <DevTool control={control} /> */}
 
 			<Link href='/rejestracja'>
-				<span className='text-white underline cursor-pointer block text-right'>
+				<span className='text-white underline cursor-pointer block text-right transition-colors hover:text-main-font-color'>
 					Nie masz konta ? - Kliknji aby utworzyć konto
 				</span>
 			</Link>
