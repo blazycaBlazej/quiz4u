@@ -39,7 +39,7 @@ export default function page() {
 						Email*
 					</label>
 					<input
-						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-backgorund border-2  border-border-color rounded-[20px]'
+						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-backgorund border-2  border-border-color rounded-[20px] text-white'
 						type='text'
 						id='email'
 						autoComplete='off'
@@ -64,7 +64,7 @@ export default function page() {
 						Hasło*
 					</label>
 					<input
-						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-backgorund border-2  border-border-color rounded-[20px]'
+						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-backgorund border-2  border-border-color rounded-[20px] text-white'
 						type={showPassword ? 'text' : 'password'}
 						id='password'
 						{...register('password', {

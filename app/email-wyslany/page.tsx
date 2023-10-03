@@ -23,7 +23,9 @@ export default function page() {
 	return (
 		<main className='flex flex-col justify-center items-center gap-[20px] h-[calc(100vh-404px)] w-full'>
 			<h2 className='max-w-[410px] w-full text-3xl text-white '>Wiadomość została wysłana</h2>
-			<p className='max-w-[410px] w-full'>Link do zresetowania hasła otrzymasz pod adresem: {email}</p>
+			<p className='max-w-[410px] w-full'>
+				Link do zresetowania hasła otrzymasz pod adresem: <span className='text-white'>{email}</span>
+			</p>
 			<p className='max-w-[410px] w-full'>Nie dostałeś wiadomości ? - kliknij poniższy przycisk</p>
 
 			<button
