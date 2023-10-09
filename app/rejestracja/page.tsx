@@ -56,6 +56,10 @@ export default function page() {
 								value: 6,
 								message: 'Login jest za krótki, minimalna ilość znaków to 6',
 							},
+							maxLength: {
+								value: 15,
+								message: 'Login jest za długi, maksymalna ilość znaków to 15',
+							},
 						})}
 						onFocus={() => setLoginIsActive(true)}
 						onBlur={() => setLoginIsActive(false)}
@@ -106,7 +110,11 @@ export default function page() {
 							required: 'Hasło jest wymagane',
 							minLength: {
 								value: 6,
-								message: 'Hasło jest za krótkie',
+								message: 'Hasło jest za krótkie, minimalna ilość znaków to 6',
+							},
+							maxLength: {
+								value: 20,
+								message: 'Hasło jest za długie, maksymalna ilość znaków to 20',
 							},
 						})}
 						onFocus={() => setPasswordIsActive(true)}
