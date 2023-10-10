@@ -2,35 +2,57 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { IconEye, IconEyeOff, IconLoader } from '@tabler/icons-react'
-import { useForm } from 'react-hook-form'
+import { get, useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 import Link from 'next/link'
-
-type FormValues = {
-	email: string
-	login: string
-	password: string
-	confirmPassword: string
-	rules: boolean
-	newslatter: boolean
-}
+import {
+	createUser,
+	emailValidation as emailValidationFunc,
+	loginValidation as loginValidationFunc,
+} from '@/lib/db/serverFunctions'
+import { FormValues } from '@/types/types'
 
 export default function page() {
-	const [showPassword, setShowPassword] = useState(false)
+	const checkConfirmPassword = () => {
+		const passwrod = getValues('password')
+		const confirmPassword = getValues('confirmPassword')
 
+		if (passwrod !== confirmPassword) {
+			setError('confirmPassword', {
+				type: 'manual',
+				message: 'Hasła nie zgadzają się',
+			})
+
+			return 'Hasła nie zgadzają się'
+		}
+
+		clearErrors('confirmPassword')
+		clearErrors('password')
+		return true
+	}
+
+	const [showPassword, setShowPassword] = useState(false)
 	const [emailIsActive, setEmailIsActive] = useState(false)
 	const [loginIsActive, setLoginIsActive] = useState(false)
 	const [passwordIsActive, setPasswordIsActive] = useState(false)
 	const [confirmPasswordIsActive, setConfirmPasswordIsActive] = useState(false)
+	const [submitingResult, setSubmitingResult] = useState({
+		error: false,
+		message: '',
+	})
 
 	const form = useForm<FormValues>({
 		mode: 'onSubmit',
 	})
-	const { register, control, handleSubmit, formState, getValues } = form
+	const { register, control, handleSubmit, formState, getValues, trigger, setError, clearErrors } = form
 	const { errors, isSubmitting } = formState
 
-	const onSubmit = (data: FormValues) => {
+	const onSubmit = async (data: FormValues) => {
 		console.log('form sumbitted', data)
+		const result = await createUser(data)
+		if (result) {
+			setSubmitingResult({ error: result.error, message: result.message })
+		}
 	}
 	return (
 		<main className='flex flex-col justify-center items-center gap-[20px] min-h-[calc(100vh-404px)] w-full'>
@@ -60,6 +82,12 @@ export default function page() {
 								value: 15,
 								message: 'Login jest za długi, maksymalna ilość znaków to 15',
 							},
+							validate: {
+								loginValidation: async fieldValue => {
+									const result = await loginValidationFunc(fieldValue)
+									return result
+								},
+							},
 						})}
 						onFocus={() => setLoginIsActive(true)}
 						onBlur={() => setLoginIsActive(false)}
@@ -85,6 +113,12 @@ export default function page() {
 							pattern: {
 								value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
 								message: 'Nieprawidłowy format maila',
+							},
+							validate: {
+								emailValidation: async fieldValue => {
+									const result = await emailValidationFunc(fieldValue)
+									return result
+								},
 							},
 						})}
 						onFocus={() => setEmailIsActive(true)}
@@ -116,6 +150,10 @@ export default function page() {
 								value: 20,
 								message: 'Hasło jest za długie, maksymalna ilość znaków to 20',
 							},
+
+							validate: {
+								checkConfirmPassword,
+							},
 						})}
 						onFocus={() => setPasswordIsActive(true)}
 						onBlur={() => setPasswordIsActive(false)}
@@ -146,9 +184,7 @@ export default function page() {
 						{...register('confirmPassword', {
 							required: 'Powtórzenie hasła jest wymagane',
 							validate: {
-								passwordsEqual: fieldValue => {
-									return fieldValue === getValues('password') || 'Hasła nie zgadzają się'
-								},
+								checkConfirmPassword,
 							},
 						})}
 						onFocus={() => setConfirmPasswordIsActive(true)}
@@ -190,6 +226,9 @@ export default function page() {
 					{isSubmitting ? <IconLoader /> : 'Zarejstruj się'}
 				</button>
 			</form>
+			{submitingResult.error && (
+				<span className='text-sm text-error-color  block my-[4px]'>{submitingResult.message}</span>
+			)}
 			{/* <DevTool control={control} /> */}
 
 			<Link href='/logowanie'>

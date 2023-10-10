@@ -12,3 +12,12 @@ export interface TestimonialProps {
 	text: string
 	image: string
 }
+
+export interface FormValues {
+	login: string
+	email: string
+	password: string
+	confirmPassword: string
+	newslatter: boolean
+	rules: boolean
+}
