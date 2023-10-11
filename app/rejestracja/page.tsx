@@ -6,7 +6,6 @@ import { get, useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 import Link from 'next/link'
 import {
-	createUser,
 	emailValidation as emailValidationFunc,
 	loginValidation as loginValidationFunc,
 } from '@/lib/db/serverFunctions'
@@ -36,10 +35,7 @@ export default function page() {
 	const [loginIsActive, setLoginIsActive] = useState(false)
 	const [passwordIsActive, setPasswordIsActive] = useState(false)
 	const [confirmPasswordIsActive, setConfirmPasswordIsActive] = useState(false)
-	const [submitingResult, setSubmitingResult] = useState({
-		error: false,
-		message: '',
-	})
+	const [submitingError, setSubmitingError] = useState('')
 
 	const form = useForm<FormValues>({
 		mode: 'onSubmit',
@@ -49,10 +45,28 @@ export default function page() {
 
 	const onSubmit = async (data: FormValues) => {
 		console.log('form sumbitted', data)
-		const result = await createUser(data)
-		if (result) {
-			setSubmitingResult({ error: result.error, message: result.message })
+
+		const res = await fetch('/api/createUser', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ data }),
+		})
+
+		const result = await res.json()
+		console.log(res.status)
+		console.log(result)
+		if (res.status === 500 || 422) {
+			setSubmitingError(result.message)
 		}
+
+		if (res.status === 201) {
+			return
+		}
+		// if (result) {
+		// 	setSubmitingResult({ error: result.error, message: result.message })
+		// }
 	}
 	return (
 		<main className='flex flex-col justify-center items-center gap-[20px] min-h-[calc(100vh-404px)] w-full'>
@@ -226,9 +240,7 @@ export default function page() {
 					{isSubmitting ? <IconLoader /> : 'Zarejstruj się'}
 				</button>
 			</form>
-			{submitingResult.error && (
-				<span className='text-sm text-error-color  block my-[4px]'>{submitingResult.message}</span>
-			)}
+			{submitingError && <span className='text-sm text-error-color  block my-[4px]'>{submitingError}</span>}
 			{/* <DevTool control={control} /> */}
 
 			<Link href='/logowanie'>
