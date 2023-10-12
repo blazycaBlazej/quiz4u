@@ -7,14 +7,20 @@ import Link from 'next/link'
 import { NavbarElement } from './NavbarElement'
 import { usePathname } from 'next/navigation'
 import { userMenuElements } from '@/constans/constans'
+import { useSession } from 'next-auth/react'
 
-export const UserSection = () => {
+type UserSectionProps = {
+	userName: string | null | undefined
+}
+
+export const UserSection = ({ userName }: UserSectionProps) => {
 	const pathname = usePathname()
-	return (
+
+	return userName ? (
 		<div className=' flex h-[76px] py-[12px] border-b border-solid border-border-color w-full '>
 			<div className=' flex items-center gap-4 ml-auto pr-[80px]'>
 				<span className='text-white'>
-					Cześć, <span className='text-btn-violet-color'>UserName!</span>
+					Cześć, <span className='text-btn-violet-color'>{userName}</span>
 				</span>
 				<Menu as='div' className={'relative'}>
 					<Menu.Button>
@@ -57,5 +63,7 @@ export const UserSection = () => {
 				</Menu>
 			</div>
 		</div>
+	) : (
+		<></>
 	)
 }

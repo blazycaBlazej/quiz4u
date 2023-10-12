@@ -2,13 +2,14 @@
 
 import React from 'react'
 import { Logo } from './Logo'
-import { menuElements } from '@/constans/constans'
 import Link from 'next/link'
 import { NavbarElement } from './NavbarElement'
 import { usePathname } from 'next/navigation'
+import { NavbarElementProps } from '@/types/types'
 
-export const Navbar = () => {
+export const Navbar = (item: NavbarElementProps[]) => {
 	const pathname = usePathname()
+	const menuElements = Object.values(item)
 
 	return (
 		<nav
@@ -24,7 +25,7 @@ export const Navbar = () => {
 								name={element.name}
 								isNew={element.isNew}
 								isActive={isActive}
-								icon={element.icon}
+								// icon={element.icon}
 							/>
 						</Link>
 					)

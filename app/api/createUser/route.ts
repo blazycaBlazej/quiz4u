@@ -24,6 +24,7 @@ export async function POST(req: NextRequest) {
 				email,
 				password: hashedPassword,
 				newslatter,
+				isAdmin: false,
 			},
 		})
 		console.log(user)

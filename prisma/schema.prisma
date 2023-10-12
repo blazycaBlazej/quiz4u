@@ -17,4 +17,15 @@ model User{
   email String @unique
   password String
   newslatter Boolean
+  isAdmin Boolean
+}
+
+
+model Menu{
+   id String @id @default(uuid())
+   name String @unique
+   isNew Boolean
+   pathname String @unique
+   icon String
+   shouldDisplayWhenLoggedIn Boolean
 }

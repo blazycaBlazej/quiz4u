@@ -30,7 +30,7 @@ export const quizzes = [
 export const userMenuElements = [
 	{ name: 'Profil', pathname: '/profil', icon: settings },
 	{ name: 'Ustawienia', pathname: '/ustawienia', icon: user },
-	{ name: 'Wyloguj', pathname: '/wyloguj', icon: logout },
+	{ name: 'Wyloguj', pathname: '#', icon: logout },
 ]
 
 export const learnTrick = [

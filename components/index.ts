@@ -8,6 +8,8 @@ import { Testimonial } from './Testimonial'
 import { Testimonials } from './Testimonials'
 import { FAQ } from './FAQ'
 import { Footer } from './Footer'
+import { LoginForm } from './LoginForm'
+import { RegisterForm } from './RegisterForm'
 
 export {
 	Logo,
@@ -20,4 +22,6 @@ export {
 	Testimonial,
 	FAQ,
 	Footer,
+	LoginForm,
+	RegisterForm,
 }

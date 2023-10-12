@@ -1,10 +1,11 @@
 export interface NavbarElementProps {
-	index: number
-	name: string
+	index?: number
+	name?: string
 	isNew?: boolean
-	isActive: boolean
-	icon?: JSX.Element
-	// pathname: string
+	isActive?: boolean
+	icon?: JSX.Element | string
+	pathname?: string
+	shouldDisplayWhenLoggedIn?: boolean
 }
 export interface TestimonialProps {
 	id: number
