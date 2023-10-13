@@ -15,14 +15,19 @@ interface NavbarProps {
 export const Navbar = ({ item, isAdmin }: NavbarProps) => {
 	const pathname = usePathname()
 	const menuElements = Object.values(item)
-	console.log('xd ', isAdmin)
+
+	const replaceSpacesWithPercent = (inputString: string) => {
+		return inputString.replace(/ /g, '%20')
+	}
+
 	return (
 		<nav
 			className={`w-[280px] h-screen min-h-screen px-4  bg-element-backgorund  white border-r border-solid border-border-color`}>
 			<Logo />
 			<ul>
 				{menuElements.map((element, index) => {
-					const isActive = pathname === element.pathname
+					const isActive = pathname === replaceSpacesWithPercent(element.pathname as string)
+					console.log(pathname)
 					return (
 						<Link key={index} href={`${element.pathname}`}>
 							<NavbarElement
@@ -39,7 +44,7 @@ export const Navbar = ({ item, isAdmin }: NavbarProps) => {
 			{isAdmin && (
 				<div className='mt-5'>
 					<span className='mb-2 block'>Panel administratora:</span>
-					<Link href='dodaj-nowy-quiz'>
+					<Link href='/dodaj-nowy-quiz'>
 						<span
 							className={`flex w-full gap-2 cursor-pointer py-[13px]  px-5 transition-colors hover:bg-element-hover-backgorund rounded-[12px] ${
 								pathname === '/dodaj-nowy-quiz' ? `text-white bg-element-active-backgorund` : ``

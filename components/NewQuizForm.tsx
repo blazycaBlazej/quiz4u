@@ -38,7 +38,7 @@ export const NewQuizForm = () => {
 
 			const result = await res.json()
 			if (res.status === 200) {
-				router.replace('/')
+				router.replace(result.pathname)
 				router.refresh()
 			}
 			setSubmitingError(result.message)

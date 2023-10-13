@@ -14,17 +14,17 @@ export async function POST(req: NextRequest) {
 
 		if (quizName === '' || quizName.length > 15 || quizName.length < 5)
 			return NextResponse.json({ message: 'Nazwa Quizu jest nie poprawna.' }, { status: 422 })
-
+		const pathname = `/quiz/${quizName}`
 		await prisma.menu.create({
 			data: {
 				name: quizName,
 				isNew: true,
-				pathname: `/${quizName}`,
+				pathname,
 				icon: 'IconAbc',
 				shouldDisplayWhenLoggedIn: true,
 			},
 		})
-		return NextResponse.json({ message: 'Quiz został utworzony' }, { status: 200 })
+		return NextResponse.json({ message: 'Quiz został utworzony', pathname: pathname }, { status: 200 })
 	} catch (e) {
 		if (e instanceof Prisma.PrismaClientKnownRequestError) {
 			if (e.code === 'P2002') {
