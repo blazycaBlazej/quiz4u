@@ -43,29 +43,24 @@ export const RegisterForm = () => {
 	const { errors, isSubmitting } = formState
 
 	const onSubmit = async (data: FormValues) => {
-		console.log('form sumbitted', data)
+		try {
+			const res = await fetch('/api/createUser', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ data }),
+			})
 
-		const res = await fetch('/api/createUser', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ data }),
-		})
+			const result = await res.json()
 
-		const result = await res.json()
-		console.log(res.status)
-		console.log(result)
-		if (res.status === 500 || 422) {
 			setSubmitingError(result.message)
+			if (res.status === 200) {
+				//register verification
+			}
+		} catch (e) {
+			setSubmitingError('Błąd serwera, spróbuj zalogować się później.')
 		}
-
-		if (res.status === 201) {
-			return
-		}
-		// if (result) {
-		// 	setSubmitingResult({ error: result.error, message: result.message })
-		// }
 	}
 	return (
 		<main className='flex flex-col justify-center items-center gap-[20px] min-h-[calc(100vh-404px)] w-full'>

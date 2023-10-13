@@ -17,18 +17,18 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	const menuElements = await getMenuItems()
-	const userName = await getIsLogged()
-
+	const user = await getIsLogged()
+	console.log(user)
 	return (
 		<html lang='en' className={nunito.className}>
 			<body className={`flex bg-main-backgorund  min-h-screen text-main-font-color`}>
 				<AuthProvider>
 					<div className='fixed  left-0 top-0 z-[999]'>
-						<Navbar {...menuElements} />
+						<Navbar isAdmin={user?.isAdmin} item={...menuElements} />
 					</div>
 					<div className='ml-[280px] flex flex-col w-full'>
 						<div className='fixed w-full right-0 top-0 z-[998] bg-main-backgorund '>
-							<UserSection userName={userName} />
+							<UserSection userName={user?.login} />
 						</div>
 
 						<div className='max-w-[1200px] w-full mx-auto p-[40px] '>

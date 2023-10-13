@@ -7,5 +7,5 @@ export const revalidate = 72480
 
 export const getIsLogged = cache(async () => {
 	const session = await getServerSession(authOptions)
-	return session ? session?.user?.login : null
+	return session ? { login: session?.user?.login, isAdmin: session?.user?.isAdmin } : { login: null, isAdmin: false }
 })

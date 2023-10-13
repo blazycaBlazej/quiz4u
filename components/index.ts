@@ -10,6 +10,7 @@ import { FAQ } from './FAQ'
 import { Footer } from './Footer'
 import { LoginForm } from './LoginForm'
 import { RegisterForm } from './RegisterForm'
+import { NewQuizForm } from './NewQuizForm'
 
 export {
 	Logo,
@@ -24,4 +25,5 @@ export {
 	Footer,
 	LoginForm,
 	RegisterForm,
+	NewQuizForm,
 }
