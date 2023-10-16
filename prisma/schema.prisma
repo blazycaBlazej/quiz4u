@@ -29,3 +29,25 @@ model Menu{
    icon String
    shouldDisplayWhenLoggedIn Boolean
 }
+
+// model Quiz{
+// 	id Int @id @default(autoincrement())
+// 	name String @unique
+// 	description String
+// 	isNew Boolean
+// 	isActive Boolean
+// 	questions Question[]
+// }
+
+
+// model Question{
+// 	id Int @id @default(autoincrement())
+// 	quiz Quiz @relation(fields: [quizID], references: [id])
+// 	question String
+// 	answerA String
+// 	answerB String
+// 	answerC String
+// 	answerD String
+// 	correctAnswer String
+//   quizID Int
+// }
