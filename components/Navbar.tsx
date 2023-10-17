@@ -16,18 +16,17 @@ export const Navbar = ({ item, isAdmin }: NavbarProps) => {
 	const pathname = usePathname()
 	const menuElements = Object.values(item)
 
-	const replaceSpacesWithPercent = (inputString: string) => {
-		return inputString.replace(/ /g, '%20')
-	}
-
 	return (
 		<nav
 			className={`w-[280px] h-screen min-h-screen px-4  bg-element-backgorund  white border-r border-solid border-border-color`}>
 			<Logo />
 			<ul>
 				{menuElements.map((element, index) => {
-					const isActive = pathname === replaceSpacesWithPercent(element.pathname as string)
-					console.log(pathname)
+					const isActive =
+						decodeURIComponent(pathname) === `${element.pathname}` ||
+						decodeURIComponent(pathname) === `/quiz/${element.name}` ||
+						decodeURIComponent(pathname) === `/edit/${element.name}`
+
 					return (
 						<Link key={index} href={`${element.pathname}`}>
 							<NavbarElement
@@ -35,6 +34,8 @@ export const Navbar = ({ item, isAdmin }: NavbarProps) => {
 								name={element.name}
 								isNew={element.isNew}
 								isActive={isActive}
+								isVisible={element.isActive}
+								isAdmin={isAdmin}
 								// icon={element.icon}
 							/>
 						</Link>

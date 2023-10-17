@@ -21,33 +21,41 @@ model User{
 }
 
 
-model Menu{
-   id String @id @default(uuid())
-   name String @unique
-   isNew Boolean
-   pathname String @unique
-   icon String
-   shouldDisplayWhenLoggedIn Boolean
+// model Menu{
+//    id String @id @default(uuid())
+//    name String @unique
+//    isNew Boolean
+//    pathname String @unique
+//    icon String
+//    shouldDisplayWhenLoggedIn Boolean
+// }
+
+model Quiz{
+	id Int @id @default(autoincrement())
+	name String @unique
+	description String
+  pathname String
+	isNew Boolean
+	isActive Boolean
+  randomize1Question Boolean
+  randomize40Questions Boolean
+  randomizeXQuestions Boolean
+  rankedGame Boolean
+  showAllQuestions Boolean
+  printTest Boolean
+  competeWithFriends Boolean
+	questions Question[]
 }
 
-// model Quiz{
-// 	id Int @id @default(autoincrement())
-// 	name String @unique
-// 	description String
-// 	isNew Boolean
-// 	isActive Boolean
-// 	questions Question[]
-// }
 
-
-// model Question{
-// 	id Int @id @default(autoincrement())
-// 	quiz Quiz @relation(fields: [quizID], references: [id])
-// 	question String
-// 	answerA String
-// 	answerB String
-// 	answerC String
-// 	answerD String
-// 	correctAnswer String
-//   quizID Int
-// }
+model Question{
+	id Int @id @default(autoincrement())
+	quiz Quiz @relation(fields: [quizID], references: [id])
+	question String
+	answerA String
+	answerB String
+	answerC String
+	answerD String
+	correctAnswer String
+  quizID Int
+}

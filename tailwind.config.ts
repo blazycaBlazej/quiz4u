@@ -22,6 +22,8 @@ const config: Config = {
 
 			boxShadow: {
 				customNew: '-4px 2px 12px rgba(115, 70, 243, 0.54)',
+				customGreen: '0 4px 6px rgba(0, 128, 0, 0.5)',
+				customRed: '0 4px 6px rgba(255, 0, 0, 0.5)',
 			},
 		},
 	},

@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { FormValues } from '@/types/types'
-import { redirect } from 'next/navigation'
 import { hashPassword } from '@/lib/db/clientFunctions'
 import prisma from '@/lib/db/db'
 import { Prisma } from '@prisma/client'

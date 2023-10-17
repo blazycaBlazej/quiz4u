@@ -1,12 +1,13 @@
 'use client'
 
 import React, { useState } from 'react'
-import { IconEye, IconEyeOff, IconLoader } from '@tabler/icons-react'
+import { IconEye, IconEyeOff } from '@tabler/icons-react'
 import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { Loader } from './Loader'
 
 type FormValues = {
 	email: string
@@ -122,7 +123,7 @@ export const LoginForm = () => {
 							? 'bg-gray-600 hover:cursor-not-allowed hover:bg-gray-600'
 							: ''
 					} transition-colors hover:bg-btn-violet-color-hover`}>
-					{isSubmitting ? <IconLoader /> : 'Zaloguj się'}
+					{isSubmitting ? <Loader /> : 'Zaloguj się'}
 				</button>
 			</form>
 			{submitingError && <span className='text-sm text-error-color  block my-[4px]'>{submitingError}</span>}

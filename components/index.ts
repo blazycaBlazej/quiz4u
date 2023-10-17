@@ -11,6 +11,9 @@ import { Footer } from './Footer'
 import { LoginForm } from './LoginForm'
 import { RegisterForm } from './RegisterForm'
 import { NewQuizForm } from './NewQuizForm'
+import { Loader } from './Loader'
+import { CustomSwitch } from './CustomSwitch'
+import { Modal } from './Modal'
 
 export {
 	Logo,
@@ -26,4 +29,7 @@ export {
 	LoginForm,
 	RegisterForm,
 	NewQuizForm,
+	Loader,
+	CustomSwitch,
+	Modal,
 }

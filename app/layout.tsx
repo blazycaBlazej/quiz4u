@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	const menuElements = await getMenuItems()
 	const user = await getIsLogged()
-	console.log(user)
+	// console.log('menu: ', menuElements)
 	return (
 		<html lang='en' className={nunito.className}>
 			<body className={`flex bg-main-backgorund  min-h-screen text-main-font-color`}>

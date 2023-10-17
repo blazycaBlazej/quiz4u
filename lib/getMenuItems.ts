@@ -3,17 +3,30 @@ import { getServerSession } from 'next-auth'
 import { cache } from 'react'
 import prisma from './db/db'
 
-export const revalidate = 72480
-
 export const getMenuItems = cache(async () => {
-	const menuItems = await prisma.menu.findMany()
 	const session = await getServerSession(authOptions)
+	const menu = [{ name: 'Strona główna', isNew: false, pathname: '/' }]
+	const quizzes = await prisma.quiz.findMany({
+		select: {
+			name: true,
+			isNew: true,
+			pathname: true,
+			isActive: true,
+		},
+	})
 
-	if (session) {
-		const filteredItems = menuItems.filter(item => item.shouldDisplayWhenLoggedIn)
+	quizzes.map(quiz => {
+		if (quiz.isActive || session?.user?.isAdmin) {
+			menu.push(quiz)
+		}
+	})
 
-		return filteredItems
+	if (!session) {
+		menu.push(
+			{ name: 'Rejestracja', isNew: false, pathname: '/rejestracja' },
+			{ name: 'Logowanie', isNew: false, pathname: '/logowanie' }
+		)
 	}
 
-	return menuItems
+	return menu
 })

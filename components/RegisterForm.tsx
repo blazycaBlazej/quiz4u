@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { IconEye, IconEyeOff, IconLoader } from '@tabler/icons-react'
+import { IconEye, IconEyeOff } from '@tabler/icons-react'
 import { get, useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 import Link from 'next/link'
@@ -9,6 +9,7 @@ import {
 	loginValidation as loginValidationFunc,
 } from '@/lib/db/serverFunctions'
 import { FormValues } from '@/types/types'
+import { Loader } from './Loader'
 
 export const RegisterForm = () => {
 	const checkConfirmPassword = () => {
@@ -231,7 +232,7 @@ export const RegisterForm = () => {
 							? 'bg-gray-600 hover:cursor-not-allowed hover:bg-gray-600'
 							: ''
 					} transition-colors hover:bg-btn-violet-color-hover`}>
-					{isSubmitting ? <IconLoader /> : 'Zarejstruj się'}
+					{isSubmitting ? <Loader /> : 'Zarejstruj się'}
 				</button>
 			</form>
 			{submitingError && <span className='text-sm text-error-color  block my-[4px]'>{submitingError}</span>}
