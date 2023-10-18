@@ -67,7 +67,7 @@ export const QuizDeatailsHeader = ({ quizName }: QuizDeatailsHeaderProps) => {
 
 	return (
 		<div className='header flex justify-between items-center'>
-			<h1 className='text-3xl text-white m-[33px] '>Edytuj quiz: {quizName}</h1>
+			<h1 className='text-[27px] text-white mx-[20px] my-[15px] '>Quiz: {quizName}</h1>
 			<div className='flex gap-[10px] mr-[33px]'>
 				<Link href={`/quiz/${quizName}`}>
 					<span className='block  cursor-pointer text-white transition-colors hover:text-main-font-color'>

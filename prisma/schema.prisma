@@ -47,15 +47,21 @@ model Quiz{
 	questions Question[]
 }
 
+enum AnswerOption {
+  answerA
+  answerB
+  answerC
+  answerD
+}
 
 model Question{
 	id Int @id @default(autoincrement())
-	quiz Quiz @relation(fields: [quizID], references: [id])
+	quiz Quiz @relation(fields: [quizID], references: [id], onDelete: Cascade)
 	question String
 	answerA String
 	answerB String
 	answerC String
 	answerD String
-	correctAnswer String
+	correctAnswer AnswerOption
   quizID Int
 }

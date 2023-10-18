@@ -31,7 +31,10 @@ export async function POST(req: NextRequest) {
 				competeWithFriends: false,
 			},
 		})
-		return NextResponse.json({ message: 'Quiz został utworzony', pathname: `/edit/${name}` }, { status: 200 })
+		return NextResponse.json(
+			{ message: 'Quiz został utworzony', pathname: `/edytuj-quiz/${name}/detale` },
+			{ status: 200 }
+		)
 	} catch (e) {
 		if (e instanceof Prisma.PrismaClientKnownRequestError) {
 			if (e.code === 'P2002') {

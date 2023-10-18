@@ -14,7 +14,7 @@ export default async function QuizPage({ params }: { params: { slug: string } })
 				<h1 className='text-3xl text-white m-[33px] '>Quiz: {quizName}</h1>
 				{isAdmin && (
 					<div className='mr-[33px]'>
-						<Link href={`/edit/${quizName}`}>
+						<Link href={`/edytuj-quiz/${quizName}/detale`}>
 							<span className='block  cursor-pointer text-white transition-colors hover:text-main-font-color'>
 								<IconPencil width='40' height='40' />
 							</span>
