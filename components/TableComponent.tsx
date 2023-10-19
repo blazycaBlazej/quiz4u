@@ -20,6 +20,8 @@ import {
 } from '@tanstack/react-table'
 import React, { useState } from 'react'
 import { EditQuestionForm } from './EditQuestionForm'
+import useSWR, { mutate } from 'swr'
+import { Loader } from '.'
 
 type Table = {
 	id: number
@@ -126,26 +128,33 @@ interface Question {
 
 interface TableComponentProps {
 	quizName: string
-	questions: Question[]
 }
+const fetcher = (url: string) => fetch(url).then(res => res.json())
 
-export const TableComponent = ({ quizName, questions }: TableComponentProps) => {
-	console.log('xd: ', quizName)
-	const [data, setData] = useState(() => [...questions])
+export const TableComponent = ({ quizName }: TableComponentProps) => {
+	const { data, error, isLoading } = useSWR(`/api/getQuestions?quizName=${quizName}`, fetcher)
 
-	const delateElement = (id: number) => {
-		setData(prevData =>
-			prevData.filter(element => {
-				// console.log(element.id.toString())
-
-				return element.id !== id
+	const delateElement = async (id: number) => {
+		try {
+			const res = await fetch('/api/deleteQuestion', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ id }),
 			})
-		)
+
+			if (res.status === 200) {
+				mutate(`/api/getQuestions?quizName=${quizName}`)
+			}
+		} catch (e) {
+			console.log('Błąd serwera, spróbuj zalogować się później.')
+		}
 	}
 
 	const renderSubComponent = ({ row }: { row: Row<Table> }) => {
 		console.log(quizName)
-		const { question, answerA, answerB, answerC, answerD, correctAnswer } = row.original
+		const { id, question, answerA, answerB, answerC, answerD, correctAnswer } = row.original
 		return (
 			<EditQuestionForm
 				question={question}
@@ -154,6 +163,7 @@ export const TableComponent = ({ quizName, questions }: TableComponentProps) => 
 				answerC={answerC}
 				answerD={answerD}
 				correctAnswer={correctAnswer}
+				questionId={id}
 				quizName={quizName}
 			/>
 		)
@@ -241,5 +251,11 @@ export const TableComponent = ({ quizName, questions }: TableComponentProps) => 
 		},
 	]
 
-	return <Table data={data} columns={columns} getRowCanExpand={() => true} renderSubComponent={renderSubComponent} />
+	if (error) return <div>failed to load</div>
+	if (isLoading) return <Loader />
+	return data.data.length > 0 ? (
+		<Table data={data.data} columns={columns} getRowCanExpand={() => true} renderSubComponent={renderSubComponent} />
+	) : (
+		<div>Nie ma pytań w bazie</div>
+	)
 }

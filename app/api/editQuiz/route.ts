@@ -57,6 +57,6 @@ export async function POST(req: NextRequest) {
 				)
 			}
 		}
-		return NextResponse.json({ message: 'Błąd serwera. Spróbuj założyć konto później.' }, { status: 500 })
+		return NextResponse.json({ message: 'Błąd serwera. Spróbuj później zedytować quiz.' }, { status: 500 })
 	}
 }

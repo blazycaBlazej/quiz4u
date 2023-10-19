@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 import { Loader } from './Loader'
-
+import { mutate } from 'swr'
 type FormValues = {
 	question: string
 	answerA: string
@@ -12,10 +12,29 @@ type FormValues = {
 	answerC: string
 	answerD: string
 	correctAnswer: string
+}
+
+type EditQuestionsFormProps = {
+	question: string
+	answerA: string
+	answerB: string
+	answerC: string
+	answerD: string
+	correctAnswer: string
+	questionId: number
 	quizName: string
 }
 
-export const EditQuestionForm = ({ question, answerA, answerB, answerC, answerD, correctAnswer }: FormValues) => {
+export const EditQuestionForm = ({
+	questionId,
+	question,
+	answerA,
+	answerB,
+	answerC,
+	answerD,
+	correctAnswer,
+	quizName,
+}: EditQuestionsFormProps) => {
 	const [questionIsActive, setQuestionIsActive] = useState(true)
 	const [answerAIsActive, setAnswerAIsActive] = useState(true)
 	const [answerBIsActive, setAnswerBIsActive] = useState(true)
@@ -35,34 +54,29 @@ export const EditQuestionForm = ({ question, answerA, answerB, answerC, answerD,
 	const { errors, isSubmitting } = formState
 
 	const onSubmit = async (data: FormValues) => {
-		// if (quizID) {
-		// 	try {
-		// 		const { question, answerA, answerB, answerC, answerD, correctAnswer } = data
-		// 		const res = await fetch('/api/addQuestion', {
-		// 			method: 'POST',
-		// 			headers: {
-		// 				'Content-Type': 'application/json',
-		// 			},
-		// 			body: JSON.stringify({ quizID, question, answerA, answerB, answerC, answerD, correctAnswer }),
-		// 		})
-		// 		const result = await res.json()
-		// 		if (res.status === 200) {
-		// 			reset()
-		// 			setQuestionIsActive(false)
-		// 			setAnswerAIsActive(false)
-		// 			setAnswerBIsActive(false)
-		// 			setAnswerCIsActive(false)
-		// 			setAnswerDIsActive(false)
-		// 			setSubmitingError({ message: result.message, error: false })
-		// 			return
-		// 		}
-		// 		setSubmitingError({ message: result.message, error: true })
-		// 	} catch (e) {
-		// 		setSubmitingError({ message: 'Coś poszło nie tak.', error: true })
-		// 	}
-		// } else {
-		// 	setSubmitingError({ message: 'Coś poszło nie tak.', error: true })
-		// }
+		if (questionId) {
+			try {
+				const { question, answerA, answerB, answerC, answerD, correctAnswer } = data
+				const res = await fetch('/api/editQuestion', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ questionId, question, answerA, answerB, answerC, answerD, correctAnswer }),
+				})
+				const result = await res.json()
+				if (res.status === 200) {
+					setSubmitingError({ message: result.message, error: false })
+					mutate(`/api/getQuestions?quizName=${quizName}`)
+					return
+				}
+				setSubmitingError({ message: result.message, error: true })
+			} catch (e) {
+				setSubmitingError({ message: 'Coś poszło nie tak.', error: true })
+			}
+		} else {
+			setSubmitingError({ message: 'Coś poszło nie tak.', error: true })
+		}
 	}
 
 	return (

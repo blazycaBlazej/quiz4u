@@ -20,16 +20,6 @@ model User{
   isAdmin Boolean
 }
 
-
-// model Menu{
-//    id String @id @default(uuid())
-//    name String @unique
-//    isNew Boolean
-//    pathname String @unique
-//    icon String
-//    shouldDisplayWhenLoggedIn Boolean
-// }
-
 model Quiz{
 	id Int @id @default(autoincrement())
 	name String @unique
@@ -44,7 +34,7 @@ model Quiz{
   showAllQuestions Boolean
   printTest Boolean
   competeWithFriends Boolean
-	questions Question[]
+	questions Question[] 
 }
 
 enum AnswerOption {
