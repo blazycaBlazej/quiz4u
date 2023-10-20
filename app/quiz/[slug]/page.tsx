@@ -6,23 +6,10 @@ import Link from 'next/link'
 export default async function QuizPage({ params }: { params: { slug: string } }) {
 	const quizName = decodeURIComponent(params.slug)
 	const quizDeatails = await getQuizDeatails(quizName)
-	const isAdmin = await getIsAdmin()
+	console.log(quizName)
 	//min-h-[calc(100vh-130px)]
 	return (
-		<main className='flex flex-col w-full rounded-[20px] border border-solid border-border-color'>
-			<div className='flex justify-between items-center'>
-				<h1 className='text-3xl text-white m-[33px] '>Quiz: {quizName}</h1>
-				{isAdmin && (
-					<div className='mr-[33px]'>
-						<Link href={`/edytuj-quiz/${quizName}/detale`}>
-							<span className='block  cursor-pointer text-white transition-colors hover:text-main-font-color'>
-								<IconPencil width='40' height='40' />
-							</span>
-						</Link>
-					</div>
-				)}
-			</div>
-			<div className='border-b border-solid border-border-color'></div>
+		<main className='flex flex-col w-full'>
 			<div className='cointiner flex flex-col  m-[33px]'>
 				<p className='my-[20px]'>{quizDeatails?.description}</p>
 				<div className='flex justify-between'>
@@ -37,7 +24,11 @@ export default async function QuizPage({ params }: { params: { slug: string } })
 						quizDeatails?.competeWithFriends ? (
 							<>
 								<ul>
-									{quizDeatails?.randomize1Question && <li>Losuj 1 pytanie</li>}
+									{quizDeatails?.randomize1Question && (
+										<Link href={`/quiz/${quizName}/1-pytanie`}>
+											<li>Losuj 1 pytanie</li>
+										</Link>
+									)}
 									{quizDeatails?.randomize40Questions && <li>Losuj 40 pytań</li>}
 									{quizDeatails?.randomizeXQuestions && <li>Losuj x pytań</li>}
 									{quizDeatails?.rankedGame && <li>Losuj 40 pytań - gra rankingowa</li>}

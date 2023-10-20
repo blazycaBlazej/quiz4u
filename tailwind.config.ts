@@ -18,6 +18,8 @@ const config: Config = {
 				'btn-violet-color-hover': '#4719C1',
 				'main-font-color': '#75777b',
 				'error-color': '#e43d42',
+				correctAnswer: '#015501',
+				'incorrect-answer-quiz': '#451717',
 			},
 
 			boxShadow: {

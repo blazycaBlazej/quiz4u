@@ -53,3 +53,14 @@ export interface QuizDataDeatails {
 	printTest: boolean
 	competeWithFriends: boolean
 }
+
+export interface quiz {
+	id: number
+	question: string
+	answerA: string
+	answerB: string
+	answerC: string
+	answerD: string
+	correctAnswer: string
+	quizID: number
+}
