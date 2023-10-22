@@ -1,3 +1,4 @@
+import { PrintQuiz } from '@/components/PrintQuiz'
 import { getIsAdmin } from '@/lib/getIsAdmin'
 import { getQuizDeatails } from '@/lib/getQuizDeatails'
 import { IconPencil } from '@tabler/icons-react'
@@ -6,7 +7,7 @@ import Link from 'next/link'
 export default async function QuizPage({ params }: { params: { slug: string } }) {
 	const quizName = decodeURIComponent(params.slug)
 	const quizDeatails = await getQuizDeatails(quizName)
-	console.log(quizName)
+
 	//min-h-[calc(100vh-130px)]
 	return (
 		<main className='flex flex-col w-full'>
@@ -33,7 +34,7 @@ export default async function QuizPage({ params }: { params: { slug: string } })
 									{quizDeatails?.randomizeXQuestions && <li>Losuj x pytań</li>}
 									{quizDeatails?.rankedGame && <li>Losuj 40 pytań - gra rankingowa</li>}
 									{quizDeatails?.showAllQuestions && <li>Pokaż wszystkie pytania</li>}
-									{quizDeatails?.printTest && <li>Drukuj test z losowymi pytaniami</li>}
+									{quizDeatails?.printTest && <PrintQuiz quizName={quizName} />}
 									{quizDeatails?.competeWithFriends && <li>Rywalizuj ze znajomymi</li>}
 								</ul>
 							</>
