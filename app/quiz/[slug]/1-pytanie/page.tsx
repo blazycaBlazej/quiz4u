@@ -1,17 +1,25 @@
 'use client'
-import { QuizAnswer } from '@/components/QuizAnswer'
-import { QuizQuestion } from '@/components/QuizQuestion'
-import { IconStarFilled } from '@tabler/icons-react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import confetti from 'canvas-confetti'
 import useSWR, { mutate } from 'swr'
 import { Loader } from '@/components'
-import { useRouter } from 'next/navigation'
+
+import { CompleteQuiz } from '@/components/CompleteQuiz'
+
+interface ChildComponentHandle {
+	getColor: () => { answerA: string; answerB: string; answerC: string; answerD: string }
+	getCheckedQuestion: () => boolean
+	getMarkAnswer: () => string
+	setMarkAnswer: (newState: string) => void
+	setCheckedQuestion: (newState: boolean) => void
+	setColor: (newState: { answerA: string; answerB: string; answerC: string; answerD: string }) => void
+}
 
 const oneQuestion = ({ params }: { params: { slug: string } }) => {
+	const childRef = useRef<ChildComponentHandle>(null)
+
 	const quizName = decodeURIComponent(params.slug)
-	const router = useRouter()
-	// const fetcher =  (url: string) => fetch(url).then(res => res.json())
+
 	const fetcher = async (url: string) => {
 		const res = await fetch(url)
 		const result = await res.json()
@@ -28,38 +36,24 @@ const oneQuestion = ({ params }: { params: { slug: string } }) => {
 
 	const question = data?.[0]
 
-	const [markAnswer, setMarkAnswer] = useState<string>('')
 	const [message, setMessage] = useState<string>('')
-	const [checkedQuestion, setCheckedQuestion] = useState<boolean>(false)
-	const [color, setColor] = useState<{ answerA: string; answerB: string; answerC: string; answerD: string }>({
-		answerA: '',
-		answerB: '',
-		answerC: '',
-		answerD: '',
-	})
-
-	const checkAnswer = (checkedAnswer: string) => {
-		if (!checkedQuestion) {
-			setMarkAnswer(checkedAnswer)
-		}
-	}
 
 	const nextQuestion = async () => {
-		setMarkAnswer('')
-		setColor({
+		childRef?.current?.setCheckedQuestion(false)
+		childRef?.current?.setMarkAnswer('')
+		childRef?.current?.setColor({
 			answerA: '',
 			answerB: '',
 			answerC: '',
 			answerD: '',
 		})
-		setCheckedQuestion(false)
 		setMessage('')
 
 		mutate(`/api/getRandomQuestion?quizName=${quizName}`)
 	}
 
 	const checkQuestion = () => {
-		if (markAnswer !== '' && markAnswer !== question.correctAnswer) {
+		if (childRef?.current?.getMarkAnswer() !== '' && childRef?.current?.getMarkAnswer() !== question.correctAnswer) {
 			const InValidMessage = [
 				'Ups! Ktoś tu chyba zgubił kompas wiedzy',
 				'Ej, może chcesz spróbować jeszcze raz? Bez szpiegów z Internetu!',
@@ -71,32 +65,32 @@ const oneQuestion = ({ params }: { params: { slug: string } }) => {
 				'Brawo za próbę! Ale niestety, to nie ta odpowiedź.',
 			]
 			const randomIndex = Math.floor(Math.random() * InValidMessage.length)
-			setCheckedQuestion(true)
+			childRef?.current?.setCheckedQuestion(true)
 			setMessage(InValidMessage[randomIndex])
-			setMarkAnswer('')
-			setColor({
+			childRef?.current?.setMarkAnswer('')
+			childRef?.current?.setColor({
 				answerA:
 					question.correctAnswer === 'answerA'
 						? 'bg-correctAnswer opacity-20'
-						: markAnswer !== 'answerA'
+						: childRef?.current?.getMarkAnswer() !== 'answerA'
 						? 'bg-incorrect-answer-quiz opacity-20'
 						: 'bg-incorrect-answer-quiz',
 				answerB:
 					question.correctAnswer === 'answerB'
 						? 'bg-correctAnswer opacity-20'
-						: markAnswer !== 'answerB'
+						: childRef?.current?.getMarkAnswer() !== 'answerB'
 						? 'bg-incorrect-answer-quiz opacity-20'
 						: 'bg-incorrect-answer-quiz',
 				answerC:
 					question.correctAnswer === 'answerC'
 						? 'bg-correctAnswer opacity-20'
-						: markAnswer !== 'answerC'
+						: childRef?.current?.getMarkAnswer() !== 'answerC'
 						? 'bg-incorrect-answer-quiz opacity-20'
 						: 'bg-incorrect-answer-quiz',
 				answerD:
 					question.correctAnswer === 'answerD'
 						? 'bg-correctAnswer opacity-20'
-						: markAnswer !== 'answerD'
+						: childRef?.current?.getMarkAnswer() !== 'answerD'
 						? 'bg-incorrect-answer-quiz opacity-20'
 						: 'bg-incorrect-answer-quiz',
 			})
@@ -104,7 +98,7 @@ const oneQuestion = ({ params }: { params: { slug: string } }) => {
 			//question.correctAnswer === 'answerB' ? '##90EE90' : '#markAnswer !== 'answerA' ? '#FF7F7F' : #FF0000
 			//question.correctAnswer === 'answerC' ? '##90EE90' : '#markAnswer !== 'answerA' ? '#FF7F7F' : #FF0000
 			//question.correctAnswer === 'answerD' ? '##90EE90' : '#markAnswer !== 'answerA' ? '#FF7F7F' : #FF0000
-		} else if (markAnswer === question.correctAnswer) {
+		} else if (childRef?.current?.getMarkAnswer() === question.correctAnswer) {
 			confetti({
 				particleCount: 100,
 				spread: 70,
@@ -122,20 +116,24 @@ const oneQuestion = ({ params }: { params: { slug: string } }) => {
 				'Bingo! Chyba masz supermoce, prawda?',
 			]
 			const randomIndex = Math.floor(Math.random() * ValidMessage.length)
-			setCheckedQuestion(true)
+			childRef?.current?.setCheckedQuestion(true)
 			setMessage(ValidMessage[randomIndex])
-			setMarkAnswer('')
-			setColor({
-				answerA: markAnswer === 'answerA' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
-				answerB: markAnswer === 'answerB' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
-				answerC: markAnswer === 'answerC' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
-				answerD: markAnswer === 'answerD' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
+			childRef?.current?.setMarkAnswer('')
+			childRef?.current?.setColor({
+				answerA:
+					childRef?.current?.getMarkAnswer() === 'answerA' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
+				answerB:
+					childRef?.current?.getMarkAnswer() === 'answerB' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
+				answerC:
+					childRef?.current?.getMarkAnswer() === 'answerC' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
+				answerD:
+					childRef?.current?.getMarkAnswer() === 'answerD' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
 			})
 			//markAnswer === 'answerA' ? '#008000' : '#FF7F7F'
 			//markAnswer === 'answerB' ? '#008000' : '#FF7F7F
 			//markAnswer === 'answerC' ? '#008000' : '#FF7F7F
 			//markAnswer === 'answerD' ? '#008000' : '#FF7F7F
-		} else if (markAnswer === '') {
+		} else if (childRef?.current?.getMarkAnswer() === '') {
 			const UnselectedMessage = [
 				'Hej! Wydaje się, że zapomniałeś wybrać odpowiedź. Chyba kawa jeszcze nie zadziałała?',
 				'Ups! Chyba przegapiłeś coś ważnego. Może chcesz zaznaczyć odpowiedź?',
@@ -155,56 +153,14 @@ const oneQuestion = ({ params }: { params: { slug: string } }) => {
 	if (data)
 		return (
 			<div className='wrapper flex flex-col items-center justify-center w-full my-[50px]'>
-				<div className='relative rounded-[20px] border border-solid border-border-color max-w-[600px] w-full'>
-					<QuizQuestion question={question.question} />
-					<QuizAnswer
-						letter={'A'}
-						answer={question.answerA}
-						id='answerA'
-						marked={'answerA' === markAnswer}
-						checkAnswer={checkAnswer}
-						checkedQuestion={checkedQuestion}
-						color={color}
-					/>
-					<QuizAnswer
-						letter={'B'}
-						answer={question.answerB}
-						id='answerB'
-						marked={'answerB' === markAnswer}
-						checkAnswer={checkAnswer}
-						checkedQuestion={checkedQuestion}
-						color={color}
-					/>
-					<QuizAnswer
-						letter={'C'}
-						answer={question.answerC}
-						id='answerC'
-						marked={'answerC' === markAnswer}
-						checkAnswer={checkAnswer}
-						checkedQuestion={checkedQuestion}
-						color={color}
-					/>
-					<QuizAnswer
-						letter={'D'}
-						answer={question.answerD}
-						id='answerD'
-						marked={'answerD' === markAnswer}
-						checkAnswer={checkAnswer}
-						checkedQuestion={checkedQuestion}
-						color={color}
-					/>
-
-					<span className='absolute top-[15px] right-[15px] cursor-pointer transition-color'>
-						<IconStarFilled width={32} height={32} />
-					</span>
-				</div>
+				<CompleteQuiz ref={childRef} question={question} />
 				<div className='min-h-[30px] text-lg mt-[10px] text-white'>{message && <span>{message}</span>}</div>
 				<div className='flex justify-center items-center gap-[50px] max-w-[600px] w-full mt-[10px]'>
 					<button
 						onClick={() => checkQuestion()}
-						disabled={checkedQuestion}
+						disabled={childRef?.current?.getCheckedQuestion()}
 						className={`flex justify-center px-[15px] py-[7px] text-lg text-white bg-[#FF5733] transition-colors ${
-							checkedQuestion ? ' cursor-not-allowed' : 'cursor-pointer'
+							childRef?.current?.getCheckedQuestion() ? ' cursor-not-allowed' : 'cursor-pointer'
 						}  hover:bg-[#FF8D66]`}>
 						Sprawdź pytanie
 					</button>

@@ -18,7 +18,7 @@ interface QuizAnswerProps {
 
 export const QuizAnswer = ({ answer, letter, checkAnswer, id, marked, checkedQuestion, color }: QuizAnswerProps) => {
 	const background = color[id]
-	console.log(background)
+
 	return (
 		<div
 			onClick={() => checkAnswer(id)}

@@ -16,7 +16,7 @@ export const Testimonial = ({ testimonial }: testimonialObject) => {
 			<div className=''>
 				<p>{text}</p>
 			</div>
-			<div className='flex flex-col justify-cente items-center overflow-hidden'>
+			<div className='flex flex-col justify-center items-center overflow-hidden'>
 				<Image className='rounded-full ' width={70} height={70} src={image} alt={'avatar'} />
 				<span className='mt-2 color-white'>{name}</span>
 				<div className='flex gap-1 text-[#FFD700]'>

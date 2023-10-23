@@ -30,7 +30,7 @@ export interface FormEditQuizValues {
 	isNew: boolean
 	isActive: boolean
 	randomize1Question: boolean
-	randomize40Questions: boolean
+	randomize20Questions: boolean
 	randomizeXQuestions: boolean
 	rankedGame: boolean
 	showAllQuestions: boolean
@@ -46,7 +46,7 @@ export interface QuizDataDeatails {
 	isNew: boolean
 	isActive: boolean
 	randomize1Question: boolean
-	randomize40Questions: boolean
+	randomize20Questions: boolean
 	randomizeXQuestions: boolean
 	rankedGame: boolean
 	showAllQuestions: boolean

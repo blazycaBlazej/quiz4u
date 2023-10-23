@@ -2,11 +2,20 @@ import prisma from '@/lib/db/db'
 import { NextRequest, NextResponse } from 'next/server'
 import { quiz } from '@/types/types'
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
 	try {
-		const { quizName, numberQuestions } = await req.json()
+		const quizName = req.nextUrl.searchParams.get('quizName')
+		const type = req.nextUrl.searchParams.get('type')
+		let numberQuestions: string | null | number = req.nextUrl.searchParams.get('numberQuestions')
 
-		if (numberQuestions < 0) {
+		console.log(type)
+		if (numberQuestions && quizName) {
+			numberQuestions = +numberQuestions
+		} else {
+			return NextResponse.json({ message: `Zle dane` }, { status: 422 })
+		}
+
+		if (!numberQuestions || numberQuestions < 0) {
 			return NextResponse.json({ message: `Liczba pytań nie może być mniejsza od 0.` }, { status: 422 })
 		}
 
@@ -18,11 +27,13 @@ export async function POST(req: NextRequest) {
 				id: true,
 				printTest: true,
 				isActive: true,
+				randomizeXQuestions: true,
+				randomize20Questions: true,
 			},
 		})
 
 		if (quiz) {
-			if (!quiz?.printTest) {
+			if (type !== 'printTest' && type !== 'randomizeXQuestions' && type !== 'randomize20Questions') {
 				return NextResponse.json(
 					{ message: `W quizie: ${quizName} wyłączona jest opcja drukowania pytań.` },
 					{ status: 422 }

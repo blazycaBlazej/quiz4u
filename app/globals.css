@@ -21,6 +21,16 @@ body {
 	box-shadow: 4px 4px 16px #5721f240;
 }
 
+.colorful-box2 {
+	background: linear-gradient(136.08deg, rgb(30, 20, 67) 0%, rgb(20, 21, 23) 100%) padding-box,
+		linear-gradient(160deg, #5721f2, #793ae0) border-box;
+	border-style: solid;
+	border-color: transparent;
+	border-width: 1px;
+	border-radius: 10px;
+	box-shadow: 4px 4px 16px #5721f240;
+}
+
 .transition-top-left {
 	transition: top 0.3s ease, left 0.3s ease;
 }

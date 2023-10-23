@@ -123,13 +123,9 @@ export const PrintQuiz = ({ quizName }: PrintQuizProps) => {
 
 		if (numberQuestions > 0 && numberQuestions <= 50) {
 			try {
-				const res = await fetch('/api/getXQuestions', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({ quizName, numberQuestions }),
-				})
+				const res = await fetch(
+					`/api/getXQuestions?quizName=${quizName}&numberQuestions=${numberQuestions}&type=printTest`
+				)
 				const result = await res.json()
 				if (res.status === 200) {
 					form.reset()

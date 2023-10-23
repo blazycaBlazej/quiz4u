@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 				description,
 				isActive: false,
 				randomize1Question: false,
-				randomize40Questions: false,
+				randomize20Questions: false,
 				randomizeXQuestions: false,
 				rankedGame: false,
 				showAllQuestions: false,

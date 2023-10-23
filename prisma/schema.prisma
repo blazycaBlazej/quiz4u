@@ -28,7 +28,7 @@ model Quiz{
 	isNew Boolean
 	isActive Boolean
   randomize1Question Boolean
-  randomize40Questions Boolean
+  randomize20Questions Boolean
   randomizeXQuestions Boolean
   rankedGame Boolean
   showAllQuestions Boolean
@@ -47,11 +47,11 @@ enum AnswerOption {
 model Question{
 	id Int @id @default(autoincrement())
 	quiz Quiz @relation(fields: [quizID], references: [id], onDelete: Cascade)
-	question String
-	answerA String
-	answerB String
-	answerC String
-	answerD String
+	question String @db.Text
+	answerA String @db.Text
+	answerB String @db.Text
+	answerC String @db.Text
+	answerD String @db.Text
 	correctAnswer AnswerOption
   quizID Int
 }

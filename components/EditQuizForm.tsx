@@ -125,9 +125,9 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 								description='Losuje 1 pytanie:'
 							/>
 							<CustomSwitch
-								name={'randomize40Questions'}
+								name={'randomize20Questions'}
 								control={control}
-								defaultValue={quizDeatails?.randomize40Questions}
+								defaultValue={quizDeatails?.randomize20Questions}
 								description='Losuj 40 pytań:'
 							/>
 							<CustomSwitch
