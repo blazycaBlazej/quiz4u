@@ -6,6 +6,7 @@ import { quiz } from '@/types/types'
 
 interface CompleteQuizProps {
 	question: quiz
+	quizName: string
 }
 
 interface ChildComponentHandle {
@@ -18,7 +19,7 @@ interface ChildComponentHandle {
 }
 
 export const CompleteQuiz = forwardRef<ChildComponentHandle, CompleteQuizProps>((props, ref) => {
-	const { question } = props
+	const { question, quizName } = props
 	const [markAnswer, setMarkAnswer] = useState<string>('')
 	const [checkedQuestion, setCheckedQuestion] = useState<boolean>(false)
 	const [color, setColor] = useState<{ answerA: string; answerB: string; answerC: string; answerD: string }>({
@@ -58,7 +59,7 @@ export const CompleteQuiz = forwardRef<ChildComponentHandle, CompleteQuizProps>(
 
 	return (
 		<div className='relative rounded-[20px] border border-solid border-border-color max-w-[600px] w-full'>
-			<QuizQuestion question={question.question} />
+			<QuizQuestion question={question.question} questionID={question.id} quizName={quizName} />
 			<QuizAnswer
 				letter={'A'}
 				answer={question.answerA}

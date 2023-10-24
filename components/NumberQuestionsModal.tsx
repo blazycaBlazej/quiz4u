@@ -5,6 +5,7 @@ import { Loader, Modal } from '.'
 import { useForm } from 'react-hook-form'
 import { quiz } from '@/types/types'
 import { useRouter } from 'next/navigation'
+import { IconGrain } from '@tabler/icons-react'
 
 interface PrintQuizProps {
 	quizName: string
@@ -17,7 +18,7 @@ interface FormValues {
 
 export const NumberQuestionsModal = ({ quizName, questionsNumber }: PrintQuizProps) => {
 	const [isOpen, setIsOpen] = useState(false)
-
+	console.log('xddd')
 	function closeModal() {
 		setIsOpen(false)
 	}
@@ -40,7 +41,7 @@ export const NumberQuestionsModal = ({ quizName, questionsNumber }: PrintQuizPro
 		if (numberQuestions < 2) {
 			router.push(`/quiz/${quizName}/1-pytanie`)
 		} else {
-			router.push(`/quiz/${quizName}/20-pytan?q=${numberQuestions}&t=randomizeXQuestions`)
+			router.push(`/quiz/${quizName}/x-pytan?q=${numberQuestions}&t=randomizeXQuestions`)
 		}
 	}
 	const maxQuestions = (questionsNumber as number) > 50 ? 50 : questionsNumber
@@ -88,8 +89,9 @@ export const NumberQuestionsModal = ({ quizName, questionsNumber }: PrintQuizPro
 					)}
 				</form>
 			</Modal>
-			<li className='cursor-pointer' onClick={openModal}>
-				Losuj x pytań
+			<li onClick={openModal} className='flex gap-2 transition-colors cursor-pointer hover:text-white'>
+				<IconGrain className='text-white' />
+				<span>Losuj x pytań</span>
 			</li>
 		</>
 	)

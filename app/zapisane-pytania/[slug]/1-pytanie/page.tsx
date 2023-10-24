@@ -5,6 +5,7 @@ import useSWR, { mutate } from 'swr'
 import { Loader } from '@/components'
 
 import { CompleteQuiz } from '@/components/CompleteQuiz'
+import { useSession } from 'next-auth/react'
 
 interface ChildComponentHandle {
 	getColor: () => { answerA: string; answerB: string; answerC: string; answerD: string }
@@ -16,8 +17,8 @@ interface ChildComponentHandle {
 }
 
 const oneQuestion = ({ params }: { params: { slug: string } }) => {
+	const { data: session } = useSession()
 	const childRef = useRef<ChildComponentHandle>(null)
-
 	const quizName = decodeURIComponent(params.slug)
 
 	const fetcher = async (url: string) => {
@@ -32,13 +33,17 @@ const oneQuestion = ({ params }: { params: { slug: string } }) => {
 
 		return result.data
 	}
-	const { data, error, isLoading } = useSWR(`/api/getRandomQuestion?quizName=${quizName}`, fetcher, {
-		revalidateOnFocus: false,
-		revalidateOnReconnect: false,
-	})
+	const { data, error, isLoading } = useSWR(
+		`/api/getRandomSavedQuestion?quizName=${quizName}&userID=${session?.user?.id}`,
+		fetcher,
+		{
+			revalidateOnFocus: false,
+			revalidateOnReconnect: false,
+		}
+	)
 
 	const question = data?.[0]
-
+	console.log('xd: ', question)
 	const [message, setMessage] = useState<string>('')
 
 	const nextQuestion = async () => {
@@ -52,7 +57,7 @@ const oneQuestion = ({ params }: { params: { slug: string } }) => {
 		})
 		setMessage('')
 
-		mutate(`/api/getRandomQuestion?quizName=${quizName}`)
+		mutate(`/api/getRandomSavedQuestion?quizName=${quizName}&userID=${session?.user?.id}`)
 	}
 
 	const checkQuestion = () => {

@@ -2,7 +2,7 @@ import { NavbarElementProps } from '@/types/types'
 import React from 'react'
 import { signOut } from 'next-auth/react'
 
-export const NavbarElement = ({ index, name, isNew, isActive, isVisible, isAdmin }: NavbarElementProps) => {
+export const NavbarElement = ({ index, name, isNew, isActive, isVisible, isAdmin, icon }: NavbarElementProps) => {
 	return (
 		<li
 			onClick={name == 'Wyloguj' ? async () => await signOut() : undefined}
@@ -11,7 +11,7 @@ export const NavbarElement = ({ index, name, isNew, isActive, isVisible, isAdmin
                
                rounded-[12px] ${isActive ? `text-white bg-element-active-backgorund` : ``}`}>
 			<span className='flex gap-2 items-center'>
-				{/* {icon} */}
+				{icon}
 
 				{isAdmin && (
 					<span

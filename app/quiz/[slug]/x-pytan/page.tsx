@@ -5,8 +5,6 @@ import { Loader } from '@/components'
 import { QuizQuestion } from '@/components/QuizQuestion'
 import { QuizAnswer } from '@/components/QuizAnswer'
 import { useSearchParams } from 'next/navigation'
-
-import { useRouter } from 'next/navigation'
 import { bigConfetti } from '@/lib/lib'
 
 interface ChildComponentHandle {
@@ -115,7 +113,6 @@ const fortyQuestions = ({ params }: { params: { slug: string } }) => {
 			return item
 		})
 
-		// Zaktualizuj stan quizu
 		setQuiz(updatedQuiz)
 	}
 
@@ -280,7 +277,12 @@ const fortyQuestions = ({ params }: { params: { slug: string } }) => {
 
 					<div className='w-full flex justify-center mt-[25px]'>
 						<div className='flex flex-col rounded-[20px] border border-solid border-border-color max-w-[600px] w-full'>
-							<QuizQuestion questionNummber={questionIndex + 1} question={questions[questionIndex].question} />
+							<QuizQuestion
+								questionNummber={questionIndex + 1}
+								question={questions[questionIndex].question}
+								questionID={questions[questionIndex].id}
+								quizName={quizName}
+							/>
 							<QuizAnswer
 								letter={'A'}
 								answer={questions[questionIndex].answerA}

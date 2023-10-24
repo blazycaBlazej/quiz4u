@@ -10,31 +10,42 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-model User{
-  id String @id @default(uuid())
-  login String @unique
-  email String @unique
-  password String
-  newslatter Boolean
-  isAdmin Boolean
+model User {
+  id             String           @id @default(uuid())
+  login          String           @unique
+  email          String           @unique
+  password       String
+  newslatter     Boolean
+  isAdmin        Boolean
+  savedQuestions SavedQuestions[]
 }
 
-model Quiz{
-	id Int @id @default(autoincrement())
-	name String @unique
-	description String @db.Text
-  pathname String
-	isNew Boolean
-	isActive Boolean
-  randomize1Question Boolean
+model SavedQuestions {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userID], references: [id])
+  question   Question @relation(fields: [questionID], references: [id])
+  quiz       Quiz     @relation(fields: [quizID], references: [id])
+  userID     String
+  questionID Int
+  quizID     Int
+}
+
+model Quiz {
+  id                   Int              @id @default(autoincrement())
+  name                 String           @unique
+  description          String           @db.Text
+  pathname             String
+  isNew                Boolean
+  isActive             Boolean
+  randomize1Question   Boolean
   randomize20Questions Boolean
-  randomizeXQuestions Boolean
-  rankedGame Boolean
-  showAllQuestions Boolean
-  printTest Boolean
-  competeWithFriends Boolean
-	questions Question[] 
+  randomizeXQuestions  Boolean
+  rankedGame           Boolean
+  showAllQuestions     Boolean
+  printTest            Boolean
+  competeWithFriends   Boolean
+  questions            Question[]
+  SavedQuestions       SavedQuestions[]
 }
 
 enum AnswerOption {
@@ -44,14 +55,15 @@ enum AnswerOption {
   answerD
 }
 
-model Question{
-	id Int @id @default(autoincrement())
-	quiz Quiz @relation(fields: [quizID], references: [id], onDelete: Cascade)
-	question String @db.Text
-	answerA String @db.Text
-	answerB String @db.Text
-	answerC String @db.Text
-	answerD String @db.Text
-	correctAnswer AnswerOption
-  quizID Int
+model Question {
+  id             Int              @id @default(autoincrement())
+  quiz           Quiz             @relation(fields: [quizID], references: [id], onDelete: Cascade)
+  question       String           @db.Text
+  answerA        String           @db.Text
+  answerB        String           @db.Text
+  answerC        String           @db.Text
+  answerD        String           @db.Text
+  correctAnswer  AnswerOption
+  quizID         Int
+  SavedQuestions SavedQuestions[]
 }

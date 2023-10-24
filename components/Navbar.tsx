@@ -29,7 +29,8 @@ export const Navbar = ({ item, isAdmin }: NavbarProps) => {
 						decodeURIComponent(pathname) === `/edytuj-quiz/${element.name}/dodaj-pytanie` ||
 						decodeURIComponent(pathname) === `/edytuj-quiz/${element.name}/zarzadzaj-pytaniami` ||
 						decodeURIComponent(pathname) === `/quiz/${element.name}/1-pytanie` ||
-						decodeURIComponent(pathname) === `/quiz/${element.name}/20-pytan`
+						decodeURIComponent(pathname) === `/quiz/${element.name}/x-pytan` ||
+						decodeURIComponent(pathname) === `/zapisane-pytania/${element.name}/1-pytanie`
 
 					return (
 						<Link key={index} href={`${element.pathname}`}>

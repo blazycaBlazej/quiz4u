@@ -8,7 +8,8 @@ import AuthProvider from './context/AuthProvider'
 
 import { getMenuItems } from '@/lib/getMenuItems'
 import { getIsLogged } from '@/lib/getIsLogged'
-
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 export const metadata: Metadata = {
 	title: 'quiz4u',
 	description:
@@ -39,6 +40,18 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 							</div>
 						</div>
 					</div>
+					<ToastContainer
+						position='top-right'
+						autoClose={1000}
+						hideProgressBar={false}
+						newestOnTop={false}
+						closeOnClick
+						rtl={false}
+						pauseOnFocusLoss
+						draggable
+						pauseOnHover
+						theme='dark'
+					/>
 				</AuthProvider>
 			</body>
 		</html>

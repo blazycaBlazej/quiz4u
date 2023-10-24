@@ -1,9 +1,8 @@
 'use server'
-import { QuizDeatailsHeader } from '@/components/QuizDeatailsHeader'
+
 import { getIsAdmin } from '@/lib/getIsAdmin'
 import { IconPencil } from '@tabler/icons-react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 
 export default async function EditQuizLayout({
 	children,

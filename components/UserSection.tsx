@@ -7,7 +7,6 @@ import Link from 'next/link'
 import { NavbarElement } from './NavbarElement'
 import { usePathname } from 'next/navigation'
 import { userMenuElements } from '@/constans/constans'
-import { useSession } from 'next-auth/react'
 
 type UserSectionProps = {
 	userName: string | null | undefined

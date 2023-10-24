@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Loader, Modal } from '.'
 import { useForm } from 'react-hook-form'
 import { quiz } from '@/types/types'
+import { IconPrinter } from '@tabler/icons-react'
 
 interface PrintQuizProps {
 	quizName: string
@@ -180,8 +181,9 @@ export const PrintQuiz = ({ quizName }: PrintQuizProps) => {
 					</button>
 				</form>
 			</Modal>
-			<li className='cursor-pointer' onClick={openModal}>
-				Drukuj test z losowymi pytaniami
+			<li className='flex gap-2 transition-colors hover:text-white cursor-pointer' onClick={openModal}>
+				<IconPrinter className='text-white' />
+				<span>Drukuj test z losowymi pytaniami</span>
 			</li>
 		</>
 	)

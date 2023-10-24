@@ -1,5 +1,14 @@
 import React from 'react'
-import { IconHome, IconLogin, IconUserPlus, IconAbc, IconSettings, IconUser, IconLogout } from '@tabler/icons-react'
+import {
+	IconHome,
+	IconLogin,
+	IconUserPlus,
+	IconAbc,
+	IconSettings,
+	IconUser,
+	IconLogout,
+	IconDeviceFloppy,
+} from '@tabler/icons-react'
 
 const home = <IconHome />
 const login = <IconLogin />
@@ -8,6 +17,7 @@ const quiz = <IconAbc />
 const settings = <IconSettings />
 const user = <IconUser />
 const logout = <IconLogout />
+const savedQuestions = <IconDeviceFloppy />
 
 export const menuElements = [
 	{ name: 'Strona główna', isNew: false, pathname: '/', icon: home },
@@ -28,8 +38,9 @@ export const quizzes = [
 	{ name: 'Technik Dekarz', isNew: true, pathname: '/quiz5', image: '/roofer.png' },
 ]
 export const userMenuElements = [
-	{ name: 'Profil', pathname: '/profil', icon: settings },
-	{ name: 'Ustawienia', pathname: '/ustawienia', icon: user },
+	{ name: 'Profil', pathname: '/profil', icon: user },
+	{ name: 'Ustawienia', pathname: '/ustawienia', icon: settings },
+	{ name: 'Zapisane pytania', pathname: '/zapisane-pytania', icon: savedQuestions },
 	{ name: 'Wyloguj', pathname: '#', icon: logout },
 ]
 

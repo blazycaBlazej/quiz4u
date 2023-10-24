@@ -4,7 +4,15 @@ import { PrintQuiz } from '@/components/PrintQuiz'
 import { getIsAdmin } from '@/lib/getIsAdmin'
 import { getNumberQuestionInQuiz } from '@/lib/getNumberQuestionsInQuiz'
 import { getQuizDeatails } from '@/lib/getQuizDeatails'
-import { IconPencil } from '@tabler/icons-react'
+import {
+	IconDeviceGamepad,
+	IconDice1,
+	IconEye,
+	IconNumber20Small,
+	IconMedal,
+	IconBoxMultiple,
+	IconMessage2,
+} from '@tabler/icons-react'
 import Link from 'next/link'
 
 export default async function QuizPage({ params }: { params: { slug: string } }) {
@@ -14,8 +22,12 @@ export default async function QuizPage({ params }: { params: { slug: string } })
 	//min-h-[calc(100vh-130px)]
 	return (
 		<main className='flex flex-col w-full'>
-			<div className='cointiner flex flex-col  m-[33px]'>
-				<p className='my-[20px]'>{quizDeatails?.description}</p>
+			<div className='cointiner flex flex-col mt-[20px] m-[33px]'>
+				<h3 className='text-white text-3xl'>Opis:</h3>
+				<p className='my-[6px]'>
+					{quizDeatails?.description === '' ? 'Quiz nie posiada opisu.' : quizDeatails?.description}
+				</p>
+				<div className='border-b border-solid border-border-color my-[20px]'></div>
 				<div className='flex justify-between'>
 					<div className=''>
 						<h2 className='text-white text-2xl'>Dostępn opcje nauki:</h2>
@@ -27,37 +39,66 @@ export default async function QuizPage({ params }: { params: { slug: string } })
 						quizDeatails?.printTest ||
 						quizDeatails?.competeWithFriends ? (
 							<>
-								<ul>
+								<ul className='flex flex-col gap-2 mt-[8px]'>
 									{quizDeatails?.randomize1Question && (
 										<Link href={`/quiz/${quizName}/1-pytanie`}>
-											<li>Losuj 1 pytanie</li>
+											<li className='flex gap-2 transition-colors cursor-pointer hover:text-white'>
+												<IconDice1 className='text-white' />
+												<span>Losuj 1 pytanie</span>
+											</li>
 										</Link>
 									)}
 									{quizDeatails?.randomize20Questions && (
-										<Link href={`/quiz/${quizName}/20-pytan?q=20&t=randomize20Questions`}>
-											<li>Losuj 20 pytań</li>
+										<Link href={`/quiz/${quizName}/x-pytan?q=20&t=randomize20Questions`}>
+											<li className='flex gap-2 transition-colors cursor-pointer hover:text-white'>
+												<IconNumber20Small className='text-white' />
+												<span>Losuj 20 pytań</span>
+											</li>
 										</Link>
 									)}
 									{quizDeatails?.randomizeXQuestions && (
 										<NumberQuestionsModal quizName={quizName} questionsNumber={questionsNumber} />
 									)}
-									{quizDeatails?.rankedGame && <li>Losuj 20 pytań - gra rankingowa</li>}
-									{quizDeatails?.showAllQuestions && <li>Pokaż wszystkie pytania</li>}
+									{quizDeatails?.rankedGame && (
+										<li className='flex gap-2 transition-colors cursor-pointer hover:text-white'>
+											<IconMedal className='text-white' />
+											<span>Losuj 20 pytań - gra rankingowa</span>
+										</li>
+									)}
+									{quizDeatails?.showAllQuestions && (
+										<li className='flex gap-2 transition-colors cursor-pointer hover:text-white'>
+											<IconEye className='text-white' />
+											<span>Pokaż wszystkie pytania</span>
+										</li>
+									)}
 									{quizDeatails?.printTest && <PrintQuiz quizName={quizName} />}
-									{quizDeatails?.competeWithFriends && <li>Rywalizuj ze znajomymi</li>}
+									{quizDeatails?.competeWithFriends && (
+										<li className='flex gap-2 transition-colors cursor-pointer hover:text-white'>
+											<IconDeviceGamepad className='text-white' />
+											<span>Rywalizuj ze znajomymi</span>
+										</li>
+									)}
 								</ul>
 							</>
 						) : (
 							<span>Nie ma dostępnej żadnej opcji nauki</span>
 						)}
-
-						<p className='text-white mt-[20px]'>Liczba pytań: {questionsNumber}</p>
 					</div>
 					<div className=''>
 						<span className='text-white text-2xl'>Twoje ostatnie testy:</span>
 					</div>
 				</div>
-				<span className='text-white text-2xl mt-[20px]'>Komentarze: </span>
+				<div className='border-b border-solid border-border-color my-[20px] w-full'></div>
+				<p className='flex gap-2 text-white'>
+					<IconBoxMultiple />
+					Liczba pytań: {questionsNumber}
+				</p>
+				<div className='border-b border-solid border-border-color my-[20px]'></div>
+
+				<span className='flex gap-2 items-center text-white text-2xl'>
+					<IconMessage2 />
+					Komentarze:{' '}
+				</span>
 			</div>
 		</main>
 	)
