@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { Loader, Modal } from '.'
 import { useForm } from 'react-hook-form'
 import { quiz } from '@/types/types'
-import { IconPrinter } from '@tabler/icons-react'
 
 interface PrintQuizProps {
 	quizName: string

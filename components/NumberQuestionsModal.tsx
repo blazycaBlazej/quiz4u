@@ -1,11 +1,7 @@
 'use client'
-
-import { useState } from 'react'
 import { Loader, Modal } from '.'
 import { useForm } from 'react-hook-form'
-import { quiz } from '@/types/types'
 import { useRouter } from 'next/navigation'
-import { IconGrain } from '@tabler/icons-react'
 
 interface PrintQuizProps {
 	quizName: string
