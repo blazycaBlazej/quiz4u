@@ -1,11 +1,13 @@
 'use client'
-import { IconDice1, IconEye, IconGrain, IconTrash } from '@tabler/icons-react'
+import { IconDice1, IconEye, IconGrain, IconNumber20Small, IconPrinter, IconTrash } from '@tabler/icons-react'
 import Link from 'next/link'
 import { useState } from 'react'
 import { Loader, Modal } from '.'
 import { notification } from '@/lib/lib'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { NumberQuestionsModal } from './NumberQuestionsModal'
+import { PrintQuizModal } from './PrintQuizModal'
 
 interface SavedQuestionsCardProps {
 	quizName: string
@@ -13,16 +15,18 @@ interface SavedQuestionsCardProps {
 }
 
 const SavedQuestionsCard = ({ quizName, numberQuestions }: SavedQuestionsCardProps) => {
-	const [isOpen, setIsOpen] = useState(false)
-	const [isLoading, setIsLoading] = useState(false)
-	const { data: session } = useSession()
 	const router = useRouter()
-	function closeModal() {
-		setIsOpen(false)
+	const { data: session } = useSession()
+
+	//delete modal
+	const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
+	function closeDeleteModal() {
+		setIsOpenDeleteModal(false)
 	}
 
-	function openModal() {
-		setIsOpen(true)
+	function openDeleteModal() {
+		setIsOpenDeleteModal(true)
 	}
 
 	const deleteManySavedQuestions = async () => {
@@ -48,7 +52,29 @@ const SavedQuestionsCard = ({ quizName, numberQuestions }: SavedQuestionsCardPro
 			notification('error', 'Coś poszło nie tak.')
 		}
 		setIsLoading(false)
-		closeModal()
+		closeDeleteModal()
+	}
+
+	//questionNumbermodal
+	const [isQuestionsModalOpen, setQuestionsModalOpen] = useState(false)
+
+	function closeQuestionsModal() {
+		setQuestionsModalOpen(false)
+	}
+
+	function openQuestionsModal() {
+		setQuestionsModalOpen(true)
+	}
+
+	//print modal
+	const [isPrintModalOpen, setPrintModalOpen] = useState(false)
+
+	function closePrintModal() {
+		setPrintModalOpen(false)
+	}
+
+	function openPrintModal() {
+		setPrintModalOpen(true)
 	}
 
 	return (
@@ -70,23 +96,55 @@ const SavedQuestionsCard = ({ quizName, numberQuestions }: SavedQuestionsCardPro
 					</span>
 				</Link>
 
+				{numberQuestions >= 20 && (
+					<Link href={`/zapisane-pytania/${quizName}/x-pytan?q=20`}>
+						<span className='p-[5px]  text-white cursor-pointer transition-colors hover:text-white/30'>
+							<IconNumber20Small />
+						</span>
+					</Link>
+				)}
+
 				<Link href={`/zapisane-pytania/#`}>
-					<span className='p-[5px]  text-white cursor-pointer transition-colors hover:text-white/30'>
+					<span
+						onClick={openQuestionsModal}
+						className='p-[5px]  text-white cursor-pointer transition-colors hover:text-white/30'>
 						<IconGrain />
 					</span>
+					<NumberQuestionsModal
+						quizName={quizName}
+						questionsNumber={numberQuestions}
+						isOpen={isQuestionsModalOpen}
+						closeModal={closeQuestionsModal}
+						type='savedQuestions'
+					/>
 				</Link>
 
 				<Link href={`/zapisane-pytania/#`}>
 					<span
-						onClick={openModal}
+						onClick={openPrintModal}
+						className='p-[5px]  text-white cursor-pointer transition-colors hover:text-white/30'>
+						<IconPrinter />
+					</span>
+					<PrintQuizModal
+						quizName={quizName}
+						questionsNumber={numberQuestions}
+						isOpen={isPrintModalOpen}
+						closeModal={closePrintModal}
+						type='savedQuestions'
+					/>
+				</Link>
+
+				<Link href={`/zapisane-pytania/#`}>
+					<span
+						onClick={openDeleteModal}
 						className='p-[5px]  text-white cursor-pointer transition-colors hover:text-white/30'>
 						<IconTrash />
 					</span>
 				</Link>
 			</div>
 			<Modal
-				isOpen={isOpen}
-				closeModal={closeModal}
+				isOpen={isOpenDeleteModal}
+				closeModal={closeDeleteModal}
 				title={`Czy na pewno chcesz usumąć zapisane pytania w quizie ${quizName} ?`}>
 				<div className='flex justify-center gap-4'>
 					<button
@@ -95,7 +153,7 @@ const SavedQuestionsCard = ({ quizName, numberQuestions }: SavedQuestionsCardPro
 						{isLoading ? <Loader /> : 'TAK'}
 					</button>
 					<button
-						onClick={closeModal}
+						onClick={closeDeleteModal}
 						className={` bg-btn-violet-color py-[8px] px-[15px] rounded-[6px] text-white cursor-pointer transition-colors hover:bg-btn-violet-color-hover`}>
 						NIE
 					</button>

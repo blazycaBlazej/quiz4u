@@ -64,3 +64,7 @@ export interface quiz {
 	correctAnswer: string
 	quizID: number
 }
+
+export interface quizArray {
+	questions: quiz[]
+}

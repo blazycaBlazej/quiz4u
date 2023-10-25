@@ -16,11 +16,10 @@ const fetcher = async (url: string) => {
 	return result.data
 }
 
-const xQuestions = ({ params }: { params: { slug: string } }) => {
+const xSavedQuestions = ({ params }: { params: { slug: string } }) => {
 	const quizName = decodeURIComponent(params.slug)
 	const searchParams = useSearchParams()
 	const questionString: null | string = searchParams?.get('q')
-	const quizType: null | string = searchParams?.get('t')
 	let questionNumber: number = 0
 
 	if (questionString) {
@@ -28,20 +27,17 @@ const xQuestions = ({ params }: { params: { slug: string } }) => {
 	}
 
 	const { data, error, isLoading } = useSWR(
-		`/api/getXQuestions?quizName=${quizName}&numberQuestions=${questionNumber}&type=${quizType}`,
+		`/api/getXSavedQuestions?quizName=${quizName}&numberQuestions=${questionNumber}`,
 		fetcher,
 		{ revalidateOnFocus: false, revalidateOnReconnect: false }
 	)
 
 	const reloadQuestions = () => {
-		mutate(`/api/getXQuestions?quizName=${quizName}&numberQuestions=${questionNumber}&type=${quizType}`)
+		mutate(`/api/getXSavedQuestions?quizName=${quizName}&numberQuestions=${questionNumber}`)
 	}
 
 	const questions = data
 
-	if (!quizType) {
-		return <>error</>
-	}
 	if (isLoading) return <Loader />
 	if (error) return <div>{error.message}</div>
 	if (data)
@@ -55,4 +51,4 @@ const xQuestions = ({ params }: { params: { slug: string } }) => {
 		)
 }
 
-export default xQuestions
+export default xSavedQuestions
