@@ -11,8 +11,8 @@ export default async function QuizPage({ params }: { params: { slug: string } })
 	const questionsNumber = await getNumberQuestionInQuiz(quizName)
 	//min-h-[calc(100vh-130px)]
 
-	if (!quizDeatails || !questionsNumber) {
-		return <div>error</div>
+	if (!quizDeatails || typeof questionsNumber !== 'number') {
+		return <div>error </div>
 	}
 
 	return (

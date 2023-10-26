@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from 'react'
 import useSWR, { mutate } from 'swr'
 import { useSession } from 'next-auth/react'

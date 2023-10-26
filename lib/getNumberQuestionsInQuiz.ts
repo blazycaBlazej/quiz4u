@@ -18,8 +18,7 @@ export const getNumberQuestionInQuiz = cache(async (quizName: string) => {
 			},
 		})
 
-		console.log('questionsNumber: ', questionsNumber)
-		if (questionsNumber) return questionsNumber
+		return questionsNumber
 	} catch (e) {
 		return null
 	}

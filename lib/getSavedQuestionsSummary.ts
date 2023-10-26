@@ -39,12 +39,13 @@ export const getSavedQuestionsSummary = cache(async () => {
 				}
 				savedQuestionsSummary[quizName]++
 			})
-
+			console.log('Xd', savedQuestionsSummary)
 			return savedQuestionsSummary
+		} else {
+			return null
 		}
-
-		return null
-	} catch {
+	} catch (e) {
+		console.log('error: ', e)
 		return null
 	}
 })

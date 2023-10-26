@@ -84,7 +84,7 @@ const SavedQuestionsCard = ({ quizName, numberQuestions }: SavedQuestionsCardPro
 				<span className='text-sm'>Liczba zapisanych pytań: {numberQuestions}</span>
 			</div>
 			<div className='flex gap-2'>
-				<Link href={`/zapisane-pytania/#`}>
+				<Link href={`/zapisane-pytania/${quizName}/wszystkie-pytania?strona=1&na-stronie=10`}>
 					<span className='p-[5px] text-white cursor-pointer transition-colors hover:text-white/30'>
 						<IconEye />
 					</span>

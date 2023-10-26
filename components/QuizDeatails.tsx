@@ -103,10 +103,12 @@ const QuizDeatails = ({ quizDeatails, quizName, questionsNumber }: QuizDeatailsP
 									</li>
 								)}
 								{quizDeatails?.showAllQuestions && (
-									<li className='flex gap-2 transition-colors cursor-pointer hover:text-white'>
-										<IconEye className='text-white' />
-										<span>Pokaż wszystkie pytania</span>
-									</li>
+									<Link href={`/quiz/${quizName}/wszystkie-pytania`}>
+										<li className='flex gap-2 transition-colors cursor-pointer hover:text-white'>
+											<IconEye className='text-white' />
+											<span>Pokaż wszystkie pytania</span>
+										</li>
+									</Link>
 								)}
 								{quizDeatails?.printTest && (
 									<li className='flex gap-2 transition-colors hover:text-white cursor-pointer' onClick={openPrintModal}>
