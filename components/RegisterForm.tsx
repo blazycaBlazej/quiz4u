@@ -208,7 +208,7 @@ export const RegisterForm = () => {
 				</div>
 
 				<label className='flex gap-2'>
-					<input className='cursor-pointer' type='checkbox' id='newslatter' {...register('newslatter')} /> Chcę
+					<input className='cursor-pointer' type='checkbox' id='newsletter' {...register('newsletter')} /> Chcę
 					otrzymwać wiadomości o nowościach.
 				</label>
 

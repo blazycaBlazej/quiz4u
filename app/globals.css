@@ -34,3 +34,11 @@ body {
 .transition-top-left {
 	transition: top 0.3s ease, left 0.3s ease;
 }
+
+.dark-box {
+	background: linear-gradient(308.65deg, #0b0d0f 0%, #1b1c1f 117.53%);
+	border: 1px solid #2f3337;
+	border-radius: 24px;
+	padding-block: 16px;
+	width: 100%;
+}

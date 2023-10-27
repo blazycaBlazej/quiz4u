@@ -6,7 +6,7 @@ import { Prisma } from '@prisma/client'
 export async function POST(req: NextRequest) {
 	const data = await req.json()
 
-	const { login, email, password, confirmPassword, newslatter, rules } = data.data
+	const { login, email, password, confirmPassword, newsletter, rules } = data.data
 
 	const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
 
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
 				login,
 				email,
 				password: hashedPassword,
-				newslatter,
+				newsletter,
 				isAdmin: false,
 			},
 		})

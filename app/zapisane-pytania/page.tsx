@@ -3,7 +3,7 @@ import { getSavedQuestionsSummary } from '@/lib/getSavedQuestionsSummary'
 
 export default async function SavedQuestionsPage() {
 	const savedQuestionsSummary = await getSavedQuestionsSummary()
-	console.log(savedQuestionsSummary)
+
 	if (!savedQuestionsSummary) return <div>Error</div>
 	if (Object.keys(savedQuestionsSummary).length === 0) return <div>Nie masz zapsianych pytań.</div>
 

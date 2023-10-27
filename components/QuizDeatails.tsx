@@ -2,7 +2,7 @@
 import { NumberQuestionsModal } from '@/components/NumberQuestionsModal'
 import { PrintQuizModal } from '@/components/PrintQuizModal'
 import { QuizDataDeatails } from '@/types/types'
-import { IconPrinter } from '@tabler/icons-react'
+import { IconDeviceFloppy, IconPrinter } from '@tabler/icons-react'
 
 import {
 	IconDeviceGamepad,
@@ -15,15 +15,17 @@ import {
 	IconGrain,
 } from '@tabler/icons-react'
 import Link from 'next/link'
-import { useState } from 'react'
+import { Children, useState } from 'react'
+import { LatestQuizzesWrapper } from './LatestQuizzesWrapper'
 
 interface QuizDeatailsProps {
 	quizDeatails: QuizDataDeatails
 	quizName: string
 	questionsNumber: number
+	children: React.ReactNode
 }
 
-const QuizDeatails = ({ quizDeatails, quizName, questionsNumber }: QuizDeatailsProps) => {
+const QuizDeatails = ({ quizDeatails, quizName, questionsNumber, children }: QuizDeatailsProps) => {
 	//question modal
 	const [isQuestionsModalOpen, setQuestionsModalOpen] = useState(false)
 
@@ -53,8 +55,8 @@ const QuizDeatails = ({ quizDeatails, quizName, questionsNumber }: QuizDeatailsP
 				{quizDeatails?.description === '' ? 'Quiz nie posiada opisu.' : quizDeatails?.description}
 			</p>
 			<div className='border-b border-solid border-border-color my-[20px]'></div>
-			<div className='flex justify-between'>
-				<div className=''>
+			<div className='flex justify-between gap-5'>
+				<div className='max-w-[50%] w-full dark-box  p-[24px] flex flex-col gap-4'>
 					<h2 className='text-white text-2xl'>Dostępn opcje nauki:</h2>
 					{quizDeatails?.randomize1Question ||
 					quizDeatails?.randomize20Questions ||
@@ -129,15 +131,20 @@ const QuizDeatails = ({ quizDeatails, quizName, questionsNumber }: QuizDeatailsP
 										<span>Rywalizuj ze znajomymi</span>
 									</li>
 								)}
+								<Link href={`/zapisane-pytania`}>
+									<li className='flex gap-2 transition-colors cursor-pointer hover:text-white'>
+										<IconDeviceFloppy className='text-white' />
+										<span>Pokaż zapisane pytania</span>
+									</li>
+								</Link>
 							</ul>
 						</>
 					) : (
 						<span>Nie ma dostępnej żadnej opcji nauki</span>
 					)}
 				</div>
-				<div className=''>
-					<span className='text-white text-2xl'>Twoje ostatnie testy:</span>
-				</div>
+
+				{children}
 			</div>
 			<div className='border-b border-solid border-border-color my-[20px] w-full'></div>
 			<p className='flex gap-2 text-white'>

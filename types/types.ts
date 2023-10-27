@@ -20,7 +20,7 @@ export interface FormValues {
 	email: string
 	password: string
 	confirmPassword: string
-	newslatter: boolean
+	newsletter: boolean
 	rules: boolean
 }
 

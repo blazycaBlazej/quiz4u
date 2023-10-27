@@ -12,16 +12,22 @@ interface QuizAnswerProps {
 	id: string
 	marked: boolean
 	checkedQuestion: boolean
-	checkAnswer: (checkedAnswer: string) => void
+	checkAnswer?: (checkedAnswer: string) => void
 	color: ColorMap
 }
 
 export const QuizAnswer = ({ answer, letter, checkAnswer, id, marked, checkedQuestion, color }: QuizAnswerProps) => {
 	const background = color[id]
 
+	const handleOnClick = () => {
+		if (checkAnswer) {
+			checkAnswer(id)
+		}
+	}
+
 	return (
 		<div
-			onClick={() => checkAnswer(id)}
+			onClick={handleOnClick}
 			style={{ backgroundColor: background }}
 			className={`wrapper flex flex-start items-center  w-full max-w-[600px] text-lg px-[20px] py-[15px] gap-4 h-auto border-t border-boder-color  transition-colors  ${
 				checkedQuestion ? 'cursor-default text-white' : 'cursor-pointer hover:bg-element-hover-backgorund'

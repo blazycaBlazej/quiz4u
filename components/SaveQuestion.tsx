@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import useSWR, { mutate } from 'swr'
 import { useSession } from 'next-auth/react'
-import { IconError404, IconStarFilled } from '@tabler/icons-react'
+import { IconError404, IconStar, IconStarFilled } from '@tabler/icons-react'
 
 import { Loader } from '.'
 
@@ -108,12 +108,12 @@ const SaveQuestion = ({ questionID, quizName }: SaveQuestionProps) => {
 					</span>
 				) : (
 					<span>
-						<IconStarFilled onClick={saveQuestion} width={28} height={28} />
+						<IconStar onClick={saveQuestion} width={28} height={28} />
 					</span>
 				)
 			) : (
 				<span>
-					<IconStarFilled
+					<IconStar
 						onClick={() => notification('error', 'Aby zapisać pytanie musisz się zalogować.')}
 						width={28}
 						height={28}

@@ -6,6 +6,8 @@ import { QuizQuestion } from '@/components/QuizQuestion'
 import { QuizAnswer } from '@/components/QuizAnswer'
 import { useSearchParams } from 'next/navigation'
 import { bigConfetti } from '@/lib/lib'
+import { stringify } from 'querystring'
+import { useRouter } from 'next/navigation'
 
 type QuizItemChecker = {
 	id: number
@@ -33,7 +35,7 @@ interface XQuestionsQuiz {
 export const XQuestionsQuiz = ({ questions, questionNumber, reloadQuestions, quizName }: XQuestionsQuiz) => {
 	const [questionIndex, setQuestionIndex] = useState(0)
 	const [numberOfCorrectAnswer, setNumberOfCorrectAnswer] = useState(0)
-
+	const router = useRouter()
 	const initialQuiz: QuizItemCheckerState = []
 
 	for (let i = 0; i < questionNumber; i++) {
@@ -104,10 +106,11 @@ export const XQuestionsQuiz = ({ questions, questionNumber, reloadQuestions, qui
 		}
 	}
 
-	const checkQuiz = () => {
+	const checkQuiz = async () => {
+		let correctAnswerCount = 0
 		const updatedQuiz = quiz.map((item, index) => {
 			if (item.markAnswer === questions[index].correctAnswer) {
-				setNumberOfCorrectAnswer(prevState => prevState + 1)
+				correctAnswerCount++
 				const newColor = {
 					answerA: quiz[index].markAnswer === 'answerA' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
 					answerB: quiz[index].markAnswer === 'answerB' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
@@ -202,7 +205,29 @@ export const XQuestionsQuiz = ({ questions, questionNumber, reloadQuestions, qui
 		})
 
 		setQuiz(updatedQuiz)
+		setNumberOfCorrectAnswer(correctAnswerCount)
+		saveQuiz(correctAnswerCount)
+		router.refresh()
 	}
+
+	const saveQuiz = async (correctAnswerCount: number) => {
+		try {
+			let data = []
+
+			for (let i = 0; i < questions.length; i++) {
+				data.push({ id: questions[i].id, markAnswer: quiz[i].markAnswer })
+			}
+
+			const res = await fetch('/api/saveQuiz', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ data, quizName, questionNumber, numberOfCorrectAnswer: correctAnswerCount }),
+			})
+		} catch (e) {}
+	}
+
 	return (
 		<div className='flex flex-col items-center justify-center w-full my-[25px]'>
 			<div className='w-full'>

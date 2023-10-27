@@ -16,10 +16,11 @@ const config: Config = {
 				'border-color': '#2f3337',
 				'btn-violet-color': '#5721f2',
 				'btn-violet-color-hover': '#4719C1',
-				'main-font-color': '#75777b',
+				'main-font-color': '#BBBCBF',
 				'error-color': '#e43d42',
 				correctAnswer: '#015501',
 				'incorrect-answer-quiz': '#451717',
+				'box-color': '#1b1c1f',
 			},
 
 			boxShadow: {

@@ -15,9 +15,10 @@ model User {
   login          String           @unique
   email          String           @unique
   password       String
-  newslatter     Boolean
+  newsletter     Boolean
   isAdmin        Boolean
   savedQuestions SavedQuestions[]
+  savedQuizzies  SavedQuiz[]
 }
 
 model SavedQuestions {
@@ -28,6 +29,18 @@ model SavedQuestions {
   userID     String
   questionID Int
   quizID     Int
+}
+
+model SavedQuiz {
+  id             Int      @id @default(autoincrement())
+  user           User     @relation(fields: [userID], references: [id])
+  quiz           Quiz     @relation(fields: [quizName], references: [name])
+  userID         String
+  quizName       String
+  questionNumber Int
+  numberOfCorrectAnswer Int
+  solvedQuizData Json
+createdAt DateTime @default(now())
 }
 
 model Quiz {
@@ -46,6 +59,7 @@ model Quiz {
   competeWithFriends   Boolean
   questions            Question[]
   SavedQuestions       SavedQuestions[]
+  savedQuizzies        SavedQuiz[]
 }
 
 enum AnswerOption {
