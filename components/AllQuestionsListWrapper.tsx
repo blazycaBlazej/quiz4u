@@ -5,6 +5,7 @@ import { ChangeEvent } from 'react'
 
 import { useRouter } from 'next/navigation'
 import { IconChevronDownLeft, IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
+import Button from './Button'
 
 type dataPromise = {
 	questions: {
@@ -84,17 +85,16 @@ export const AllQuestionsListWrapper = ({ data, quizName, currentPage, perPage, 
 						</div>
 					</div>
 					<div className='flex items-center gap-[20px]'>
-						<Link
+						<Button
 							href={`/${type === 'normal' ? 'quiz' : 'zapisane-pytania'}/${quizName}/wszystkie-pytania?strona=${
 								currentPage === 1 ? currentPage : currentPage - 1
-							}&na-stronie=${perPage}`}>
-							<button
-								className={`px-[15px] py-[5px] text-lg bg-btn-violet-color  rounded-[8px] text-white ${
-									currentPage === 1 ? 'cursor-not-allowed opacity-20' : 'cursor-pointer hover:opacity-80'
-								}`}>
-								<IconChevronLeft />
-							</button>
-						</Link>
+							}&na-stronie=${perPage}`}
+							variant={currentPage === 1 ? 'disabled' : 'default'}
+							disabled={currentPage === 1}
+							rounded='sm'
+							size='sm'>
+							<IconChevronLeft />
+						</Button>
 						<div className='flex items-center'>
 							{pagination.map(element =>
 								element === '...' ? (
@@ -115,17 +115,17 @@ export const AllQuestionsListWrapper = ({ data, quizName, currentPage, perPage, 
 								)
 							)}
 						</div>
-						<Link
+
+						<Button
 							href={`/${type === 'normal' ? 'quiz' : 'zapisane-pytania'}/${quizName}/wszystkie-pytania?strona=${
 								currentPage === lastPage ? currentPage : currentPage + 1
-							}&na-stronie=${perPage}`}>
-							<button
-								className={`px-[15px] py-[5px] text-lg bg-btn-violet-color  rounded-[8px] text-white ${
-									currentPage === lastPage ? 'cursor-not-allowed opacity-20' : 'cursor-pointer hover:opacity-80'
-								}`}>
-								<IconChevronRight />
-							</button>
-						</Link>
+							}&na-stronie=${perPage}`}
+							variant={currentPage === lastPage ? 'disabled' : 'default'}
+							disabled={currentPage === lastPage}
+							rounded='sm'
+							size='sm'>
+							<IconChevronRight />
+						</Button>
 					</div>
 
 					<div className='flex flex-col'>

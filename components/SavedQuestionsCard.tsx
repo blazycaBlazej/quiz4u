@@ -8,6 +8,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { NumberQuestionsModal } from './NumberQuestionsModal'
 import { PrintQuizModal } from './PrintQuizModal'
+import Button from './Button'
 
 interface SavedQuestionsCardProps {
 	quizName: string
@@ -147,16 +148,12 @@ const SavedQuestionsCard = ({ quizName, numberQuestions }: SavedQuestionsCardPro
 				closeModal={closeDeleteModal}
 				title={`Czy na pewno chcesz usumąć zapisane pytania w quizie ${quizName} ?`}>
 				<div className='flex justify-center gap-4'>
-					<button
-						onClick={deleteManySavedQuestions}
-						className={` bg-btn-violet-color py-[8px] px-[15px] rounded-[6px] text-white cursor-pointer transition-colors hover:bg-btn-violet-color-hover`}>
-						{isLoading ? <Loader /> : 'TAK'}
-					</button>
-					<button
-						onClick={closeDeleteModal}
-						className={` bg-btn-violet-color py-[8px] px-[15px] rounded-[6px] text-white cursor-pointer transition-colors hover:bg-btn-violet-color-hover`}>
+					<Button onClick={deleteManySavedQuestions} size='sm' rounded='sm'>
+						TAK
+					</Button>
+					<Button onClick={closeDeleteModal} size='sm' rounded='sm'>
 						NIE
-					</button>
+					</Button>
 				</div>
 			</Modal>
 		</div>

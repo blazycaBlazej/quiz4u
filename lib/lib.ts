@@ -1,5 +1,7 @@
 import confetti from 'canvas-confetti'
+import { ClassValue, clsx } from 'clsx'
 import { toast } from 'react-toastify'
+import { twMerge } from 'tailwind-merge'
 
 export function getCorrectAnswerMessage() {
 	const correctMessage = [
@@ -58,7 +60,7 @@ export function notification(type: string, message: string) {
 	if (type === 'success') {
 		toast.success(message, {
 			position: 'top-right',
-			autoClose: 1000,
+			autoClose: 2000,
 			hideProgressBar: false,
 			closeOnClick: true,
 			pauseOnHover: true,
@@ -70,7 +72,7 @@ export function notification(type: string, message: string) {
 	if (type === 'error') {
 		toast.error(message, {
 			position: 'top-right',
-			autoClose: 1000,
+			autoClose: 2000,
 			hideProgressBar: false,
 			closeOnClick: true,
 			pauseOnHover: true,
@@ -79,4 +81,8 @@ export function notification(type: string, message: string) {
 			theme: 'dark',
 		})
 	}
+}
+
+export function cn(...inputs: ClassValue[]) {
+	return twMerge(clsx(inputs))
 }

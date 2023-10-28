@@ -2,6 +2,7 @@
 import { Loader, Modal } from '.'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
+import Button from './Button'
 
 interface PrintQuizProps {
 	quizName: string
@@ -70,15 +71,11 @@ export const NumberQuestionsModal = ({ quizName, questionsNumber, isOpen, closeM
 							<span className='text-sm text-error-color  block my-[4px]'>{errors.numberQuestions?.message}</span>
 						</div>
 
-						<button
-							disabled={isSubmitting || Object.keys(errors).length > 0}
-							className={`h-[50px] max-w-[410px] w-full bg-btn-violet-color  rounded-[20px] text-white cursor-pointer ${
-								isSubmitting || Object.keys(errors).length > 0
-									? 'bg-gray-600 hover:cursor-not-allowed hover:bg-gray-600'
-									: ''
-							} transition-colors hover:bg-btn-violet-color-hover`}>
+						<Button
+							variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
+							disabled={isSubmitting || Object.keys(errors).length > 0}>
 							{isSubmitting ? <Loader /> : 'Generuj quiz'}
-						</button>
+						</Button>
 					</>
 				) : (
 					<p>Nie możesz wygenerować quizu ponieważ quiz nie posiada pytań.</p>

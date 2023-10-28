@@ -5,6 +5,7 @@ import { Suspense } from 'react'
 import { Loader } from '.'
 import Await from './Await'
 import Link from 'next/link'
+import Button from './Button'
 
 export const LatestQuizzesWrapper = async ({ quizName }: { quizName: string }) => {
 	const summarySavedQuizzesPromise = get3SummarySavedQuizzes(quizName)
@@ -35,11 +36,9 @@ export const LatestQuizzesWrapper = async ({ quizName }: { quizName: string }) =
 										))}
 
 										{summarySavedQuizzes.length === 3 ? (
-											<Link href={`/quiz/${quizName}/zapisane-quizy`}>
-												<button className='w-full py-[9px] text-lg bg-btn-violet-color  rounded-[8px] text-white cursor-pointer hover:opacity-80'>
-													Zobacz więcej
-												</button>
-											</Link>
+											<Button href={`/quiz/${quizName}/zapisane-quizy`} rounded={'sm'}>
+												Zobacz więcej
+											</Button>
 										) : (
 											''
 										)}
@@ -52,27 +51,4 @@ export const LatestQuizzesWrapper = async ({ quizName }: { quizName: string }) =
 			</div>
 		</section>
 	)
-}
-
-{
-	/* {summarySavedQuizzes?.length === 0 ? (
-								<span>Nie masz żadnych zapisanych quizów. </span>
-							) : summarySavedQuizzes === null ? (
-								<span>Nie masz żadnych zapisanych quizów. </span>
-							) : (
-								<>
-									{summarySavedQuizzes.map(element => (
-										<LatestQuiz
-											questionNumber={element.questionNumber}
-											numberOfCorrectAnswer={element.numberOfCorrectAnswer}
-											createdAt={element.createdAt}
-											id={element.id}
-											quizName={quizName}
-										/>
-									))}
-									<button className='w-full py-[9px] text-lg bg-btn-violet-color  rounded-[8px] text-white cursor-pointer hover:opacity-80'>
-										Zobacz więcej
-									</button>
-								</>
-							)} */
 }

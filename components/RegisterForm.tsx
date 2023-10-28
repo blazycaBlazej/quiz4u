@@ -10,6 +10,8 @@ import {
 } from '@/lib/db/serverFunctions'
 import { FormValues } from '@/types/types'
 import { Loader } from './Loader'
+import Button from './Button'
+import { notification } from '@/lib/lib'
 
 export const RegisterForm = () => {
 	const checkConfirmPassword = () => {
@@ -40,7 +42,7 @@ export const RegisterForm = () => {
 	const form = useForm<FormValues>({
 		mode: 'onSubmit',
 	})
-	const { register, control, handleSubmit, formState, getValues, trigger, setError, clearErrors } = form
+	const { register, handleSubmit, formState, getValues, setError, clearErrors } = form
 	const { errors, isSubmitting } = formState
 
 	const onSubmit = async (data: FormValues) => {
@@ -55,9 +57,12 @@ export const RegisterForm = () => {
 
 			const result = await res.json()
 
-			setSubmitingError(result.message)
 			if (res.status === 200) {
-				//register verification
+				setSubmitingError('')
+				form.reset()
+				notification('success', `${result.message} Zaloguj się.`)
+			} else {
+				setSubmitingError(result.message)
 			}
 		} catch (e) {
 			setSubmitingError('Błąd serwera, spróbuj zalogować się później.')
@@ -225,15 +230,11 @@ export const RegisterForm = () => {
 				</label>
 				<span className='text-sm text-error-color  block my-[4px]'>{errors.rules?.message}</span>
 
-				<button
-					disabled={isSubmitting || Object.keys(errors).length > 0}
-					className={`h-[50px] max-w-[410px] w-full bg-btn-violet-color  rounded-[20px] text-white cursor-pointer ${
-						isSubmitting || Object.keys(errors).length > 0
-							? 'bg-gray-600 hover:cursor-not-allowed hover:bg-gray-600'
-							: ''
-					} transition-colors hover:bg-btn-violet-color-hover`}>
+				<Button
+					variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
+					disabled={isSubmitting || Object.keys(errors).length > 0}>
 					{isSubmitting ? <Loader /> : 'Zarejstruj się'}
-				</button>
+				</Button>
 			</form>
 			{submitingError && <span className='text-sm text-error-color  block my-[4px]'>{submitingError}</span>}
 			{/* <DevTool control={control} /> */}

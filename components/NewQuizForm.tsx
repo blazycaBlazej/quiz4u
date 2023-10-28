@@ -2,9 +2,10 @@
 
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { DevTool } from '@hookform/devtools'
 import { useRouter } from 'next/navigation'
 import { Loader } from './Loader'
+import Button from './Button'
+import { notification } from '@/lib/lib'
 
 type FormValues = {
 	name: string
@@ -13,7 +14,6 @@ type FormValues = {
 export const NewQuizForm = () => {
 	const [nameIsActive, setNameIsActive] = useState(false)
 	const [descriptionIsActive, setDescriptionIsActive] = useState(false)
-	const [submitingError, setSubmitingError] = useState('')
 
 	const form = useForm<FormValues>({
 		mode: 'onSubmit',
@@ -40,10 +40,12 @@ export const NewQuizForm = () => {
 			if (res.status === 200) {
 				router.replace(result.pathname)
 				router.refresh()
+				notification('success', result.message)
+			} else {
+				notification('error', result.message)
 			}
-			setSubmitingError(result.message)
 		} catch (e) {
-			setSubmitingError('Błąd serwera, spróbuj zalogować się później.')
+			notification('error', 'Błąd serwera, spróbuj zalogować się później.')
 		}
 	}
 
@@ -82,7 +84,7 @@ export const NewQuizForm = () => {
 				</div>
 
 				{/* description */}
-				<div className='max-w-[410px] w-full relative mb-[5px]'>
+				<div className='max-w-[410px] w-full relative mb-[15px]'>
 					<label
 						htmlFor='description'
 						className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
@@ -105,19 +107,12 @@ export const NewQuizForm = () => {
 					<span className='text-sm text-error-color  block my-[4px]'>{errors.description?.message}</span>
 				</div>
 
-				<button
-					disabled={isSubmitting || Object.keys(errors).length > 0}
-					className={`relative h-[50px] mt-[20px] max-w-[410px] w-full bg-btn-violet-color  rounded-[20px] text-white cursor-pointer ${
-						isSubmitting || Object.keys(errors).length > 0
-							? 'bg-gray-600 hover:cursor-not-allowed hover:bg-gray-600'
-							: ''
-					} transition-colors hover:bg-btn-violet-color-hover`}>
+				<Button
+					variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
+					disabled={isSubmitting || Object.keys(errors).length > 0}>
 					{isSubmitting ? <Loader /> : 'Dodaj quiz'}
-				</button>
+				</Button>
 			</form>
-			{submitingError && <span className='text-sm text-error-color block my-[4px]'>{submitingError}</span>}
-
-			{/* <DevTool control={control} /> */}
 		</main>
 	)
 }

@@ -3,11 +3,11 @@
 import React, { useState } from 'react'
 import { IconEye, IconEyeOff } from '@tabler/icons-react'
 import { useForm } from 'react-hook-form'
-import { DevTool } from '@hookform/devtools'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Loader } from './Loader'
+import Button from './Button'
 
 type FormValues = {
 	email: string
@@ -22,7 +22,7 @@ export const LoginForm = () => {
 	const form = useForm<FormValues>({
 		mode: 'onSubmit',
 	})
-	const { register, control, handleSubmit, formState, getValues } = form
+	const { register, handleSubmit, formState, getValues } = form
 	const { errors, isSubmitting } = formState
 
 	const router = useRouter()
@@ -116,15 +116,11 @@ export const LoginForm = () => {
 					</span>
 				</Link>
 
-				<button
-					disabled={isSubmitting || Object.keys(errors).length > 0}
-					className={`h-[50px] max-w-[410px] w-full bg-btn-violet-color  rounded-[20px] text-white cursor-pointer ${
-						isSubmitting || Object.keys(errors).length > 0
-							? 'bg-gray-600 hover:cursor-not-allowed hover:bg-gray-600'
-							: ''
-					} transition-colors hover:bg-btn-violet-color-hover`}>
+				<Button
+					variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
+					disabled={isSubmitting || Object.keys(errors).length > 0}>
 					{isSubmitting ? <Loader /> : 'Zaloguj się'}
-				</button>
+				</Button>
 			</form>
 			{submitingError && <span className='text-sm text-error-color  block my-[4px]'>{submitingError}</span>}
 

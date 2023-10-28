@@ -5,6 +5,7 @@ import { IconArrowNarrowLeft, IconLoader } from '@tabler/icons-react'
 
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
+import Button from '@/components/Button'
 
 type FormValues = {
 	email: string
@@ -21,18 +22,14 @@ export default function page() {
 
 	const email = searchParams.get('email')
 	return (
-		<main className='flex flex-col justify-center items-center gap-[20px] h-[calc(100vh-404px)] w-full'>
-			<h2 className='max-w-[410px] w-full text-3xl text-white '>Wiadomość została wysłana</h2>
-			<p className='max-w-[410px] w-full'>
+		<main className='flex flex-col justify-center items-center gap-[20px] h-[calc(100vh-404px)] w-full max-w-[410px] m-auto'>
+			<h2 className='w-full text-3xl text-white '>Wiadomość została wysłana</h2>
+			<p className='w-full'>
 				Link do zresetowania hasła otrzymasz pod adresem: <span className='text-white'>{email}</span>
 			</p>
-			<p className='max-w-[410px] w-full'>Nie dostałeś wiadomości ? - kliknij poniższy przycisk</p>
+			<p className='w-full'>Nie dostałeś wiadomości ? - kliknij poniższy przycisk</p>
 
-			<button
-				onClick={clickHandler}
-				className={`h-[50px] max-w-[410px] w-full bg-btn-violet-color  rounded-[20px] text-white cursor-pointer transition-colors hover:bg-btn-violet-color-hover`}>
-				Wyślij ponownie email
-			</button>
+			<Button onClick={clickHandler}>Wyślij ponownie email</Button>
 
 			<Link href='/logowanie'>
 				<span className='text-white underline cursor-pointer  flex gap-2 text-right transition-colors hover:text-main-font-color'>

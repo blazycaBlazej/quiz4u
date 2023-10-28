@@ -26,7 +26,7 @@ const AllSavedQuizzes = async ({ params }: { params: { slug: string; id: string 
 
 	return (
 		<div className='flex flex-col gap-3 my-[25px]'>
-			<h2 className='text-[27px] text-white mx-[20px] my-[15px] '>Zapisane quizy: </h2>
+			<h2 className='text-[27px] text-white  '>Zapisane quizy: </h2>
 			<Suspense fallback={<Loader />}>
 				<Await promise={summarySavedQuizzesPromise}>
 					{summarySavedQuizzes => {

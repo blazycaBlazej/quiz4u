@@ -5,6 +5,8 @@ import { useState } from 'react'
 import { Loader, Modal } from '.'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
+import Button from './Button'
+import { notification } from '@/lib/lib'
 
 interface QuizDeatailsHeaderProps {
 	quizName: string
@@ -57,6 +59,8 @@ export const QuizDeatailsHeader = ({ quizName }: QuizDeatailsHeaderProps) => {
 
 			setSubmitingError(result.message)
 			if (res.status === 200) {
+				setSubmitingError('')
+				notification('success', result.message)
 				router.replace('/')
 				router.refresh()
 			}
@@ -94,15 +98,12 @@ export const QuizDeatailsHeader = ({ quizName }: QuizDeatailsHeaderProps) => {
 								<span className='text-sm text-error-color  block my-[4px]'>{errors.quizName?.message}</span>
 							</div>
 							{submitingError && <span className='text-sm text-error-color  block my-[4px]'>{submitingError}</span>}
-							<button
-								disabled={isSubmitting || Object.keys(errors).length > 0}
-								className={`h-[50px] max-w-[410px] w-full bg-btn-violet-color  rounded-[20px] text-white cursor-pointer ${
-									isSubmitting || Object.keys(errors).length > 0
-										? 'bg-gray-600 hover:cursor-not-allowed hover:bg-gray-600'
-										: ''
-								} transition-colors hover:bg-btn-violet-color-hover`}>
+
+							<Button
+								variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
+								disabled={isSubmitting || Object.keys(errors).length > 0}>
 								{isSubmitting ? <Loader /> : 'Usuń quiz'}
-							</button>
+							</Button>
 						</form>
 					</>
 				</Modal>

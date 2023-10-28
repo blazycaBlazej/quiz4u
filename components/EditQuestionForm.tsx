@@ -2,9 +2,10 @@
 
 import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { DevTool } from '@hookform/devtools'
 import { Loader } from './Loader'
 import { mutate } from 'swr'
+import Button from './Button'
+import { notification } from '@/lib/lib'
 type FormValues = {
 	question: string
 	answerA: string
@@ -41,11 +42,6 @@ export const EditQuestionForm = ({
 	const [answerCIsActive, setAnswerCIsActive] = useState(true)
 	const [answerDIsActive, setAnswerDIsActive] = useState(true)
 
-	const [submitingError, setSubmitingError] = useState<{ message: string; error: boolean }>({
-		message: '',
-		error: true,
-	})
-
 	const form = useForm<FormValues>({
 		mode: 'onSubmit',
 	})
@@ -66,16 +62,16 @@ export const EditQuestionForm = ({
 				})
 				const result = await res.json()
 				if (res.status === 200) {
-					setSubmitingError({ message: result.message, error: false })
+					notification('success', result.message)
 					mutate(`/api/getQuestions?quizName=${quizName}`)
 					return
 				}
-				setSubmitingError({ message: result.message, error: true })
+				notification('error', result.message)
 			} catch (e) {
-				setSubmitingError({ message: 'Coś poszło nie tak.', error: true })
+				notification('error', 'Coś poszło nie tak.')
 			}
 		} else {
-			setSubmitingError({ message: 'Coś poszło nie tak.', error: true })
+			notification('error', 'Coś poszło nie tak.')
 		}
 	}
 
@@ -242,23 +238,14 @@ export const EditQuestionForm = ({
 					</div>
 				</div>
 
-				{submitingError.message && (
-					<span className={`text-sm block my-[4px] ${submitingError.error ? 'text-error-color' : 'text-green-700'}`}>
-						{submitingError.message}
-					</span>
-				)}
-				<button
-					disabled={isSubmitting || Object.keys(errors).length > 0}
-					className={`relative h-[50px] mt-[20px] max-w-[410px] w-full bg-btn-violet-color  rounded-[20px] text-white cursor-pointer ${
-						isSubmitting || Object.keys(errors).length > 0
-							? 'bg-gray-600 hover:cursor-not-allowed hover:bg-gray-600'
-							: ''
-					} transition-colors hover:bg-btn-violet-color-hover`}>
-					{isSubmitting ? <Loader /> : 'Edytuj Pytanie'}
-				</button>
+				<div className='max-w-[410px] w-full mt-[20px] '>
+					<Button
+						variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
+						disabled={isSubmitting || Object.keys(errors).length > 0}>
+						{isSubmitting ? <Loader /> : 'Edytuj pytanie'}
+					</Button>
+				</div>
 			</form>
-
-			{/* <DevTool control={control} /> */}
 		</main>
 	)
 }

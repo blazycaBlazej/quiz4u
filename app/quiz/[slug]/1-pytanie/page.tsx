@@ -5,6 +5,7 @@ import useSWR, { mutate } from 'swr'
 import { Loader } from '@/components'
 
 import { CompleteQuiz } from '@/components/CompleteQuiz'
+import Button from '@/components/Button'
 
 interface ChildComponentHandle {
 	getColor: () => { answerA: string; answerB: string; answerC: string; answerD: string }
@@ -159,19 +160,18 @@ const oneQuestion = ({ params }: { params: { slug: string } }) => {
 				<CompleteQuiz ref={childRef} question={question} quizName={quizName} />
 				<div className='min-h-[30px] text-lg mt-[10px] text-white'>{message && <span>{message}</span>}</div>
 				<div className='flex justify-center items-center gap-[50px] max-w-[600px] w-full mt-[10px]'>
-					<button
+					<Button
 						onClick={() => checkQuestion()}
 						disabled={childRef?.current?.getCheckedQuestion()}
-						className={`flex justify-center px-[15px] py-[7px] text-lg text-white bg-[#FF5733] transition-colors ${
-							childRef?.current?.getCheckedQuestion() ? ' cursor-not-allowed' : 'cursor-pointer'
-						}  hover:bg-[#FF8D66]`}>
+						variant={childRef?.current?.getCheckedQuestion() ? 'disabled' : 'orange'}
+						rounded='none'
+						size='sm'>
 						Sprawdź pytanie
-					</button>
-					<button
-						onClick={() => nextQuestion()}
-						className='flex justify-center px-[15px] py-[7px] text-lg bg-btn-violet-color text-white cursor-pointer transition-colors hover:bg-btn-violet-color-hover'>
+					</Button>
+
+					<Button onClick={() => nextQuestion()} rounded='none' size='sm'>
 						Losuj następne pytanie
-					</button>
+					</Button>
 				</div>
 			</div>
 		)
