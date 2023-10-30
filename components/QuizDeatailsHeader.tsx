@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import Button from './Button'
 import { notification } from '@/lib/lib'
+import { useMenu } from '@/app/context/MenuProvider'
 
 interface QuizDeatailsHeaderProps {
 	quizName: string

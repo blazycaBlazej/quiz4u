@@ -1,4 +1,5 @@
 'use client'
+import { usePathname } from 'next/navigation'
 import React, { createContext, useContext, useEffect, useState } from 'react'
 
 interface MenuContextType {
@@ -17,6 +18,13 @@ const MenuContext = createContext<MenuContextType | undefined>(undefined)
 export const MenuProvider = ({ children }: MenuProviderProps) => {
 	const [isMenuOpen, setMenuOpen] = useState(false)
 	const [isOverlay, setIsOverlay] = useState(false)
+	const pathname = usePathname()
+
+	useEffect(() => {
+		if (isMenuOpen) {
+			closeMenu()
+		}
+	}, [pathname])
 
 	const toggleMenu = () => {
 		if (isMenuOpen == false) {
@@ -29,11 +37,14 @@ export const MenuProvider = ({ children }: MenuProviderProps) => {
 
 		setMenuOpen(prev => !prev)
 	}
+
 	const openMenu = () => {
 		document.body.style.overflow = 'hidden'
+
 		setIsOverlay(true)
 		setMenuOpen(true)
 	}
+
 	const closeMenu = () => {
 		document.body.style.overflow = 'auto'
 		setIsOverlay(false)
@@ -43,10 +54,6 @@ export const MenuProvider = ({ children }: MenuProviderProps) => {
 	useEffect(() => {
 		const handleResize = () => {
 			if (window.innerWidth >= 1024) {
-				document.body.style.overflow = 'auto'
-				setIsOverlay(false)
-				setMenuOpen(true)
-			} else {
 				closeMenu()
 			}
 		}
@@ -59,7 +66,7 @@ export const MenuProvider = ({ children }: MenuProviderProps) => {
 	}, [])
 
 	return (
-		<MenuContext.Provider value={{ isMenuOpen, toggleMenu, openMenu, closeMenu, isOverlay }}>
+		<MenuContext.Provider value={{ isMenuOpen, toggleMenu, isOverlay, openMenu, closeMenu }}>
 			{children}
 		</MenuContext.Provider>
 	)

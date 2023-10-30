@@ -17,9 +17,12 @@ export default async function QuizPage({ params }: { params: { slug: string } })
 
 	return (
 		<main className='flex flex-col w-full'>
-			<QuizDeatails quizDeatails={quizDeatails} questionsNumber={questionsNumber} quizName={quizName}>
-				<LatestQuizzesWrapper quizName={quizName} />
-			</QuizDeatails>
+			<QuizDeatails
+				quizDeatails={quizDeatails}
+				questionsNumber={questionsNumber}
+				quizName={quizName}
+				savedQuizzes={<LatestQuizzesWrapper quizName={quizName} />}
+			/>
 		</main>
 	)
 }
