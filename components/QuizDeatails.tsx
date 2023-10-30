@@ -17,15 +17,16 @@ import {
 import Link from 'next/link'
 import { Children, useState } from 'react'
 import { LatestQuizzesWrapper } from './LatestQuizzesWrapper'
+import { useMenu } from '@/app/context/MenuProvider'
 
 interface QuizDeatailsProps {
 	quizDeatails: QuizDataDeatails
 	quizName: string
 	questionsNumber: number
-	children: React.ReactNode
+	savedQuizzes: React.ReactNode
 }
 
-const QuizDeatails = ({ quizDeatails, quizName, questionsNumber, children }: QuizDeatailsProps) => {
+const QuizDeatails = ({ quizDeatails, quizName, questionsNumber, savedQuizzes }: QuizDeatailsProps) => {
 	//question modal
 	const [isQuestionsModalOpen, setQuestionsModalOpen] = useState(false)
 
@@ -144,7 +145,7 @@ const QuizDeatails = ({ quizDeatails, quizName, questionsNumber, children }: Qui
 					)}
 				</div>
 
-				{children}
+				{savedQuizzes}
 			</div>
 			<div className='border-b border-solid border-border-color my-[20px] w-full'></div>
 			<p className='flex gap-2 text-white'>
