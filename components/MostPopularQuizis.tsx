@@ -5,14 +5,14 @@ import React from 'react'
 export const MostPopularQuizis = () => {
 	return (
 		<section className=''>
-			<h2 className='text-white text-4xl'>Popularne Quizy:</h2>
-			<div className='flex justify-center flex-wrap gap-3  max-w-[1200px] w-full mt-[40px]'>
+			<h2 className='text-white text-4xl text-center lg:text-left'>Popularne Quizy:</h2>
+			<div className='flex justify-center flex-wrap gap-3  max-w-[1200px] w-full py-4'>
 				{quizzes.map((quiz, index) => (
 					<div
-						className='relative max-w-[360px] h-[243px] w-full border border-border-btn rounded-[20px] overflow-hidden group cursor-pointer'
+						className='relative w-full h-[243px] object-cover border border-border-btn rounded-[20px] overflow-hidden group cursor-pointer md:max-w-[330px] lg:max-w-[337px] xl:max-w-[305px] 2xl:max-w-[355px]'
 						key={index}>
 						<Image
-							className='transform group-hover:scale-105 	duration-300'
+							className='transform group-hover:scale-105 duration-300 object-cover w-full h-full'
 							src={quiz.image}
 							width={368}
 							height={243}

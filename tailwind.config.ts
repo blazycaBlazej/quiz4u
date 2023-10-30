@@ -34,3 +34,23 @@ const config: Config = {
 	plugins: [],
 }
 export default config
+// colors: {
+// 	'main-backgorund': '#F6F8FA',
+// 	'element-backgorund': '#FFFFFF',
+// 	'element-hover-backgorund': 'rgba(216, 220, 226, 0.8)',
+// 	'element-active-backgorund': '#E2E6EC',
+// 	'border-color': '#D8DCE2',
+// 	'btn-violet-color': '#5721f2',
+// 	'btn-violet-color-hover': '#4719C1',
+// 	'main-font-color': '#333333',
+// 	'error-color': '#e43d42',
+// 	correctAnswer: '#017517',
+// 	'incorrect-answer-quiz': '#7B1E1E',
+// 	'box-color': '#FFFFFF',
+//  },
+
+//  boxShadow: {
+// 	customNew: '4px 2px 12px rgba(87, 33, 242, 0.2)',
+// 	customGreen: '0 4px 6px rgba(0, 128, 0, 0.2)',
+// 	customRed: '0 4px 6px rgba(255, 0, 0, 0.2)',
+//  }

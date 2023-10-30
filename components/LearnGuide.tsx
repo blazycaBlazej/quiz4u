@@ -4,7 +4,7 @@ import Image from 'next/image'
 export const LearnGuide = () => {
 	return (
 		<section className=' mt-[50px]  w-full'>
-			<h2 className='text-4xl text-white mb-[50px]'>Poradnik efektywnej nauki:</h2>
+			<h2 className='text-4xl text-white py-3'>Poradnik efektywnej nauki:</h2>
 			<div className='flex items-center justify-between gap-3 min-w-full'>
 				<div className='w-full'>
 					{learnTrick.map((trick, index) => (

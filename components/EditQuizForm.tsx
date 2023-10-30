@@ -47,13 +47,13 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 
 	return quizDeatails ? (
 		<div className='flex flex-col justify-center items-center gap-[20px] w-full my-[25px]'>
-			<span className='text-3xl text-white'>Edytuj detale quizu</span>
-			<div className='form-cointiner flex flex-col'>
+			<span className='text-3xl text-white px-[15px]'>Edytuj detale quizu</span>
+			<div className='form-cointiner w-full flex flex-col px-[15px]'>
 				<form className=' w-full' onSubmit={handleSubmit(onSubmit)} noValidate>
-					<div className='wrapper w-full flex gap-[50px] justify-center '>
-						<div className='left-side max-w-[410px] w-full'>
+					<div className='wrapper w-full flex flex-col  justify-center sm:flex-row sm:gap-[50px]'>
+						<div className='left-side w-full sm:max-w-[410px]'>
 							{/* name */}
-							<div className='max-w-[410px] w-full relative mb-[20px]'>
+							<div className='w-full relative mb-[20px]'>
 								<label
 									htmlFor='name'
 									className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
@@ -62,7 +62,7 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 									Nazwa quizu
 								</label>
 								<input
-									className=' h-[50px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-[20px] text-white'
+									className=' h-[50px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-[20px] text-white'
 									type='text'
 									id='name'
 									defaultValue={quizDeatails?.name}
@@ -84,7 +84,7 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 								<span className='text-sm text-error-color  block my-[4px]'>{errors.name?.message}</span>
 							</div>
 							{/* description */}
-							<div className='max-w-[410px] w-full relative mb-[5px]'>
+							<div className='w-full relative mb-[5px]'>
 								<label
 									htmlFor='description'
 									className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
@@ -95,7 +95,7 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 									Opis quizu*
 								</label>
 								<textarea
-									className='resize-none overflow-auto h-[310px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+									className='resize-none overflow-auto h-[310px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
 									id='description'
 									defaultValue={quizDeatails?.description}
 									{...register('description', {

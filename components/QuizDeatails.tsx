@@ -49,14 +49,14 @@ const QuizDeatails = ({ quizDeatails, quizName, questionsNumber, children }: Qui
 	}
 
 	return (
-		<div className='cointiner flex flex-col mt-[20px] m-[33px]'>
+		<div className='cointiner flex flex-col mt-[20px] m-[0px] md:m-[33px]'>
 			<h3 className='text-white text-3xl'>Opis:</h3>
 			<p className='my-[6px]'>
 				{quizDeatails?.description === '' ? 'Quiz nie posiada opisu.' : quizDeatails?.description}
 			</p>
 			<div className='border-b border-solid border-border-color my-[20px]'></div>
-			<div className='flex justify-between gap-5'>
-				<div className='max-w-[50%] w-full dark-box  p-[24px] flex flex-col gap-4'>
+			<div className='flex flex-col w-full items-stretch h-[100%] justify-between gap-5 sm:flex-row '>
+				<div className='w-[100%] h-auto grow dark-box p-[24px] flex flex-col gap-4 sm:w-[50%]'>
 					<h2 className='text-white text-2xl'>Dostępn opcje nauki:</h2>
 					{quizDeatails?.randomize1Question ||
 					quizDeatails?.randomize20Questions ||

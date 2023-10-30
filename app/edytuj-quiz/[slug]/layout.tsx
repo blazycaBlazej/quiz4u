@@ -10,7 +10,7 @@ export default function EditQuizLayout({ children, params }: { children: React.R
 		<main className='flex flex-col w-full rounded-[20px] border border-solid border-border-color'>
 			<QuizDeatailsHeader quizName={quizName} />
 			<div className='border-b border-solid border-border-color '></div>
-			<menu className='flex'>
+			<menu className='flex  flex-col sm:flex-row sm:items-center'>
 				<Link href={`/edytuj-quiz/${quizName}/detale`}>
 					<li
 						className={`p-[24px] text-lg ${

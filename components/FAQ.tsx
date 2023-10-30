@@ -7,8 +7,8 @@ import { faq } from '@/constans/constans'
 export const FAQ = () => {
 	return (
 		<section>
-			<h2 className='text-4xl text-white my-[50px]'>FAQ</h2>
-			<div className='container flex flex-col gap-4'>
+			<h2 className='text-4xl text-white py-4'>FAQ</h2>
+			<div className=' flex flex-col gap-4'>
 				{faq.map((element, index) => (
 					<Disclosure key={index}>
 						{({ open }) => (

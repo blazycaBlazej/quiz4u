@@ -10,6 +10,8 @@ import { getMenuItems } from '@/lib/getMenuItems'
 import { getIsLogged } from '@/lib/getIsLogged'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { MenuProvider } from './context/MenuProvider'
+import Overlay from '@/components/Overlay'
 export const metadata: Metadata = {
 	title: 'quiz4u',
 	description:
@@ -22,24 +24,27 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 	// console.log('menu: ', menuElements)
 	return (
 		<html lang='en' className={nunito.className}>
-			<body className={`flex bg-main-backgorund  min-h-screen text-main-font-color`}>
+			<body className={`flex bg-main-backgorund min-h-screen text-main-font-color`}>
 				<AuthProvider>
-					<div className='fixed  left-0 top-0 z-[999]'>
+					<MenuProvider>
+						<Overlay />
 						<Navbar isAdmin={user?.isAdmin} item={...menuElements} />
-					</div>
-					<div className='ml-[280px] flex flex-col w-full'>
-						<div className='fixed w-full right-0 top-0 z-[998] bg-main-backgorund '>
-							<UserSection userName={user?.login} />
-						</div>
 
-						<div className='max-w-[1200px] w-full mx-auto p-[40px] '>
-							<div className='mt-[50px]'>
-								{children}
+						<div className='lg:ml-[280px] flex flex-col w-full'>
+							<div className='fixed w-full right-0 top-0 z-[998] bg-main-backgorund '>
+								<UserSection userName={user?.login} />
+							</div>
 
-								{/* <Footer /> */}
+							<div className='max-w-[1200px] w-full mx-auto m '>
+								<div className='mt-[90px] mx-[20px] mb-[10px] '>
+									{children}
+
+									{/* <Footer /> */}
+								</div>
 							</div>
 						</div>
-					</div>
+					</MenuProvider>
+
 					<ToastContainer
 						position='top-right'
 						autoClose={1000}

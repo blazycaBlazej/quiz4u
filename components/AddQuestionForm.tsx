@@ -69,10 +69,10 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 		<main className='flex flex-col justify-center items-center gap-[20px] w-full my-[25px]'>
 			<span className='text-3xl text-white'>Dodaj nowe pytanie</span>
 			<form className='w-full flex flex-col items-center' onSubmit={handleSubmit(onSubmit)} noValidate>
-				<div className='flex justify-center items-center w-full gap-[50px]'>
-					<div className='max-w-[410px] w-full'>
+				<div className='flex flex-col justify-center items-center w-full px-[15px] gap-[10px] sm:flex-row sm:gap-[50px]'>
+					<div className='w-full sm:max-w-[410px]'>
 						{/* question */}
-						<div className='max-w-[410px] w-full relative mb-[5px]'>
+						<div className='w-full relative mb-[5px] sm:max-w-[410px]'>
 							<label
 								htmlFor='question'
 								className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
@@ -81,7 +81,7 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 								Opis quizu*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[400px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+								className='resize-none overflow-auto h-[400px]  w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
 								id='question'
 								{...register('question', {
 									required: 'Musisz podać pytanie.',
@@ -96,7 +96,7 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 							<span className='text-sm text-error-color  block'>{errors.question?.message}</span>
 						</div>
 						{/* correct Answer */}
-						<div className='max-w-[410px] w-full relative mb-[5px]'>
+						<div className='w-full mb-[5px]'>
 							<Controller
 								name='correctAnswer'
 								control={control}
@@ -125,9 +125,9 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 						</div>
 					</div>
 
-					<div className='max-w-[410px] w-full'>
+					<div className='w-full sm:max-w-[410px]'>
 						{/* answer A */}
-						<div className='max-w-[410px] w-full relative mb-[5px]'>
+						<div className='w-full relative mb-[5px]'>
 							<label
 								htmlFor='answerA'
 								className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
@@ -136,7 +136,7 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 								Odpowiedź A*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+								className='resize-none overflow-auto h-[100px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
 								id='answerA'
 								{...register('answerA', {
 									required: 'Musisz podać odpowiedź A.',
@@ -151,7 +151,7 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 							<span className='text-sm text-error-color  block'>{errors.answerA?.message}</span>
 						</div>
 						{/* answer B */}
-						<div className='max-w-[410px] w-full relative mb-[5px]'>
+						<div className='w-full relative mb-[5px]'>
 							<label
 								htmlFor='answerB'
 								className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
@@ -160,7 +160,7 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 								Odpowiedź B*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+								className='resize-none overflow-auto h-[100px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
 								id='answerB'
 								{...register('answerB', {
 									required: 'Musisz podać odpowiedź B.',
@@ -175,7 +175,7 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 							<span className='text-sm text-error-color  block'>{errors.answerB?.message}</span>
 						</div>
 						{/* answer C */}
-						<div className='max-w-[410px] w-full relative mb-[5px]'>
+						<div className='w-full relative mb-[5px]'>
 							<label
 								htmlFor='answerC'
 								className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
@@ -184,7 +184,7 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 								Odpowiedź C*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+								className='resize-none overflow-auto h-[100px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
 								id='answerC'
 								{...register('answerC', {
 									required: 'Musisz podać odpowiedź C.',
@@ -199,7 +199,7 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 							<span className='text-sm text-error-color  block'>{errors.answerC?.message}</span>
 						</div>
 						{/* answer D */}
-						<div className='max-w-[410px] w-full relative mb-[5px]'>
+						<div className='w-full relative mb-[5px]'>
 							<label
 								htmlFor='answerD'
 								className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
@@ -208,7 +208,7 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 								Odpowiedź D*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+								className='resize-none overflow-auto h-[100px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
 								id='answerD'
 								{...register('answerD', {
 									required: 'Musisz podać odpowiedź D',
@@ -225,7 +225,7 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 					</div>
 				</div>
 
-				<div className='max-w-[410px] w-full mt-[20px]'>
+				<div className='max-w-[410px] w-full mt-[20px] px-[15px]'>
 					<Button
 						variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
 						disabled={isSubmitting || Object.keys(errors).length > 0}>

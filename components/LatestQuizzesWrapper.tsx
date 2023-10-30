@@ -11,8 +11,8 @@ export const LatestQuizzesWrapper = async ({ quizName }: { quizName: string }) =
 	const summarySavedQuizzesPromise = get3SummarySavedQuizzes(quizName)
 
 	return (
-		<section className='w-full max-w-[50%]'>
-			<div className='dark-box  p-[24px] flex flex-col gap-4'>
+		<section className='w-full h-auto sm:w-[50%] '>
+			<div className='dark-box  p-[24px] h-[100%]  flex flex-col gap-4'>
 				<span className='text-white text-2xl'>Twoje ostatnie zapisane quizy:</span>
 				<div className='flex flex-col gap-3'>
 					<Suspense fallback={<Loader />}>

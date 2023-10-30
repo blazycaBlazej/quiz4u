@@ -12,7 +12,7 @@ export const Testimonial = ({ testimonial }: testimonialObject) => {
 	return (
 		<div
 			key={id}
-			className='relative flex flex-col items-center justify-between gap-[20px] colorful-box  max-w-[600px] w-full px-[40px] py-[30px] rounded-[20px]'>
+			className='relative flex flex-col items-center justify-between gap-[20px] colorful-box   w-full px-[40px] py-[30px] rounded-[20px] md:max-w-[600px]'>
 			<div className=''>
 				<p>{text}</p>
 			</div>

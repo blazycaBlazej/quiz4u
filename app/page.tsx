@@ -9,8 +9,8 @@ export default function Home() {
 			<div className='relative flex justify-between items-center flex-col-reverse gap-[50px] lg:flex-row '>
 				<Image src={'/rocket.png'} width={300} height={300} alt='rocket' />
 				<div>
-					<h1 className=' text-white text-5xl py-5'>Witaj na Quizy4u!</h1>
-					<p className='text-[17px] max-w-[650px]'>
+					<h1 className=' text-white text-5xl py-3'>Witaj na Quizy4u!</h1>
+					<p className='text-[17px] max-w-[700px]'>
 						Twoje źródło wiedzy i sukcesu na egzaminach! <br />
 						Czy przygotowania do egzaminów sprawiają Ci stres i niepewność?
 						<br />
@@ -20,10 +20,10 @@ export default function Home() {
 					</p>
 				</div>
 			</div>
-			<div className='mt-[50px] '>
-				<h2 className='text-white text-4xl py-1'> Dlaczego warto wybrać Quizy4U?</h2>
-				<div className='flex items-center flex-col gap-[20px] lg:flex-row'>
-					<ul className='max-w-[600px]  '>
+			<div className='pt-3 flex flex-col max-w-[700px] w-full m-auto lg:max-w-full'>
+				<h2 className='text-white text-4xl pb-3 '> Dlaczego warto wybrać Quizy4U?</h2>
+				<div className='flex items-center flex-col justify-between lg:flex-row '>
+					<ul className='max-w-[700px]  '>
 						<li>
 							📚 Różnorodność Quizów: Oferujemy quizy dostosowane do Twojego poziomu nauki. Wybieraj spośród losowania
 							pojedynczych pytań, zestawów 40 pytań, czy też twórz własne testy.

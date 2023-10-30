@@ -79,38 +79,40 @@ function Table({ data, columns, renderSubComponent, getRowCanExpand }: TableProp
 					<IconChevronRightPipe />
 				</button>
 			</div>
-			<table className='w-full'>
-				<thead className='text-white'>
-					{table.getHeaderGroups().map(headerGroup => (
-						<tr key={headerGroup.id}>
-							{headerGroup.headers.map(header => (
-								<th key={header.id}>
-									{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-								</th>
-							))}
-						</tr>
-					))}
-				</thead>
-				<tbody className='text-base '>
-					{table.getRowModel().rows.map(row => (
-						<>
-							<tr key={row.id} className='border-t-[1px] hover:bg-element-backgorund/90'>
-								{row.getVisibleCells().map(cell => (
-									<td key={cell.id} className='p-[16px]'>
-										{flexRender(cell.column.columnDef.cell, cell.getContext())}
-									</td>
+			<div className='overflow-x-auto'>
+				<table className='w-full'>
+					<thead className='text-white'>
+						{table.getHeaderGroups().map(headerGroup => (
+							<tr key={headerGroup.id}>
+								{headerGroup.headers.map(header => (
+									<th key={header.id}>
+										{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+									</th>
 								))}
 							</tr>
-							{row.getIsExpanded() && (
-								<tr>
-									{/* 2nd row is a custom 1 cell row */}
-									<td colSpan={row.getVisibleCells().length}>{renderSubComponent({ row })}</td>
+						))}
+					</thead>
+					<tbody className='text-base '>
+						{table.getRowModel().rows.map(row => (
+							<>
+								<tr key={row.id} className='border-t-[1px] hover:bg-element-backgorund/90'>
+									{row.getVisibleCells().map(cell => (
+										<td key={cell.id} className='p-[16px]'>
+											{flexRender(cell.column.columnDef.cell, cell.getContext())}
+										</td>
+									))}
 								</tr>
-							)}
-						</>
-					))}
-				</tbody>
-			</table>
+								{row.getIsExpanded() && (
+									<tr>
+										{/* 2nd row is a custom 1 cell row */}
+										<td colSpan={row.getVisibleCells().length}>{renderSubComponent({ row })}</td>
+									</tr>
+								)}
+							</>
+						))}
+					</tbody>
+				</table>
+			</div>
 		</div>
 	)
 }
