@@ -24,7 +24,7 @@ export const LatestQuiz = ({ questionNumber, numberOfCorrectAnswer, createdAt, i
 
 	return (
 		<Link href={`/quiz/${quizName}/zapisane-quizy/${id}`}>
-			<div className='w-full bg-box-color p-[8px] rounded-lg cursor-pointer transition-colors hover:bg-box-color/80'>
+			<div className='w-full bg-box-color-light dark:bg-box-color-dark p-[8px] rounded-lg cursor-pointer transition-colors hover:bg-box-color-light/80 dark:hover:bg-box-color-dark/80'>
 				<div className='flex items-center justify-between'>
 					<span className='text-2xl'>{emoji}</span>
 					<div>

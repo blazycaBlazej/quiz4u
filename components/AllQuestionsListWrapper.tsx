@@ -70,7 +70,7 @@ export const AllQuestionsListWrapper = ({ data, quizName, currentPage, perPage, 
 				<>
 					<div className='flex items-center justify-center flex-col w-full max-w-[600px] my-[20px] gap-[10px]'>
 						<div className='flex gap-2 '>
-							<span className='text-white'>Pytań na stronie: </span>
+							<span className='text-black dark:text-white'>Pytań na stronie: </span>
 							<select onChange={e => changeHandler(e)} name='' id=''>
 								<option value='5'>5</option>
 								<option value='10' selected>
@@ -106,8 +106,11 @@ export const AllQuestionsListWrapper = ({ data, quizName, currentPage, perPage, 
 										}/${quizName}/wszystkie-pytania?strona=${element}&na-stronie=${perPage}`}>
 										<span
 											className={`py-[4px] px-[9px] ml-[3px] rounded-md
-											cursor-pointer transition-colors hover:bg-element-active-backgorund/30										}  ${
-												element === currentPage ? 'text-white bg-element-active-backgorund/30 ' : ''
+											cursor-pointer transition-colors 
+											hover:bg-element-active-backgorund-light/30	dark:hover:bg-element-active-backgorund-dark/30										}  ${
+												element === currentPage
+													? 'text-black dark:text-white bg-element-active-backgorund-dark/30 '
+													: ''
 											}`}>
 											{element}
 										</span>
@@ -129,7 +132,7 @@ export const AllQuestionsListWrapper = ({ data, quizName, currentPage, perPage, 
 					</div>
 
 					<div className='flex flex-col'>
-						<div className='mt-[25px] border-b border-solid border-border-color '></div>
+						<div className='mt-[25px] border-b border-solid border-border-color-light dark:border-border-color-dark'></div>
 						{data.questions.map((element, index) => (
 							<div key={index}>
 								<QuestionListView
@@ -144,7 +147,7 @@ export const AllQuestionsListWrapper = ({ data, quizName, currentPage, perPage, 
 									correctAnswer={element.correctAnswer}
 								/>
 
-								<div className='mt-[45px] border-b border-solid border-border-color '></div>
+								<div className='mt-[45px] border-b border-solid border-border-color-light dark:border-border-color-dark'></div>
 							</div>
 						))}
 					</div>

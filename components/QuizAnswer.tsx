@@ -30,9 +30,14 @@ export const QuizAnswer = ({ answer, letter, checkAnswer, id, marked, checkedQue
 			onClick={handleOnClick}
 			style={{ backgroundColor: background }}
 			className={`wrapper flex flex-start items-center  w-full max-w-[600px] text-lg px-[20px] py-[15px] gap-4 h-auto border-t border-boder-color  transition-colors  ${
-				checkedQuestion ? 'cursor-default text-white' : 'cursor-pointer hover:bg-element-hover-backgorund'
-			} ${marked ? 'bg-element-hover-backgorund' : ''} ${background}`}>
-			<div className='min-w-[50px] min-h-[50px]  rounded-full flex justify-center items-center border border-white text-white'>
+				checkedQuestion
+					? 'cursor-default text-white '
+					: 'cursor-pointer hover:bg-element-hover-backgorund-light dark:hover:bg-element-hover-backgorund-dark'
+			} ${marked ? 'bg-element-hover-backgorund-light dark:bg-element-hover-backgorund-dark' : ''} ${background}`}>
+			<div
+				className={`min-w-[50px] min-h-[50px]  rounded-full flex justify-center items-center border border-black dark:border-white text-black dark:text-white ${
+					checkedQuestion ? 'text-white' : ''
+				}`}>
 				{letter}
 			</div>
 			<div>{answer}</div>

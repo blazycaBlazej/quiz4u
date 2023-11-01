@@ -1,12 +1,8 @@
 import { quiz } from '@/types/types'
 import { useEffect, useRef, useState } from 'react'
-import useSWR, { mutate } from 'swr'
-import { Loader } from '@/components'
 import { QuizQuestion } from '@/components/QuizQuestion'
 import { QuizAnswer } from '@/components/QuizAnswer'
-import { useSearchParams } from 'next/navigation'
 import { bigConfetti } from '@/lib/lib'
-import { stringify } from 'querystring'
 import { useRouter } from 'next/navigation'
 
 type QuizItemChecker = {
@@ -112,10 +108,22 @@ export const XQuestionsQuiz = ({ questions, questionNumber, reloadQuestions, qui
 			if (item.markAnswer === questions[index].correctAnswer) {
 				correctAnswerCount++
 				const newColor = {
-					answerA: quiz[index].markAnswer === 'answerA' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
-					answerB: quiz[index].markAnswer === 'answerB' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
-					answerC: quiz[index].markAnswer === 'answerC' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
-					answerD: quiz[index].markAnswer === 'answerD' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
+					answerA:
+						quiz[index].markAnswer === 'answerA'
+							? 'bg-correctAnswerLight dark:bg-correctAnswerDark'
+							: 'bg-incorrect-answer-quiz opacity-20',
+					answerB:
+						quiz[index].markAnswer === 'answerB'
+							? 'bg-correctAnswerLight dark:bg-correctAnswerDark'
+							: 'bg-incorrect-answer-quiz opacity-20',
+					answerC:
+						quiz[index].markAnswer === 'answerC'
+							? 'bg-correctAnswerLight dark:bg-correctAnswerDark'
+							: 'bg-incorrect-answer-quiz opacity-20',
+					answerD:
+						quiz[index].markAnswer === 'answerD'
+							? 'bg-correctAnswerLight dark:bg-correctAnswerDark'
+							: 'bg-incorrect-answer-quiz opacity-20',
 				}
 
 				return {
@@ -130,20 +138,20 @@ export const XQuestionsQuiz = ({ questions, questionNumber, reloadQuestions, qui
 				const newColor = {
 					answerA:
 						questions[index].correctAnswer === 'answerA'
-							? 'bg-correctAnswer opacity-20'
+							? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 							: 'bg-incorrect-answer-quiz opacity-20',
 
 					answerB:
 						questions[index].correctAnswer === 'answerB'
-							? 'bg-correctAnswer opacity-20'
+							? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 							: 'bg-incorrect-answer-quiz opacity-20',
 					answerC:
 						questions[index].correctAnswer === 'answerC'
-							? 'bg-correctAnswer opacity-20'
+							? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 							: 'bg-incorrect-answer-quiz opacity-20',
 					answerD:
 						questions[index].correctAnswer === 'answerD'
-							? 'bg-correctAnswer opacity-20'
+							? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 							: 'bg-incorrect-answer-quiz opacity-20',
 				}
 
@@ -161,25 +169,25 @@ export const XQuestionsQuiz = ({ questions, questionNumber, reloadQuestions, qui
 				const newColor = {
 					answerA:
 						questions[index].correctAnswer === 'answerA'
-							? 'bg-correctAnswer opacity-20'
+							? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 							: quiz[index].markAnswer !== 'answerA'
 							? 'bg-incorrect-answer-quiz opacity-20'
 							: 'bg-incorrect-answer-quiz',
 					answerB:
 						questions[index].correctAnswer === 'answerB'
-							? 'bg-correctAnswer opacity-20'
+							? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 							: quiz[index].markAnswer !== 'answerB'
 							? 'bg-incorrect-answer-quiz opacity-20'
 							: 'bg-incorrect-answer-quiz',
 					answerC:
 						questions[index].correctAnswer === 'answerC'
-							? 'bg-correctAnswer opacity-20'
+							? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 							: quiz[index].markAnswer !== 'answerC'
 							? 'bg-incorrect-answer-quiz opacity-20'
 							: 'bg-incorrect-answer-quiz',
 					answerD:
 						questions[index].correctAnswer === 'answerD'
-							? 'bg-correctAnswer opacity-20'
+							? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 							: quiz[index].markAnswer !== 'answerD'
 							? 'bg-incorrect-answer-quiz opacity-20'
 							: 'bg-incorrect-answer-quiz',
@@ -236,25 +244,34 @@ export const XQuestionsQuiz = ({ questions, questionNumber, reloadQuestions, qui
 						<button
 							key={number}
 							className={`border rounded-[10px] p-[10px] max-w-[43px]  w-full transition-colors
+							${
+								questionIndex === number - 1
+									? `colorful-box2 ${
+											quiz[number - 1].checkedQuestion
+												? 'opacity-30'
+												: 'bg-colorful-gradient-light dark:bg-colorful-gradient-dark text-black dark:text-white'
+									  } `
+									: ''
+							}
                           
                          ${
 														quiz[number - 1].checkedQuestion
 															? quiz[number - 1].isCorrectAnswer === true
-																? 'border-none bg-correctAnswer'
+																? 'border-none bg-correctAnswerLight dark:bg-correctAnswerDark'
 																: quiz[number - 1].isCorrectAnswer === false
 																? 'border-none bg-incorrect-answer-quiz'
-																: 'border-none bg-element-active-backgorund/50'
+																: 'border-none bg-element-active-backgorund-dark/50'
 															: ''
 													}
 
                          ${
 														!quiz[number - 1].checkedQuestion
 															? quiz[number - 1].markAnswer
-																? 'bg-element-active-backgorund/20 border-none'
-																: ' border-element-active-backgorund'
+																? 'bg-element-active-backgorund-dark/20 border-none'
+																: 'border-element-active-backgorund-dark'
 															: ''
 													}
-                         ${questionIndex === number - 1 ? 'colorful-box2 text-white' : ''}
+                      
                          `}
 							onClick={() => setQuestionIndex(number - 1)}>
 							{number}
@@ -262,10 +279,10 @@ export const XQuestionsQuiz = ({ questions, questionNumber, reloadQuestions, qui
 					))}
 				</div>
 
-				<div className='mt-[25px] border-b border-solid border-border-color '></div>
+				<div className='mt-[25px] border-b border-solid border-border-color-light dark:border-border-color-dark'></div>
 
 				<div className='w-full flex justify-center mt-[25px]'>
-					<div className='flex flex-col rounded-[20px] border border-solid border-border-color max-w-[600px] w-full'>
+					<div className='flex flex-col rounded-[20px] border border-solid border-border-color-light dark:border-border-color-dark max-w-[600px] w-full'>
 						<QuizQuestion
 							questionNummber={questionIndex + 1}
 							question={questions[questionIndex].question}
@@ -312,7 +329,9 @@ export const XQuestionsQuiz = ({ questions, questionNumber, reloadQuestions, qui
 				</div>
 
 				{quiz[questionIndex].message && (
-					<p className='text-lg text-center w-full mt-[25px] text-white'>{quiz[questionIndex].message}</p>
+					<p className='text-lg text-center w-full mt-[25px] text-black dark:text-white'>
+						{quiz[questionIndex].message}
+					</p>
 				)}
 
 				<div className='w-full flex flex-col items-center mt-[15px]'>
@@ -340,7 +359,11 @@ export const XQuestionsQuiz = ({ questions, questionNumber, reloadQuestions, qui
 						<>
 							<p
 								className={`text-lg text-center w-full mt-[25px]  ${
-									+quizResult < 50 ? 'text-error-color' : +quizResult > 80 ? 't text-correctAnswer' : 'text-white'
+									+quizResult < 50
+										? 'text-error-color'
+										: +quizResult > 80
+										? 'text-correctAnswerLight dark:text-correctAnswerDark'
+										: 'text-black dark:text-white'
 								}`}>
 								Twój wynik to: {quizResult}% ({numberOfCorrectAnswer}/{questionNumber})
 							</p>

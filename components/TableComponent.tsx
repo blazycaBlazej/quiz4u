@@ -54,34 +54,34 @@ function Table({ data, columns, renderSubComponent, getRowCanExpand }: TableProp
 
 	return (
 		<div className='my-[25px]' style={{ width: 'calc(100% - 30px)' }}>
-			<span className='flex w-full justify-center text-3xl text-white'>Edytuj detale quizu</span>
+			<span className='flex w-full justify-center text-3xl text-black dark:text-white'>Edytuj detale quizu</span>
 			<div className='flex w-full justify-end'>
 				<button
-					className='text-white transition-colors cursor-pointer hover:text-main-font-color'
+					className='text-black dark:text-white transition-colors cursor-pointer hover:text-light-text dark:hover:text-dark-text'
 					onClick={() => table.setPageIndex(0)}>
 					<IconChevronLeftPipe />
 				</button>
 				<button
-					className='text-white transition-colors cursor-pointer hover:text-main-font-color'
+					className='text-black dark:text-white transition-colors cursor-pointer hover:text-light-text dark:hover:text-dark-text'
 					onClick={() => table.previousPage()}
 					disabled={!table.getCanPreviousPage()}>
 					<IconChevronLeft />
 				</button>
 				<button
-					className='text-white transition-colors cursor-pointer hover:text-main-font-color'
+					className='text-black dark:text-white transition-colors cursor-pointer hover:text-light-text dark:hover:text-dark-text'
 					onClick={() => table.nextPage()}
 					disabled={!table.getCanNextPage()}>
 					<IconChevronRight />
 				</button>
 				<button
-					className='text-white transition-colors cursor-pointer hover:text-main-font-color'
+					className='text-black dark:text-white transition-colors cursor-pointer hover:text-light-text dark:hover:text-dark-text'
 					onClick={() => table.setPageIndex(table.getPageCount() - 1)}>
 					<IconChevronRightPipe />
 				</button>
 			</div>
 			<div className='overflow-x-auto'>
 				<table className='w-full'>
-					<thead className='text-white'>
+					<thead className='text-black dark:text-white'>
 						{table.getHeaderGroups().map(headerGroup => (
 							<tr key={headerGroup.id}>
 								{headerGroup.headers.map(header => (
@@ -95,7 +95,9 @@ function Table({ data, columns, renderSubComponent, getRowCanExpand }: TableProp
 					<tbody className='text-base '>
 						{table.getRowModel().rows.map(row => (
 							<>
-								<tr key={row.id} className='border-t-[1px] hover:bg-element-backgorund/90'>
+								<tr
+									key={row.id}
+									className='border-t-[1px] hover:bg-element-backgorund-light dark:hover:dark:bg-element-backgorund-dark/90'>
 									{row.getVisibleCells().map(cell => (
 										<td key={cell.id} className='p-[16px]'>
 											{flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -212,7 +214,7 @@ export const TableComponent = ({ quizName }: TableComponentProps) => {
 				return row.getCanExpand() ? (
 					<Menu as='div' className=''>
 						<Menu.Button>
-							<IconDotsVertical className='z-[-1] cursor-pointer transition-colors text-white hover:text-btn-violet-color' />
+							<IconDotsVertical className='z-[-1] cursor-pointer transition-colors text-black dark:text-white hover:text-btn-violet-color' />
 						</Menu.Button>
 						<Transition
 							enter=' transition transform ease-out duration-200'
@@ -223,23 +225,23 @@ export const TableComponent = ({ quizName }: TableComponentProps) => {
 							leaveTo='opacity-0 scale-0'>
 							<Menu.Items
 								as='div'
-								className={`absolute right-0 flex flex-col w-[110px]   bg-element-backgorund border border-border-color rounded `}>
+								className={`absolute right-0 flex flex-col w-[110px] bg-element-backgorund-light dark:bg-element-backgorund-dark border border-border-color-light dark:border-border-color-dark rounded `}>
 								<Menu.Item>
 									<span
 										onClick={row.getToggleExpandedHandler()}
-										className='p-[8px] text-sm text-white transition-colors cursor-pointer hover:bg-element-hover-backgorund'>
+										className='p-[8px] text-black dark:text-white transition-colors cursor-pointer hover:bg-element-hover-backgorund-light dark:hover:bg-element-hover-backgorund-dark'>
 										{row.getIsExpanded() ? 'Pokaż mniej' : 'Pokaż więcej'}
 									</span>
 								</Menu.Item>
 								<Menu.Item>
-									<span className='p-[8px] text-sm text-white transition-colors cursor-pointer hover:bg-element-hover-backgorund'>
+									<span className='p-[8px] text-sm  text-black dark:text-white transition-colors cursor-pointer hover:bg-element-hover-backgorund-light dark:hover:bg-element-hover-backgorund-dark'>
 										Edytuj
 									</span>
 								</Menu.Item>
 								<Menu.Item>
 									<span
 										onClick={() => delateElement(rowData.id)}
-										className='p-[8px] text-sm text-white transition-colors cursor-pointer hover:bg-element-hover-backgorund'>
+										className='p-[8px] text-sm  text-black dark:text-white transition-colors cursor-pointer hover:bg-element-hover-backgorund-light dark:hover:bg-element-hover-backgorund-dark'>
 										Usuń
 									</span>
 								</Menu.Item>

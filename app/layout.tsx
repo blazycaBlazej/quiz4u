@@ -12,6 +12,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { MenuProvider } from './context/MenuProvider'
 import Overlay from '@/components/Overlay'
+import ThemeProvider from './context/ThemeProvider'
 export const metadata: Metadata = {
 	title: 'quiz4u',
 	description:
@@ -23,41 +24,46 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 	const user = await getIsLogged()
 	// console.log('menu: ', menuElements)
 	return (
-		<html lang='en' className={nunito.className}>
-			<body className={`flex bg-main-backgorund min-h-screen text-main-font-color`}>
-				<AuthProvider>
-					<MenuProvider>
-						<Overlay />
-						<Navbar isAdmin={user?.isAdmin} item={...menuElements} />
+		<html lang='en' className={`${nunito.className} dark`} style={{ colorScheme: 'dark' }}>
+			<body>
+				<ThemeProvider>
+					<AuthProvider>
+						<MenuProvider>
+							<Overlay />
+							<div
+								className={`flex  min-h-screen bg-main-bgn-light text-light-text dark:text-dark-text dark:bg-main-bgn-dark`}>
+								<Navbar isAdmin={user?.isAdmin} item={...menuElements} />
 
-						<div className='lg:ml-[280px] flex flex-col w-full'>
-							<div className='fixed w-full right-0 top-0 z-[998] bg-main-backgorund '>
-								<UserSection userName={user?.login} />
-							</div>
+								<div className='lg:ml-[280px] flex flex-col w-full'>
+									<div className='fixed w-full right-0 top-0 z-[998] bg-main-bgn-light dark:bg-main-bgn-dark '>
+										<UserSection userName={user?.login} />
+									</div>
 
-							<div className='max-w-[1200px] w-full mx-auto m '>
-								<div className='mt-[90px] mx-[20px] mb-[10px] '>
-									{children}
+									<div className='max-w-[1200px] w-full mx-auto m '>
+										<div className='mt-[90px] mx-[20px] mb-[10px] '>
+											{children}
 
-									{/* <Footer /> */}
+											{/* <Footer /> */}
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-					</MenuProvider>
+						</MenuProvider>
 
-					<ToastContainer
-						position='top-right'
-						autoClose={1000}
-						hideProgressBar={false}
-						newestOnTop={false}
-						closeOnClick
-						rtl={false}
-						pauseOnFocusLoss
-						draggable
-						pauseOnHover
-						theme='dark'
-					/>
-				</AuthProvider>
+						<ToastContainer
+							position='top-right'
+							autoClose={1000}
+							hideProgressBar={false}
+							newestOnTop={false}
+							closeOnClick
+							rtl={false}
+							pauseOnFocusLoss
+							draggable
+							pauseOnHover
+							theme='dark'
+						/>
+					</AuthProvider>
+				</ThemeProvider>
 			</body>
 		</html>
 	)

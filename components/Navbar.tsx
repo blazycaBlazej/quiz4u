@@ -9,6 +9,7 @@ import { NavbarElementProps } from '@/types/types'
 import { IconCirclePlus, IconMenu2 } from '@tabler/icons-react'
 import { useMenu } from '@/app/context/MenuProvider'
 import FlipMove from 'react-flip-move'
+import ThemeButton from './ThemeButton'
 
 interface NavbarProps {
 	item: NavbarElementProps[]
@@ -36,12 +37,12 @@ export const Navbar = ({ item, isAdmin }: NavbarProps) => {
 				{isMenuOpen && (
 					<nav
 						key='nav'
-						className={` fixed left-0 top-0 z-[999] w-[280px] h-screen min-h-screen px-4 bg-element-backgorund  white border-r border-solid border-border-color  block
+						className={` fixed left-0 top-0 z-[999] w-[280px] h-screen min-h-screen px-4 bg-element-backgorund-light dark:bg-element-backgorund-dark border-r border-solid border-border-color-light dark:border-border-color-dark flex flex-col
 		`}>
 						<div className='flex items-center gap-3'>
 							<span
 								onClick={toggleMenu}
-								className='block p-[10px] rounded-full cursor-pointer transition-colors hover:bg-element-active-backgorund lg:hidden'>
+								className='block p-[10px] rounded-full cursor-pointer transition-colors hover:bg-element-active-backgorund-light dark:hover:bg-element-active-backgorund-dark lg:hidden'>
 								<IconMenu2 />
 							</span>
 							<span className='lg:ml-[56px]'>
@@ -85,8 +86,10 @@ export const Navbar = ({ item, isAdmin }: NavbarProps) => {
 								<span className='mb-2 block'>Panel administratora:</span>
 								<Link href='/dodaj-nowy-quiz'>
 									<span
-										className={`flex w-full gap-2 cursor-pointer py-[13px]  px-5 transition-colors hover:bg-element-hover-backgorund rounded-[12px] ${
-											pathname === '/dodaj-nowy-quiz' ? `text-white bg-element-active-backgorund` : ``
+										className={`flex w-full gap-2 cursor-pointer py-[13px]  px-5 transition-colors hover:bg-element-hover-backgorund-light dark:hover:bg-element-hover-backgorund-dark rounded-[12px] ${
+											pathname === '/dodaj-nowy-quiz'
+												? `text-black dark:text-white bg-element-active-backgorund-light dark:bg-element-active-backgorund-dark`
+												: ``
 										}`}>
 										<IconCirclePlus />
 										Dodaj nowy quiz
@@ -94,6 +97,7 @@ export const Navbar = ({ item, isAdmin }: NavbarProps) => {
 								</Link>
 							</div>
 						)}
+						<ThemeButton />
 					</nav>
 				)}
 			</FlipMove>
@@ -101,7 +105,7 @@ export const Navbar = ({ item, isAdmin }: NavbarProps) => {
 			{/* //desktop */}
 			<nav
 				key='nav'
-				className={` fixed left-0 top-0 z-[999] w-[280px] h-screen min-h-screen px-4 bg-element-backgorund  white border-r border-solid border-border-color hidden lg:block
+				className={` fixed left-0 top-0 z-[999] w-[280px] h-screen min-h-screen px-4 bg-element-backgorund-light dark:bg-element-backgorund-dark  white border-r border-solid border-border-color-light dark:border-border-color-dark hidden lg:flex lg:flex-col
 		`}>
 				<div className='flex items-center gap-3'>
 					<span className='lg:ml-[56px]'>
@@ -145,8 +149,10 @@ export const Navbar = ({ item, isAdmin }: NavbarProps) => {
 						<span className='mb-2 block'>Panel administratora:</span>
 						<Link href='/dodaj-nowy-quiz'>
 							<span
-								className={`flex w-full gap-2 cursor-pointer py-[13px]  px-5 transition-colors hover:bg-element-hover-backgorund rounded-[12px] ${
-									pathname === '/dodaj-nowy-quiz' ? `text-white bg-element-active-backgorund` : ``
+								className={`flex w-full gap-2 cursor-pointer py-[13px]  px-5 transition-colors hover:bg-element-hover-backgorund-light dark:hover:bg-element-hover-backgorund-dark rounded-[12px] ${
+									pathname === '/dodaj-nowy-quiz'
+										? `text-black dark:text-white  bg-element-active-backgorund-light dark:bg-element-active-backgorund-dark`
+										: ``
 								}`}>
 								<IconCirclePlus />
 								Dodaj nowy quiz
@@ -154,6 +160,8 @@ export const Navbar = ({ item, isAdmin }: NavbarProps) => {
 						</Link>
 					</div>
 				)}
+
+				<ThemeButton />
 			</nav>
 		</>
 	)

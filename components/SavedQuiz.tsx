@@ -56,10 +56,22 @@ export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 		if (savedQuiz[i].markAnswer === savedQuiz[i].correctAnswer) {
 			correctAnswer++
 			color = {
-				answerA: savedQuiz[i].markAnswer === 'answerA' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
-				answerB: savedQuiz[i].markAnswer === 'answerB' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
-				answerC: savedQuiz[i].markAnswer === 'answerC' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
-				answerD: savedQuiz[i].markAnswer === 'answerD' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
+				answerA:
+					savedQuiz[i].markAnswer === 'answerA'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark'
+						: 'bg-incorrect-answer-quiz opacity-20',
+				answerB:
+					savedQuiz[i].markAnswer === 'answerB'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark'
+						: 'bg-incorrect-answer-quiz opacity-20',
+				answerC:
+					savedQuiz[i].markAnswer === 'answerC'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark'
+						: 'bg-incorrect-answer-quiz opacity-20',
+				answerD:
+					savedQuiz[i].markAnswer === 'answerD'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark'
+						: 'bg-incorrect-answer-quiz opacity-20',
 			}
 			isCorrectAnswer = true
 			message = 'Gratulacje! To jest prawidłowa odpowiedź '
@@ -67,20 +79,20 @@ export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 			color = {
 				answerA:
 					savedQuiz[i].correctAnswer === 'answerA'
-						? 'bg-correctAnswer opacity-20'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 						: 'bg-incorrect-answer-quiz opacity-20',
 
 				answerB:
 					savedQuiz[i].correctAnswer === 'answerB'
-						? 'bg-correctAnswer opacity-20'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 						: 'bg-incorrect-answer-quiz opacity-20',
 				answerC:
 					savedQuiz[i].correctAnswer === 'answerC'
-						? 'bg-correctAnswer opacity-20'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 						: 'bg-incorrect-answer-quiz opacity-20',
 				answerD:
 					savedQuiz[i].correctAnswer === 'answerD'
-						? 'bg-correctAnswer opacity-20'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 						: 'bg-incorrect-answer-quiz opacity-20',
 			}
 			isCorrectAnswer = null
@@ -92,25 +104,25 @@ export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 			color = {
 				answerA:
 					savedQuiz[i].correctAnswer === 'answerA'
-						? 'bg-correctAnswer opacity-20'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 						: savedQuiz[i].markAnswer !== 'answerA'
 						? 'bg-incorrect-answer-quiz opacity-20'
 						: 'bg-incorrect-answer-quiz',
 				answerB:
 					savedQuiz[i].correctAnswer === 'answerB'
-						? 'bg-correctAnswer opacity-20'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 						: savedQuiz[i].markAnswer !== 'answerB'
 						? 'bg-incorrect-answer-quiz opacity-20'
 						: 'bg-incorrect-answer-quiz',
 				answerC:
 					savedQuiz[i].correctAnswer === 'answerC'
-						? 'bg-correctAnswer opacity-20'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 						: savedQuiz[i].markAnswer !== 'answerC'
 						? 'bg-incorrect-answer-quiz opacity-20'
 						: 'bg-incorrect-answer-quiz',
 				answerD:
 					savedQuiz[i].correctAnswer === 'answerD'
-						? 'bg-correctAnswer opacity-20'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 						: savedQuiz[i].markAnswer !== 'answerD'
 						? 'bg-incorrect-answer-quiz opacity-20'
 						: 'bg-incorrect-answer-quiz',
@@ -158,36 +170,45 @@ export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 						<button
 							key={number}
 							className={`border rounded-[10px] p-[10px] max-w-[43px]  w-full transition-colors
-                          
-                         ${
-														quiz[number - 1].checkedQuestion
-															? quiz[number - 1].isCorrectAnswer === true
-																? 'border-none bg-correctAnswer'
-																: quiz[number - 1].isCorrectAnswer === false
-																? 'border-none bg-incorrect-answer-quiz'
-																: 'border-none bg-element-active-backgorund/50'
-															: ''
-													}
+				${
+					questionIndex === number - 1
+						? `colorful-box2 ${
+								quiz[number - 1].checkedQuestion
+									? 'opacity-30'
+									: 'bg-colorful-gradient-light dark:bg-colorful-gradient-dark text-black dark:text-white'
+						  } `
+						: ''
+				}
+		 
+		${
+			quiz[number - 1].checkedQuestion
+				? quiz[number - 1].isCorrectAnswer === true
+					? 'border-none bg-correctAnswerLight dark:bg-correctAnswerDark'
+					: quiz[number - 1].isCorrectAnswer === false
+					? 'border-none bg-incorrect-answer-quiz'
+					: 'border-none bg-element-active-backgorund-dark/50'
+				: ''
+		}
 
-                         ${
-														!quiz[number - 1].checkedQuestion
-															? quiz[number - 1].markAnswer
-																? 'bg-element-active-backgorund/20 border-none'
-																: ' border-element-active-backgorund'
-															: ''
-													}
-                         ${questionIndex === number - 1 ? 'colorful-box2 text-white' : ''}
-                         `}
+		${
+			!quiz[number - 1].checkedQuestion
+				? quiz[number - 1].markAnswer
+					? 'bg-element-active-backgorund-dark/20 border-none'
+					: 'border-element-active-backgorund-dark'
+				: ''
+		}
+	  
+		`}
 							onClick={() => setQuestionIndex(number - 1)}>
 							{number}
 						</button>
 					))}
 				</div>
 
-				<div className='mt-[25px] border-b border-solid border-border-color '></div>
+				<div className='mt-[25px] border-b border-solid border-border-color-light dark:border-border-color-dark'></div>
 
 				<div className='w-full flex justify-center mt-[25px]'>
-					<div className='flex flex-col rounded-[20px] border border-solid border-border-color max-w-[600px] w-full'>
+					<div className='flex flex-col rounded-[20px] border border-solid border-border-color-light dark:border-border-color-dark max-w-[600px] w-full'>
 						<QuizQuestion
 							questionNummber={questionIndex + 1}
 							question={savedQuiz[questionIndex].question}
@@ -230,7 +251,9 @@ export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 				</div>
 
 				{quiz[questionIndex].message && (
-					<p className='text-lg text-center w-full mt-[25px] text-white'>{quiz[questionIndex].message}</p>
+					<p className='text-lg text-center w-full mt-[25px] text-black dark:text-white'>
+						{quiz[questionIndex].message}
+					</p>
 				)}
 
 				<div className='w-full flex flex-col items-center mt-[15px]'>
@@ -251,7 +274,11 @@ export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 
 					<p
 						className={`text-lg text-center w-full mt-[25px]  ${
-							+quizResult < 50 ? 'text-error-color' : +quizResult > 80 ? 't text-correctAnswer' : 'text-white'
+							+quizResult < 50
+								? 'text-error-color'
+								: +quizResult > 80
+								? 'text-correctAnswerLight dark:text-correctAnswerDark'
+								: 'text-black dark:text-white'
 						}`}>
 						Twój wynik to: {quizResult}% ({numberOfCorrectAnswer}/{savedQuiz.length})
 					</p>

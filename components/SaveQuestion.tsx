@@ -104,11 +104,21 @@ const SaveQuestion = ({ questionID, quizName }: SaveQuestionProps) => {
 					<IconError404 onClick={() => notification('error', 'Coś poszło nie tak.')} width={28} height={28} />
 				) : data === true ? (
 					<span>
-						<IconStarFilled onClick={deletedSavedQuestion} className={`text-white`} width={28} height={28} />
+						<IconStarFilled
+							onClick={deletedSavedQuestion}
+							className={`text-light-text dark:text-dark-text hover:text-light-text/50 hover:dark:text-dark-text/60`}
+							width={28}
+							height={28}
+						/>
 					</span>
 				) : (
 					<span>
-						<IconStar onClick={saveQuestion} width={28} height={28} />
+						<IconStar
+							className='transition-colors hover:text-light-text/50 dark:hover:text-dark-text/60'
+							onClick={saveQuestion}
+							width={28}
+							height={28}
+						/>
 					</span>
 				)
 			) : (

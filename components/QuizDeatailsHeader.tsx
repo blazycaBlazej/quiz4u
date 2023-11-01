@@ -72,14 +72,16 @@ export const QuizDeatailsHeader = ({ quizName }: QuizDeatailsHeaderProps) => {
 
 	return (
 		<div className='header flex justify-between items-center'>
-			<h1 className='text-[27px] text-white mx-[20px] my-[15px] '>Quiz: {quizName}</h1>
+			<h1 className='text-[27px] text-black dark:text-white mx-[20px] my-[15px] '>Quiz: {quizName}</h1>
 			<div className='flex gap-[10px] mr-[33px]'>
 				<Link href={`/quiz/${quizName}`}>
-					<span className='block  cursor-pointer text-white transition-colors hover:text-main-font-color'>
+					<span className='block  cursor-pointer text-black dark:text-white transition-colors hover:text-light-text dark:hover:text-dark-text'>
 						<IconEye width='40' height='40' />
 					</span>
 				</Link>
-				<span onClick={openModal} className='block  cursor-pointer text-white transition-colors hover:text-error-color'>
+				<span
+					onClick={openModal}
+					className='block  cursor-pointer text-black dark:text-white transition-colors hover:text-error-color'>
 					<IconTrash width='40' height='40' />
 				</span>
 				<Modal isOpen={isOpen} closeModal={closeModal} title={`Czy na pewnwo chcesz usunąć quiz: ${quizName} ?`}>
@@ -88,7 +90,7 @@ export const QuizDeatailsHeader = ({ quizName }: QuizDeatailsHeaderProps) => {
 						<form className='max-w-[410px] w-full' onSubmit={handleSubmit(onSubmit)} noValidate>
 							<div className='max-w-[410px] w-full relative mb-[5px]'>
 								<input
-									className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px]  border-2  border-border-color rounded-[20px] text-gray-900 '
+									className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px]  border-2 border-border-color-light dark:border-border-color-dark rounded-[20px] text-gray-900 '
 									type='text'
 									id='quizName'
 									autoComplete='off'

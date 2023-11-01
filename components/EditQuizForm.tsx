@@ -47,7 +47,7 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 
 	return quizDeatails ? (
 		<div className='flex flex-col justify-center items-center gap-[20px] w-full my-[25px]'>
-			<span className='text-3xl text-white px-[15px]'>Edytuj detale quizu</span>
+			<span className='text-3xl text-black dark:text-white  px-[15px]'>Edytuj detale quizu</span>
 			<div className='form-cointiner w-full flex flex-col px-[15px]'>
 				<form className=' w-full' onSubmit={handleSubmit(onSubmit)} noValidate>
 					<div className='wrapper w-full flex flex-col  justify-center sm:flex-row sm:gap-[50px]'>
@@ -56,13 +56,13 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 							<div className='w-full relative mb-[20px]'>
 								<label
 									htmlFor='name'
-									className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+									className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
 										nameIsActive || getValues('name') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
 									}`}>
 									Nazwa quizu
 								</label>
 								<input
-									className=' h-[50px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-[20px] text-white'
+									className=' h-[50px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-[20px] text-black dark:text-white'
 									type='text'
 									id='name'
 									defaultValue={quizDeatails?.name}
@@ -87,7 +87,7 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 							<div className='w-full relative mb-[5px]'>
 								<label
 									htmlFor='description'
-									className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+									className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
 										descriptionIsActive || getValues('description')
 											? 'top-[-10px] left-[15px]'
 											: 'top-[12px] left-[20px]'
@@ -95,7 +95,7 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 									Opis quizu*
 								</label>
 								<textarea
-									className='resize-none overflow-auto h-[310px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+									className='resize-none overflow-auto h-[310px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
 									id='description'
 									defaultValue={quizDeatails?.description}
 									{...register('description', {
@@ -112,7 +112,7 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 						</div>
 
 						<div className='flex flex-col gap-2 max-w-[350px] w-full'>
-							<span className='text-lg text-white '>Opcje: </span>
+							<span className='text-lg text-black dark:text-white'>Opcje: </span>
 							<CustomSwitch
 								name={'isActive'}
 								control={control}
@@ -120,7 +120,7 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 								description='Aktywny:'
 							/>
 							<CustomSwitch name={'isNew'} control={control} defaultValue={quizDeatails?.isNew} description='Nowy:' />
-							<span className='text-lg text-white'>Tryby gry: </span>
+							<span className='text-lg text-black dark:text-white '>Tryby gry: </span>
 							<CustomSwitch
 								name={'randomize1Question'}
 								control={control}

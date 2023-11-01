@@ -12,8 +12,8 @@ export const LatestQuizzesWrapper = async ({ quizName }: { quizName: string }) =
 
 	return (
 		<section className='w-full h-auto sm:w-[50%] '>
-			<div className='dark-box  p-[24px] h-[100%]  flex flex-col gap-4'>
-				<span className='text-white text-2xl'>Twoje ostatnie zapisane quizy:</span>
+			<div className='box bg-light-box dark:bg-dark-box p-[24px] h-[100%]  flex flex-col gap-4'>
+				<span className='text-black dark:text-white  text-2xl'>Twoje ostatnie zapisane quizy:</span>
 				<div className='flex flex-col gap-3'>
 					<Suspense fallback={<Loader />}>
 						<Await promise={summarySavedQuizzesPromise}>

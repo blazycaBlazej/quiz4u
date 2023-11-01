@@ -7,15 +7,15 @@ export default function EditQuizLayout({ children, params }: { children: React.R
 	const quizName = decodeURIComponent(params.slug)
 	const pathname = usePathname()
 	return (
-		<main className='flex flex-col w-full rounded-[20px] border border-solid border-border-color'>
+		<main className='flex flex-col w-full rounded-[20px] border border-solid border-border-color-light dark:border-border-color-dark'>
 			<QuizDeatailsHeader quizName={quizName} />
-			<div className='border-b border-solid border-border-color '></div>
+			<div className='border-b border-solid border-border-color-light dark:border-border-color-dark '></div>
 			<menu className='flex  flex-col sm:flex-row sm:items-center'>
 				<Link href={`/edytuj-quiz/${quizName}/detale`}>
 					<li
 						className={`p-[24px] text-lg ${
 							decodeURIComponent(pathname) === `/edytuj-quiz/${quizName}/detale`
-								? 'text-white underline underline-offset-[31px]'
+								? 'text-black dark:text-white  underline underline-offset-[31px]'
 								: ''
 						}`}>
 						Detale
@@ -25,7 +25,7 @@ export default function EditQuizLayout({ children, params }: { children: React.R
 					<li
 						className={`p-[24px] text-lg ${
 							decodeURIComponent(pathname) === `/edytuj-quiz/${quizName}/dodaj-pytanie`
-								? 'text-white underline underline-offset-[31px]'
+								? 'text-black dark:text-white  underline underline-offset-[31px]'
 								: ''
 						}`}>
 						Dodaje pytanie
@@ -35,7 +35,7 @@ export default function EditQuizLayout({ children, params }: { children: React.R
 					<li
 						className={`p-[24px] text-lg ${
 							decodeURIComponent(pathname) === `/edytuj-quiz/${quizName}/zarzadzaj-pytaniami`
-								? 'text-white underline underline-offset-[31px]'
+								? 'text-black dark:text-white  underline underline-offset-[31px]'
 								: ''
 						}`}>
 						Zarządzaj pytaniami
@@ -43,7 +43,7 @@ export default function EditQuizLayout({ children, params }: { children: React.R
 				</Link>
 			</menu>
 
-			<div className='border-b border-solid border-border-color '></div>
+			<div className='border-b border-solid border-border-color-light dark:border-border-color-dark'></div>
 			{children}
 		</main>
 	)

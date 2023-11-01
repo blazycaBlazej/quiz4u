@@ -19,12 +19,12 @@ export const UserSection = ({ userName }: UserSectionProps) => {
 	const { isMenuOpen, toggleMenu } = useMenu()
 
 	return (
-		<div className=' flex h-[82px]  px-4 border-b border-solid border-border-color w-full '>
+		<div className=' flex h-[82px]  px-4 border-b border-solid border-border-color-light dark:border-border-color-dark w-full '>
 			<div className='flex w-full justify-between'>
 				<div className='flex items-center gap-3'>
 					<span
 						onClick={toggleMenu}
-						className='block p-[10px] rounded-full cursor-pointer transition-colors hover:bg-element-active-backgorund'>
+						className='block p-[10px] rounded-full cursor-pointer transition-colors hover:bg-element-active-backgorund-light dark:hover:bg-element-active-backgorund-dark'>
 						<IconMenu2 />
 					</span>
 					<span className='hidden sm:block'>
@@ -33,7 +33,7 @@ export const UserSection = ({ userName }: UserSectionProps) => {
 				</div>
 				{userName && (
 					<div className=' flex items-center gap-4 ml-auto pr-[30px]'>
-						<span className='text-white'>
+						<span className='text-black dark:text-white'>
 							Cześć, <span className='text-btn-violet-color'>{userName}</span>
 						</span>
 
@@ -42,7 +42,7 @@ export const UserSection = ({ userName }: UserSectionProps) => {
 								<div className=' relative w-[42px] h-[42px] rounded-full  border-2 border-btn-violet-color cursor-pointer shadow-customNew '>
 									<Image src={'/userMan.png'} width={42} height={42} alt='userImage' />
 									<div className='flex justify-center items-center absolute bg-btn-violet-color h-[17px] w-[17px] bottom-[-5px] right-0 rounded-full'>
-										<span className='text-white text-[14px] p-[5px]'>
+										<span className='text-black dark:text-white text-[14px] p-[5px]'>
 											<IconChevronDown size={15} />
 										</span>
 									</div>
@@ -56,7 +56,7 @@ export const UserSection = ({ userName }: UserSectionProps) => {
 								leaveFrom='opacity-100 scale-100'
 								leaveTo='opacity-0 scale-0'>
 								<Menu.Items
-									className={`absolute right-0 flex flex-col w-[228px] mt-[28px] p-[10px] bg-element-backgorund border border-border-color rounded-[20px]`}>
+									className={`absolute right-0 flex flex-col w-[228px] mt-[28px] p-[10px] bg-element-backgorund-light dark:bg-element-backgorund-dark border border-border-color-light dark:border-border-color-dark rounded-[20px]`}>
 									{userMenuElements.map((element, index) => {
 										const isActive = pathname === element.pathname
 										return (

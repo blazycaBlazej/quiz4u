@@ -28,37 +28,45 @@ export const QuestionListView = ({
 			<QuizQuestion question={question} questionID={questionID} quizName={quizName} questionNummber={id} />
 			<div
 				className={`wrapper flex flex-start items-center  w-full max-w-[600px] text-lg px-[20px] py-[15px] gap-4 h-auto border-t border-boder-color ${
-					correctAnswer === 'answerA' ? 'bg-correctAnswer/30 text-white' : ''
+					correctAnswer === 'answerA'
+						? 'bg-correctAnswerLight/30 dark:bg-correctAnswerDark/30 text-black dark:text-white '
+						: ''
 				}`}>
-				<div className='min-w-[50px] min-h-[50px]  rounded-full flex justify-center items-center border border-white text-white '>
-					A.
+				<div className='min-w-[50px] min-h-[50px]  rounded-full flex justify-center items-center border border-black dark:border-white  text-black dark:text-white  '>
+					A
 				</div>
 				<div>{answerA}</div>
 			</div>
 			<div
 				className={`wrapper flex flex-start items-center  w-full max-w-[600px] text-lg px-[20px] py-[15px] gap-4 h-auto border-t border-boder-color ${
-					correctAnswer === 'answerB' ? 'bg-correctAnswer/30 text-white' : ''
+					correctAnswer === 'answerB'
+						? 'bg-correctAnswerLight/30 dark:bg-correctAnswerDark/30 text-black dark:text-white '
+						: ''
 				}`}>
-				<div className='min-w-[50px] min-h-[50px]  rounded-full flex justify-center items-center border border-white text-white'>
-					B.
+				<div className='min-w-[50px] min-h-[50px]  rounded-full flex justify-center items-center border border-black dark:border-white  text-black dark:text-white '>
+					B
 				</div>
 				<div>{answerB}</div>
 			</div>
 			<div
 				className={`wrapper flex flex-start items-center  w-full max-w-[600px] text-lg px-[20px] py-[15px] gap-4 h-auto border-t border-boder-color ${
-					correctAnswer === 'answerC' ? 'bg-correctAnswer/30 text-white' : ''
+					correctAnswer === 'answerC'
+						? 'bg-correctAnswerLight/30 dark:bg-correctAnswerDark/30 text-black dark:text-white '
+						: ''
 				}`}>
-				<div className='min-w-[50px] min-h-[50px]  rounded-full flex justify-center items-center border border-white text-white'>
-					C.
+				<div className='min-w-[50px] min-h-[50px]  rounded-full flex justify-center items-center border border-black dark:border-white  text-black dark:text-white '>
+					C
 				</div>
 				<div>{answerC}</div>
 			</div>
 			<div
 				className={`wrapper flex flex-start items-center  w-full max-w-[600px] text-lg px-[20px] py-[15px] gap-4 h-auto border-t border-boder-color ${
-					correctAnswer === 'answerD' ? 'bg-correctAnswer/30 text-white' : ''
+					correctAnswer === 'answerD'
+						? 'bg-correctAnswerLight/30 dark:bg-correctAnswerDark/30 text-black dark:text-white '
+						: ''
 				}`}>
-				<div className='min-w-[50px] min-h-[50px]  rounded-full flex justify-center items-center border border-white text-white'>
-					D.
+				<div className='min-w-[50px] min-h-[50px]  rounded-full flex justify-center items-center border border-black dark:border-white text-black dark:text-white '>
+					D
 				</div>
 				<div>{answerD}</div>
 			</div>

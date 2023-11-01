@@ -29,19 +29,19 @@ export default function page() {
 	}
 	return (
 		<main className='flex flex-col justify-center items-center gap-[20px] h-[calc(100vh-404px)] w-full'>
-			<h2 className='max-w-[410px] w-full text-3xl text-white '>Zapomniałeś hasła ?</h2>
+			<h2 className='max-w-[410px] w-full text-3xl text-black dark:text-white'>Zapomniałeś hasła ?</h2>
 			<p className='max-w-[410px] w-full'>Wprowadź swój adres e-mail, aby otrzymać instrukcje resetowania hasła.</p>
 			<form className='max-w-[410px] w-full' onSubmit={handleSubmit(onSubmit)} noValidate>
 				<div className='max-w-[410px] w-full relative mb-[20px]'>
 					<label
 						htmlFor='email'
-						className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+						className={`absolute  pointer-events-none transition-top-left px-[4px] ${
 							emailIsActive || getValues('email') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-						}`}>
+						} bg-main-bgn-light dark:bg-main-bgn-dark `}>
 						Email*
 					</label>
 					<input
-						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-backgorund border-2  border-border-color rounded-[20px] text-white'
+						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-bgn-light dark:bg-main-bgn-dark border-2  border-border-color rounded-[20px] text-black dark:text-white'
 						type='text'
 						id='email'
 						autoComplete='off'
@@ -66,7 +66,7 @@ export default function page() {
 			</form>
 
 			<Link href='/logowanie'>
-				<span className='text-white underline cursor-pointer  flex gap-2 text-right transition-colors hover:text-main-font-color'>
+				<span className='text-black dark:text-white underline cursor-pointer  flex gap-2 text-right transition-colors hover:text-light-text dark:hover:text-dark-text'>
 					<IconArrowNarrowLeft /> Wróć do logowania
 				</span>
 			</Link>

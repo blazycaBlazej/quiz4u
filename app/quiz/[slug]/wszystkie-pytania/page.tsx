@@ -21,7 +21,9 @@ const xQuestions = async ({
 
 	return (
 		<div className='w-full'>
-			<h3 className='text-3xl text-white mt-[25px] w-full text-center'>Wysztkie pytania w quzie - {quizName}</h3>
+			<h3 className='text-3xl text-black dark:text-white  mt-[25px] w-full text-center'>
+				Wysztkie pytania w quzie - {quizName}
+			</h3>
 			<Suspense fallback={<Loading />}>
 				<Await promise={dataPromise}>
 					{data => (

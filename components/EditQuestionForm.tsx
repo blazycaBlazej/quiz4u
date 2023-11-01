@@ -77,7 +77,7 @@ export const EditQuestionForm = ({
 
 	return (
 		<main className='flex flex-col justify-center items-center gap-[20px] w-full my-[25px]'>
-			<span className='text-3xl text-white'>Edytuj pytanie</span>
+			<span className='text-3xl text-black dark:text-white '>Edytuj pytanie</span>
 			<form className='w-full flex flex-col items-center' onSubmit={handleSubmit(onSubmit)} noValidate>
 				<div className='flex justify-center items-center w-full gap-[50px]'>
 					<div className='max-w-[410px] w-full'>
@@ -85,13 +85,13 @@ export const EditQuestionForm = ({
 						<div className='max-w-[410px] w-full relative mb-[5px]'>
 							<label
 								htmlFor='question'
-								className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
 									questionIsActive || getValues('question') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
 								}`}>
 								Pytanie*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[400px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+								className='resize-none overflow-auto h-[400px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
 								id='question'
 								defaultValue={question}
 								{...register('question', {
@@ -114,17 +114,21 @@ export const EditQuestionForm = ({
 								defaultValue={correctAnswer}
 								rules={{ required: 'Musisz podać poprawną odpowiedź' }}
 								render={({ field: { onChange, value, ref } }) => (
-									<select defaultValue={value} onChange={onChange} ref={ref} className='mt-[5px] bg-inherit text-white'>
-										<option className='text-main-backgorund' value='answerA'>
+									<select
+										defaultValue={value}
+										onChange={onChange}
+										ref={ref}
+										className='mt-[5px] bg-inherit text-black dark:text-white '>
+										<option className='text-main-bgn-light dark:text-main-bgn-dark' value='answerA'>
 											Prawidłowa odpowiedź A
 										</option>
-										<option className='text-main-backgorund' value='answerB'>
+										<option className='text-main-bgn-light dark:text-main-bgn-dark' value='answerB'>
 											Prawidłowa odpowiedź B
 										</option>
-										<option className='text-main-backgorund' value='answerC'>
+										<option className='text-main-bgn-light dark:text-main-bgn-dark' value='answerC'>
 											Prawidłowa odpowiedź C
 										</option>
-										<option className='text-main-backgorund' value='answerD'>
+										<option className='text-main-bgn-light dark:text-main-bgn-dark' value='answerD'>
 											Prawidłowa odpowiedź D
 										</option>
 									</select>
@@ -139,13 +143,13 @@ export const EditQuestionForm = ({
 						<div className='max-w-[410px] w-full relative mb-[5px]'>
 							<label
 								htmlFor='answerA'
-								className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
 									answerAIsActive || getValues('answerA') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
 								}`}>
 								Odpowiedź A*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+								className='resize-none overflow-auto h-[100px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
 								id='answerA'
 								defaultValue={answerA}
 								{...register('answerA', {
@@ -164,13 +168,13 @@ export const EditQuestionForm = ({
 						<div className='max-w-[410px] w-full relative mb-[5px]'>
 							<label
 								htmlFor='answerB'
-								className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
 									answerBIsActive || getValues('answerB') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
 								}`}>
 								Odpowiedź B*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+								className='resize-none overflow-auto h-[100px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
 								id='answerB'
 								defaultValue={answerB}
 								{...register('answerB', {
@@ -189,13 +193,13 @@ export const EditQuestionForm = ({
 						<div className='max-w-[410px] w-full relative mb-[5px]'>
 							<label
 								htmlFor='answerC'
-								className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
 									answerCIsActive || getValues('answerC') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
 								}`}>
 								Odpowiedź C*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+								className='resize-none overflow-auto h-[100px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
 								id='answerC'
 								defaultValue={answerC}
 								{...register('answerC', {
@@ -214,13 +218,13 @@ export const EditQuestionForm = ({
 						<div className='max-w-[410px] w-full relative mb-[5px]'>
 							<label
 								htmlFor='answerD'
-								className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
 									answerDIsActive || getValues('answerD') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
 								}`}>
 								Odpowiedź D*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+								className='resize-none overflow-auto h-[100px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
 								id='answerD'
 								defaultValue={answerD}
 								{...register('answerD', {

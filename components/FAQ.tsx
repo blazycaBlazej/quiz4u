@@ -7,13 +7,13 @@ import { faq } from '@/constans/constans'
 export const FAQ = () => {
 	return (
 		<section>
-			<h2 className='text-4xl text-white py-4'>FAQ</h2>
+			<h2 className='text-4xl text-black dark:text-white py-4'>FAQs</h2>
 			<div className=' flex flex-col gap-4'>
 				{faq.map((element, index) => (
 					<Disclosure key={index}>
 						{({ open }) => (
 							<>
-								<Disclosure.Button className='flex justify-between items-center w-full rounded-[20px] border  bg-element-backgorund text-white px-6 py-6 text-left  '>
+								<Disclosure.Button className='flex justify-between items-center w-full rounded-[20px] border bg-element-backgorund-light dark:bg-element-backgorund-dark text-black dark:text-white  px-6 py-6 text-left  '>
 									<span className='text-xl'>{element.title}</span>
 									<IconChevronUp
 										className={`${

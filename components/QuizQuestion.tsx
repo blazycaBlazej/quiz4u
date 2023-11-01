@@ -20,7 +20,7 @@ export const QuizQuestion = ({ question, questionNummber, questionID, quizName }
 				<>{question}</>
 			)}
 
-			<span className='absolute top-[20px] right-[20px] cursor-pointer transition-colors hover:text-white'>
+			<span className='absolute top-[20px] right-[20px] cursor-pointer transition-colors hover:text-white dark:hover:text-black'>
 				<Suspense fallback={<Loading />}>
 					<SaveQuestion questionID={questionID} quizName={quizName} />
 				</Suspense>

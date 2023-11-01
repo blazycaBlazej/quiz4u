@@ -4,14 +4,14 @@ import Image from 'next/image'
 export const LearnGuide = () => {
 	return (
 		<section className=' mt-[50px]  w-full'>
-			<h2 className='text-4xl text-white py-3'>Poradnik efektywnej nauki:</h2>
+			<h2 className='text-4xl text-black dark:text-white  py-3'>Poradnik efektywnej nauki:</h2>
 			<div className='flex items-center justify-between gap-3 min-w-full'>
 				<div className='w-full'>
 					{learnTrick.map((trick, index) => (
 						<div
-							className='flex items-center even:justify-end odd:justify-start even:text-white w-full  gap-[40px] mb-[50px]'
+							className='flex items-center even:justify-end odd:justify-start even:text-black even:dark:text-white  w-full  gap-[40px] mb-[50px]'
 							key={index}>
-							<div className='flex justify-center items-center w-14 h-14 rounded-full border border-btn-violet-color shadow-customNew flex-shrink-0 text-white max-w-14 '>
+							<div className='flex justify-center items-center w-14 h-14 rounded-full border border-btn-violet-color shadow-customNew flex-shrink-0 text-black dark:text-white  max-w-14 '>
 								{index + 1}
 							</div>
 							<p className='max-w-[800px] w-full '>{trick}</p>

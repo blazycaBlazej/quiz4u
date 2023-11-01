@@ -51,7 +51,7 @@ export const NumberQuestionsModal = ({ quizName, questionsNumber, isOpen, closeM
 						<div className='max-w-[410px] w-full relative mb-[5px]'>
 							<label htmlFor='numberInput'>Wybierz liczbę od 1 do {maxQuestions}:</label>
 							<input
-								className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[5px]  border-2  border-border-color rounded-[20px] text-gray-900 '
+								className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[5px]  border-2 border-border-color-light dark:border-border-color-dark rounded-[20px] text-gray-900 '
 								type='number'
 								id='numberQuestions'
 								autoComplete='off'

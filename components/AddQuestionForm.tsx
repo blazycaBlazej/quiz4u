@@ -67,7 +67,7 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 
 	return (
 		<main className='flex flex-col justify-center items-center gap-[20px] w-full my-[25px]'>
-			<span className='text-3xl text-white'>Dodaj nowe pytanie</span>
+			<span className='text-3xl text-black dark:text-white '>Dodaj nowe pytanie</span>
 			<form className='w-full flex flex-col items-center' onSubmit={handleSubmit(onSubmit)} noValidate>
 				<div className='flex flex-col justify-center items-center w-full px-[15px] gap-[10px] sm:flex-row sm:gap-[50px]'>
 					<div className='w-full sm:max-w-[410px]'>
@@ -75,13 +75,13 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 						<div className='w-full relative mb-[5px] sm:max-w-[410px]'>
 							<label
 								htmlFor='question'
-								className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
 									questionIsActive || getValues('question') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
 								}`}>
 								Opis quizu*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[400px]  w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+								className='resize-none overflow-auto h-[400px]  w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white'
 								id='question'
 								{...register('question', {
 									required: 'Musisz podać pytanie.',
@@ -102,20 +102,20 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 								control={control}
 								rules={{ required: 'Musisz podać poprawną odpowiedź' }}
 								render={({ field }) => (
-									<select className='mt-[5px] bg-inherit text-white' {...field}>
-										<option className='text-main-backgorund' value=''>
+									<select className='mt-[5px] bg-inherit text-black dark:text-white ' {...field}>
+										<option className='text-main-bgn-light dark:text-main-bgn-dark' value=''>
 											Wybierz prawidłową odpowiedź
 										</option>
-										<option className='text-main-backgorund' value='answerA'>
+										<option className='text-main-bgn-light dark:text-main-bgn-dark' value='answerA'>
 											Prawidłowa odpowiedź A
 										</option>
-										<option className='text-main-backgorund' value='answerB'>
+										<option className='text-main-bgn-light dark:text-main-bgn-dark' value='answerB'>
 											Prawidłowa odpowiedź B
 										</option>
-										<option className='text-main-backgorund' value='answerC'>
+										<option className='text-main-bgn-light dark:text-main-bgn-dark' value='answerC'>
 											Prawidłowa odpowiedź C
 										</option>
-										<option className='text-main-backgorund' value='answerD'>
+										<option className='text-main-bgn-light dark:text-main-bgn-dark' value='answerD'>
 											Prawidłowa odpowiedź D
 										</option>
 									</select>
@@ -130,13 +130,13 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 						<div className='w-full relative mb-[5px]'>
 							<label
 								htmlFor='answerA'
-								className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
 									answerAIsActive || getValues('answerA') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
 								}`}>
 								Odpowiedź A*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+								className='resize-none overflow-auto h-[100px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
 								id='answerA'
 								{...register('answerA', {
 									required: 'Musisz podać odpowiedź A.',
@@ -154,13 +154,13 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 						<div className='w-full relative mb-[5px]'>
 							<label
 								htmlFor='answerB'
-								className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
 									answerBIsActive || getValues('answerB') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
 								}`}>
 								Odpowiedź B*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+								className='resize-none overflow-auto h-[100px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
 								id='answerB'
 								{...register('answerB', {
 									required: 'Musisz podać odpowiedź B.',
@@ -178,13 +178,13 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 						<div className='w-full relative mb-[5px]'>
 							<label
 								htmlFor='answerC'
-								className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
 									answerCIsActive || getValues('answerC') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
 								}`}>
 								Odpowiedź C*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+								className='resize-none overflow-auto h-[100px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
 								id='answerC'
 								{...register('answerC', {
 									required: 'Musisz podać odpowiedź C.',
@@ -202,13 +202,13 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 						<div className='w-full relative mb-[5px]'>
 							<label
 								htmlFor='answerD'
-								className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
 									answerDIsActive || getValues('answerD') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
 								}`}>
 								Odpowiedź D*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+								className='resize-none overflow-auto h-[100px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-white dark:text-black'
 								id='answerD'
 								{...register('answerD', {
 									required: 'Musisz podać odpowiedź D',

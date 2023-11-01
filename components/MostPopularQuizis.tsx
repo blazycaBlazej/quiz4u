@@ -5,7 +5,7 @@ import React from 'react'
 export const MostPopularQuizis = () => {
 	return (
 		<section className=''>
-			<h2 className='text-white text-4xl text-center lg:text-left'>Popularne Quizy:</h2>
+			<h2 className='text-black dark:text-white text-4xl text-center lg:text-left'>Popularne Quizy:</h2>
 			<div className='flex justify-center flex-wrap gap-3  max-w-[1200px] w-full py-4'>
 				{quizzes.map((quiz, index) => (
 					<div
@@ -18,7 +18,7 @@ export const MostPopularQuizis = () => {
 							height={243}
 							alt={quiz.name}
 						/>
-						<div className='flex items-center justify-center absolute left-0 bottom-0 w-full h-[50px] bg-element-backgorund text-2xl  text-white '>
+						<div className='flex items-center justify-center absolute left-0 bottom-0 w-full h-[50px] bg-element-backgorund-light dark:bg-element-backgorund-dark text-2xl text-black dark:text-white '>
 							{quiz.name}
 						</div>
 					</div>

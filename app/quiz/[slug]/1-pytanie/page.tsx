@@ -75,25 +75,25 @@ const oneQuestion = ({ params }: { params: { slug: string } }) => {
 			childRef?.current?.setColor({
 				answerA:
 					question.correctAnswer === 'answerA'
-						? 'bg-correctAnswer opacity-20'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 						: childRef?.current?.getMarkAnswer() !== 'answerA'
 						? 'bg-incorrect-answer-quiz opacity-20'
 						: 'bg-incorrect-answer-quiz',
 				answerB:
 					question.correctAnswer === 'answerB'
-						? 'bg-correctAnswer opacity-20'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 						: childRef?.current?.getMarkAnswer() !== 'answerB'
 						? 'bg-incorrect-answer-quiz opacity-20'
 						: 'bg-incorrect-answer-quiz',
 				answerC:
 					question.correctAnswer === 'answerC'
-						? 'bg-correctAnswer opacity-20'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 						: childRef?.current?.getMarkAnswer() !== 'answerC'
 						? 'bg-incorrect-answer-quiz opacity-20'
 						: 'bg-incorrect-answer-quiz',
 				answerD:
 					question.correctAnswer === 'answerD'
-						? 'bg-correctAnswer opacity-20'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark opacity-20'
 						: childRef?.current?.getMarkAnswer() !== 'answerD'
 						? 'bg-incorrect-answer-quiz opacity-20'
 						: 'bg-incorrect-answer-quiz',
@@ -125,13 +125,21 @@ const oneQuestion = ({ params }: { params: { slug: string } }) => {
 			childRef?.current?.setMarkAnswer('')
 			childRef?.current?.setColor({
 				answerA:
-					childRef?.current?.getMarkAnswer() === 'answerA' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
+					childRef?.current?.getMarkAnswer() === 'answerA'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark'
+						: 'bg-incorrect-answer-quiz opacity-20',
 				answerB:
-					childRef?.current?.getMarkAnswer() === 'answerB' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
+					childRef?.current?.getMarkAnswer() === 'answerB'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark'
+						: 'bg-incorrect-answer-quiz opacity-20',
 				answerC:
-					childRef?.current?.getMarkAnswer() === 'answerC' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
+					childRef?.current?.getMarkAnswer() === 'answerC'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark'
+						: 'bg-incorrect-answer-quiz opacity-20',
 				answerD:
-					childRef?.current?.getMarkAnswer() === 'answerD' ? 'bg-correctAnswer' : 'bg-incorrect-answer-quiz opacity-20',
+					childRef?.current?.getMarkAnswer() === 'answerD'
+						? 'bg-correctAnswerLight dark:bg-correctAnswerDark'
+						: 'bg-incorrect-answer-quiz opacity-20',
 			})
 			//markAnswer === 'answerA' ? '#008000' : '#FF7F7F'
 			//markAnswer === 'answerB' ? '#008000' : '#FF7F7F
@@ -158,7 +166,9 @@ const oneQuestion = ({ params }: { params: { slug: string } }) => {
 		return (
 			<div className='wrapper flex flex-col items-center justify-center w-full my-[50px]'>
 				<CompleteQuiz ref={childRef} question={question} quizName={quizName} />
-				<div className='min-h-[30px] text-lg mt-[10px] text-white'>{message && <span>{message}</span>}</div>
+				<div className='min-h-[30px] text-lg mt-[10px] text-black dark:text-white'>
+					{message && <span>{message}</span>}
+				</div>
 				<div className='flex justify-center items-center gap-[50px] max-w-[600px] w-full mt-[10px]'>
 					<Button
 						onClick={() => checkQuestion()}

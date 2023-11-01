@@ -51,18 +51,18 @@ export const NewQuizForm = () => {
 
 	return (
 		<main className='flex flex-col justify-center items-center gap-[20px] w-full'>
-			<span className='text-3xl text-white'>Dodaj nowy Quiz</span>
+			<span className='text-3xl text-black dark:text-white '>Dodaj nowy Quiz</span>
 			<form className='max-w-[410px] w-full' onSubmit={handleSubmit(onSubmit)} noValidate>
 				<div className='max-w-[410px] w-full relative mb-[20px]'>
 					<label
 						htmlFor='quizName'
-						className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+						className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
 							nameIsActive || getValues('name') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
 						}`}>
 						Nazwa quizu
 					</label>
 					<input
-						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-backgorund border-2  border-border-color rounded-[20px] text-white'
+						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-[20px] text-black dark:text-white '
 						type='text'
 						id='quizName'
 						autoComplete='off'
@@ -87,13 +87,13 @@ export const NewQuizForm = () => {
 				<div className='max-w-[410px] w-full relative mb-[15px]'>
 					<label
 						htmlFor='description'
-						className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+						className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
 							descriptionIsActive || getValues('description') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
 						}`}>
 						Opis quizu*
 					</label>
 					<textarea
-						className='resize-none overflow-auto h-[310px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-backgorund border-2 border-border-color rounded-l-[20px] text-white'
+						className='resize-none overflow-auto h-[310px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
 						id='description'
 						{...register('description', {
 							maxLength: {

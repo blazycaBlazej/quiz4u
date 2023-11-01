@@ -6,22 +6,41 @@ const config: Config = {
 		'./components/**/*.{js,ts,jsx,tsx,mdx}',
 		'./app/**/*.{js,ts,jsx,tsx,mdx}',
 	],
+	darkMode: 'class',
 
 	theme: {
 		extend: {
 			colors: {
-				'main-backgorund': '#0b0d0f',
-				'element-backgorund': '#141517',
-				'element-hover-backgorund': 'rgba(39, 40, 41, 0.8)',
-				'element-active-backgorund': '#4b4c4e',
-				'border-color': '#2f3337',
+				'dark-text': '#BBBCBF',
+				'light-text': '#333333',
+				'main-bgn-dark': '#0b0d0f',
+				'main-bgn-light': '#F6F8FA',
+				'element-backgorund-dark': '#141517',
+				'element-backgorund-light': '#FFFFFF',
+				'element-hover-backgorund-dark': 'rgba(39, 40, 41, 0.8)',
+				'element-hover-backgorund-light': 'rgba(216, 220, 226, 0.8)',
+				'element-active-backgorund-dark': '#4b4c4e',
+				'element-active-backgorund-light': '#E2E6EC',
+				'border-color-dark': '#2f3337',
+				'border-color-light': '#D8DCE2',
 				'btn-violet-color': '#5721f2',
 				'btn-violet-color-hover': '#4719C1',
-				'main-font-color': '#BBBCBF',
 				'error-color': '#e43d42',
-				correctAnswer: '#015501',
-				'incorrect-answer-quiz': '#451717',
-				'box-color': '#1b1c1f',
+				correctAnswerDark: '#015501',
+				correctAnswerLight: '#017517',
+
+				'incorrect-answer-quiz': '#7B1E1E',
+				'box-color-dark': '#1b1c1f',
+				'box-color-light': '#FFFFFF',
+			},
+
+			backgroundImage: {
+				'colorful-gradient-dark':
+					'linear-gradient(136.08deg, rgb(30, 20, 67) 0%, rgb(20, 21, 23) 100%), linear-gradient(160deg, #5721f2, #793ae0)',
+				'colorful-gradient-light':
+					'linear-gradient(136.08deg, rgb(230, 235, 250) 0%, rgb(240, 240, 235) 100%), linear-gradient(160deg, #91a1f5, #b1b3e3)',
+				'dark-box': 'linear-gradient(308.65deg, #0b0d0f 0%, #1b1c1f 117.53%)',
+				'light-box': 'linear-gradient(308.65deg, #f5f7fa 0%, #e2e6ea 117.53%)',
 			},
 
 			boxShadow: {
@@ -33,24 +52,5 @@ const config: Config = {
 	},
 	plugins: [],
 }
-export default config
-// colors: {
-// 	'main-backgorund': '#F6F8FA',
-// 	'element-backgorund': '#FFFFFF',
-// 	'element-hover-backgorund': 'rgba(216, 220, 226, 0.8)',
-// 	'element-active-backgorund': '#E2E6EC',
-// 	'border-color': '#D8DCE2',
-// 	'btn-violet-color': '#5721f2',
-// 	'btn-violet-color-hover': '#4719C1',
-// 	'main-font-color': '#333333',
-// 	'error-color': '#e43d42',
-// 	correctAnswer: '#017517',
-// 	'incorrect-answer-quiz': '#7B1E1E',
-// 	'box-color': '#FFFFFF',
-//  },
 
-//  boxShadow: {
-// 	customNew: '4px 2px 12px rgba(87, 33, 242, 0.2)',
-// 	customGreen: '0 4px 6px rgba(0, 128, 0, 0.2)',
-// 	customRed: '0 4px 6px rgba(255, 0, 0, 0.2)',
-//  }
+export default config

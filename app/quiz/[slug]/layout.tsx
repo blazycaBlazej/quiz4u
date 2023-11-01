@@ -15,13 +15,13 @@ export default async function EditQuizLayout({
 	const isAdmin = await getIsAdmin()
 
 	return (
-		<main className='flex flex-col w-full rounded-[20px] border border-solid border-border-color'>
+		<main className='flex flex-col w-full rounded-[20px] border border-solid border-border-color-light dark:border-border-color-dark'>
 			<div className='flex justify-between items-center'>
-				<h1 className='text-[27px] text-white mx-[20px] my-[15px] '>Quiz: {quizName}</h1>
+				<h1 className='text-[27px] text-black dark:text-white  mx-[20px] my-[15px] '>Quiz: {quizName}</h1>
 				{isAdmin && (
 					<div className='mr-[33px]'>
 						<Link href={`/edytuj-quiz/${quizName}/detale`}>
-							<span className='block  cursor-pointer text-white transition-colors hover:text-main-font-color'>
+							<span className='block  cursor-pointer text-black dark:text-white transition-colors hover:text-light-text dark:hover:text-dark-text'>
 								<IconPencil width='40' height='40' />
 							</span>
 						</Link>
@@ -29,7 +29,7 @@ export default async function EditQuizLayout({
 				)}
 			</div>
 
-			<div className='border-b border-solid border-border-color '></div>
+			<div className='border-b border-solid border-border-color-light dark:border-border-color-dark'></div>
 			<div className='px-[15px]'>{children}</div>
 		</main>
 	)

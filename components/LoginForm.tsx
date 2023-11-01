@@ -54,18 +54,18 @@ export const LoginForm = () => {
 	}
 	return (
 		<main className='flex flex-col justify-center items-center gap-[20px] h-[calc(100vh-404px)] w-full'>
-			<span className='text-3xl text-white'>Logowanie</span>
+			<span className='text-3xl text-black dark:text-white '>Logowanie</span>
 			<form className='max-w-[410px] w-full' onSubmit={handleSubmit(onSubmit)} noValidate>
 				<div className='max-w-[410px] w-full relative mb-[20px]'>
 					<label
 						htmlFor='email'
-						className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+						className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
 							emailIsActive || getValues('email') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
 						}`}>
 						Email*
 					</label>
 					<input
-						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-backgorund border-2  border-border-color rounded-[20px] text-white'
+						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-bgn-light dark:bg-main-bgn-dark border-2  border-border-color-light dark:border-border-color-dark rounded-[20px] text-black dark:text-white '
 						type='text'
 						id='email'
 						autoComplete='off'
@@ -84,13 +84,13 @@ export const LoginForm = () => {
 				<div className='relative'>
 					<label
 						htmlFor='password'
-						className={`absolute  pointer-events-none transition-top-left bg-main-backgorund px-[4px] ${
+						className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
 							passwordIsActive || getValues('password') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
 						}`}>
 						Hasło*
 					</label>
 					<input
-						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-backgorund border-2  border-border-color rounded-[20px] text-white'
+						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-[20px] text-black dark:text-white '
 						type={showPassword ? 'text' : 'password'}
 						id='password'
 						{...register('password', {
@@ -104,14 +104,14 @@ export const LoginForm = () => {
 						onBlur={() => setPasswordIsActive(false)}
 					/>
 					<span
-						className='block absolute top-[12px] right-[20px] cursor-pointer text-white transition-colors hover:text-main-font-color'
+						className='block absolute top-[12px] right-[20px] cursor-pointer text-black dark:text-white  transition-colors hover:text-light-text dark:hover:text-dark-text'
 						onClick={() => setShowPassword(!showPassword)}>
 						{showPassword ? <IconEyeOff /> : <IconEye />}
 					</span>
 					<span className='text-sm text-error-color  block my-[4px]'>{errors.password?.message}</span>
 				</div>
 				<Link href='/zapomnialem-hasla'>
-					<span className='text-white underline cursor-pointer block text-right my-[10px] transition-colors hover:text-main-font-color'>
+					<span className='text-black dark:text-white  underline cursor-pointer block text-right my-[10px] transition-colors hover:text-light-text dark:hover:text-dark-text'>
 						Zapomniałeś hasła ?
 					</span>
 				</Link>
@@ -127,7 +127,7 @@ export const LoginForm = () => {
 			{/* <DevTool control={control} /> */}
 
 			<Link href='/rejestracja'>
-				<span className='text-white underline cursor-pointer block text-right transition-colors hover:text-main-font-color'>
+				<span className='text-black dark:text-white  underline cursor-pointer block text-right transition-colors hover:text-light-text dark:hover:text-dark-text'>
 					Nie masz konta ? - Kliknji aby utworzyć konto
 				</span>
 			</Link>

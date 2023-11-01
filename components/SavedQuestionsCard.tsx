@@ -79,27 +79,27 @@ const SavedQuestionsCard = ({ quizName, numberQuestions }: SavedQuestionsCardPro
 	}
 
 	return (
-		<div className='flex justify-between items-center p-[20px] colorful-box2 '>
+		<div className='flex justify-between items-center p-[20px] colorful-box bg-colorful-gradient-light dark:bg-colorful-gradient-dark'>
 			<div className='flex flex-col'>
-				<span className='text-white text-lg'>{quizName}</span>
+				<span className='text-black dark:text-white text-lg'>{quizName}</span>
 				<span className='text-sm'>Liczba zapisanych pytań: {numberQuestions}</span>
 			</div>
 			<div className='flex gap-2'>
 				<Link href={`/zapisane-pytania/${quizName}/wszystkie-pytania?strona=1&na-stronie=10`}>
-					<span className='p-[5px] text-white cursor-pointer transition-colors hover:text-white/30'>
+					<span className='p-[5px] text-black dark:text-white cursor-pointer transition-colors hover:text-white/30 dark:hover:text-black/30'>
 						<IconEye />
 					</span>
 				</Link>
 
 				<Link href={`/zapisane-pytania/${quizName}/1-pytanie`}>
-					<span className='p-[5px]  text-white cursor-pointer transition-colors hover:text-white/30'>
+					<span className='p-[5px]  text-black dark:text-white cursor-pointer transition-colors hover:text-white/30 dark:hover:text-black/30'>
 						<IconDice1 />
 					</span>
 				</Link>
 
 				{numberQuestions >= 20 && (
 					<Link href={`/zapisane-pytania/${quizName}/x-pytan?q=20`}>
-						<span className='p-[5px]  text-white cursor-pointer transition-colors hover:text-white/30'>
+						<span className='p-[5px]  text-black dark:text-white cursor-pointer transition-colors hover:text-white/30 dark:hover:text-black/30'>
 							<IconNumber20Small />
 						</span>
 					</Link>
@@ -108,7 +108,7 @@ const SavedQuestionsCard = ({ quizName, numberQuestions }: SavedQuestionsCardPro
 				<Link href={`/zapisane-pytania/#`}>
 					<span
 						onClick={openQuestionsModal}
-						className='p-[5px]  text-white cursor-pointer transition-colors hover:text-white/30'>
+						className='p-[5px]  text-black dark:text-white cursor-pointer transition-colors hover:text-white/30 dark:hover:text-black/30'>
 						<IconGrain />
 					</span>
 					<NumberQuestionsModal
@@ -123,7 +123,7 @@ const SavedQuestionsCard = ({ quizName, numberQuestions }: SavedQuestionsCardPro
 				<Link href={`/zapisane-pytania/#`}>
 					<span
 						onClick={openPrintModal}
-						className='p-[5px]  text-white cursor-pointer transition-colors hover:text-white/30'>
+						className='p-[5px]  text-black dark:text-white cursor-pointer transition-colors hover:text-white/30 dark:hover:text-black/30'>
 						<IconPrinter />
 					</span>
 					<PrintQuizModal
@@ -138,7 +138,7 @@ const SavedQuestionsCard = ({ quizName, numberQuestions }: SavedQuestionsCardPro
 				<Link href={`/zapisane-pytania/#`}>
 					<span
 						onClick={openDeleteModal}
-						className='p-[5px]  text-white cursor-pointer transition-colors hover:text-white/30'>
+						className='p-[5px]  text-black dark:text-white cursor-pointer transition-colors hover:text-white/30 dark:hover:text-black/30'>
 						<IconTrash />
 					</span>
 				</Link>
