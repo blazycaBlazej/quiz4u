@@ -1,0 +1,32 @@
+{
+	"theme_color": "#5721f2",
+	"background_color": "#5721f2",
+	"display": "standalone",
+	"scope": "/",
+	"start_url": "/",
+	"name": "Quiz4u",
+	"short_name": "Quiz4u",
+	"description": "Quiz4u - Twoje \u017ar\u00f3d\u0142o wiedzy przed egzaminem. Na Quiz4u znajdziesz bogat\u0105 kolekcj\u0119 interaktywnych quiz\u00f3w ABCD, kt\u00f3re pomog\u0105 Ci skutecznie przygotowa\u0107 si\u0119 do egzamin\u00f3w. Rozwi\u0105zywanie quiz\u00f3w to doskona\u0142y spos\u00f3b na utrwalenie wiedzy i sprawdzenie swojego poziomu. Niezale\u017cnie od przedmiotu czy poziomu trudno\u015bci, Quiz4u oferuje Ci dost\u0119p do r\u00f3\u017cnorodnych pyta\u0144, kt\u00f3re pomog\u0105 Ci osi\u0105gn\u0105\u0107 sukces na egzaminie. Zacznij teraz i podnie\u015b swoje umiej\u0119tno\u015bci dzi\u0119ki Quiz4u!",
+	"icons": [
+		{
+			"src": "/icon-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/icon-256x256.png",
+			"sizes": "256x256",
+			"type": "image/png"
+		},
+		{
+			"src": "/icon-384x384.png",
+			"sizes": "384x384",
+			"type": "image/png"
+		},
+		{
+			"src": "/icon-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
+}

@@ -17,6 +17,8 @@ export const metadata: Metadata = {
 	title: 'quiz4u',
 	description:
 		'Quiz4u - Twoje źródło wiedzy przed egzaminem. Na Quiz4u znajdziesz bogatą kolekcję interaktywnych quizów ABCD, które pomogą Ci skutecznie przygotować się do egzaminów. Rozwiązywanie quizów to doskonały sposób na utrwalenie wiedzy i sprawdzenie swojego poziomu. Niezależnie od przedmiotu czy poziomu trudności, Quiz4u oferuje Ci dostęp do różnorodnych pytań, które pomogą Ci osiągnąć sukces na egzaminie. Zacznij teraz i podnieś swoje umiejętności dzięki Quiz4u!',
+	manifest: '/manifest.json',
+	icons: '/icon-512x512.png',
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
