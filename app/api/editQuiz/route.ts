@@ -49,6 +49,7 @@ export async function POST(req: NextRequest) {
 			{ status: 200 }
 		)
 	} catch (e) {
+		console.log('errror: ', e)
 		if (e instanceof Prisma.PrismaClientKnownRequestError) {
 			if (e.code === 'P2002') {
 				return NextResponse.json(

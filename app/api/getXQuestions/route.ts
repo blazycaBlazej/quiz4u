@@ -54,8 +54,9 @@ export async function GET(req: NextRequest) {
 				return NextResponse.json({ message: `Quiz nie posiada tyle pytań.` }, { status: 422 })
 			}
 
+			console.log(quizName)
 			const randomQuestions: quiz[] =
-				await prisma.$queryRaw`SELECT * FROM question WHERE quizID = ${quiz.id} ORDER BY RAND() LIMIT ${numberQuestions};`
+				await prisma.$queryRaw`SELECT * FROM Question WHERE quizID = ${quiz.id} ORDER BY RAND() LIMIT ${numberQuestions};`
 			console.log(randomQuestions)
 			return NextResponse.json({ message: 'ok', data: randomQuestions }, { status: 200 })
 		}
