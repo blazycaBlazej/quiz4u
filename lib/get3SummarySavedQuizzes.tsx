@@ -5,8 +5,7 @@ import { getIsLogged } from './getIsLogged'
 export const get3SummarySavedQuizzes = cache(async (quizName: string) => {
 	try {
 		const user = await getIsLogged()
-
-		if (user) {
+		if (user.id) {
 			const savedQuizziesSummary = await prisma.savedQuiz.findMany({
 				where: {
 					userID: user.id,
@@ -25,10 +24,12 @@ export const get3SummarySavedQuizzes = cache(async (quizName: string) => {
 			})
 
 			if (savedQuizziesSummary.length > 0) {
-				return savedQuizziesSummary
+				return { isLogged: true, savedQuizziesSummary: savedQuizziesSummary }
+			} else {
+				return { isLogged: true, savedQuizziesSummary: null }
 			}
 		}
-		return null
+		return { isLogged: false, savedQuizziesSummary: null }
 	} catch (e) {
 		console.log('error: ', e)
 		return null

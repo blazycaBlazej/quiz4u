@@ -8,5 +8,7 @@ export const config = {
 		'/edytuj-quiz/:path*/detale',
 		'/edytuj-quiz/:path*/dodaj-pytanie',
 		'/edytuj-quiz/:path*/zarzadzaj-pytaniami',
+		'/quiz/:path*/zapisane-quizy',
+		'/quiz/:path*/zapisane-quizy/:path*',
 	],
 }

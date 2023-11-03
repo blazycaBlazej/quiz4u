@@ -8,7 +8,7 @@ import Link from 'next/link'
 import Button from './Button'
 
 export const LatestQuizzesWrapper = async ({ quizName }: { quizName: string }) => {
-	const summarySavedQuizzesPromise = get3SummarySavedQuizzes(quizName)
+	const data = get3SummarySavedQuizzes(quizName)
 
 	return (
 		<section className='w-full h-auto sm:w-[50%] '>
@@ -16,15 +16,18 @@ export const LatestQuizzesWrapper = async ({ quizName }: { quizName: string }) =
 				<span className='text-black dark:text-white  text-2xl'>Twoje ostatnie zapisane quizy:</span>
 				<div className='flex flex-col gap-3'>
 					<Suspense fallback={<Loader />}>
-						<Await promise={summarySavedQuizzesPromise}>
-							{summarySavedQuizzes => {
-								if (!summarySavedQuizzes || summarySavedQuizzes.length === 0) {
-									return <span>Nie masz żadnych zapisanych quizów. </span>
+						<Await promise={data}>
+							{data => {
+								if (!data?.isLogged) {
+									return <span>Zaloguj się żeby zobaczyć zapisane quizy.</span>
+								}
+								if (!data.savedQuizziesSummary || data?.savedQuizziesSummary.length === 0) {
+									return <span>Nie masz żadnych zapisanych quizów.</span>
 								}
 
 								return (
 									<>
-										{summarySavedQuizzes.map(element => (
+										{data?.savedQuizziesSummary.map(element => (
 											<LatestQuiz
 												key={element.id}
 												questionNumber={element.questionNumber}
@@ -35,7 +38,7 @@ export const LatestQuizzesWrapper = async ({ quizName }: { quizName: string }) =
 											/>
 										))}
 
-										{summarySavedQuizzes.length === 3 ? (
+										{data.savedQuizziesSummary.length === 3 ? (
 											<Button href={`/quiz/${quizName}/zapisane-quizy`} rounded={'sm'}>
 												Zobacz więcej
 											</Button>
