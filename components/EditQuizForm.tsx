@@ -21,27 +21,31 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 	})
 
 	const { register, control, handleSubmit, formState, getValues } = form
-	const { errors, isSubmitting } = formState
+	const { errors, isSubmitting, isDirty } = formState
 	const router = useRouter()
 	const onSubmit = async (data: FormEditQuizValues) => {
-		try {
-			const res = await fetch('/api/editQuiz', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ id: quizDeatails?.id, ...data }),
-			})
-			const result = await res.json()
-			if (res.status === 200) {
-				router.refresh()
-				router.push(result.pathname)
-				notification('success', result.message)
-			} else {
-				notification('error', result.message)
+		if (isDirty) {
+			try {
+				const res = await fetch('/api/editQuiz', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ id: quizDeatails?.id, ...data }),
+				})
+				const result = await res.json()
+				if (res.status === 200) {
+					router.refresh()
+					router.push(result.pathname)
+					notification('success', result.message)
+				} else {
+					notification('error', result.message)
+				}
+			} catch (e) {
+				notification('error', 'Błąd serwera, spróbuj edytować quiz później')
 			}
-		} catch (e) {
-			notification('error', 'Błąd serwera, spróbuj edytować quiz później')
+		} else {
+			notification('error', 'Żadne pole nie zostało zmienione.')
 		}
 	}
 
@@ -168,8 +172,8 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 					<div className='w-full flex flex-col items-center justify-center gap-[15px] mt-[30px]  '>
 						<div className='max-w-[410px] w-full'>
 							<Button
-								variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
-								disabled={isSubmitting || Object.keys(errors).length > 0}>
+								variant={isSubmitting || Object.keys(errors).length > 0 || !isDirty ? 'disabled' : 'default'}
+								disabled={isSubmitting || Object.keys(errors).length > 0 || !isDirty}>
 								{isSubmitting ? <Loader /> : 'Edytuj quiz'}
 							</Button>
 						</div>
