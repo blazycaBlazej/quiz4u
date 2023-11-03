@@ -22,7 +22,7 @@ export const LoginForm = () => {
 	const form = useForm<FormValues>({
 		mode: 'onSubmit',
 	})
-	const { register, handleSubmit, formState, getValues } = form
+	const { register, handleSubmit, formState, getValues, setValue } = form
 	const { errors, isSubmitting } = formState
 
 	const router = useRouter()
@@ -36,7 +36,7 @@ export const LoginForm = () => {
 				password,
 				redirect: false,
 			})
-			console.log(res)
+
 			if (res?.error === 'error') {
 				setSubmitingError('Błąd serwera, spróbuj zalogować się później.')
 				return
@@ -52,6 +52,13 @@ export const LoginForm = () => {
 			setSubmitingError('Błąd serwera, spróbuj zalogować się później.')
 		}
 	}
+
+	const inputChangeHandler = () => {
+		if (submitingError !== '') {
+			setSubmitingError('')
+		}
+	}
+
 	return (
 		<main className='flex flex-col justify-center items-center gap-[20px] h-[calc(100vh-404px)] w-full'>
 			<span className='text-3xl text-black dark:text-white '>Logowanie</span>
@@ -75,6 +82,7 @@ export const LoginForm = () => {
 								value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
 								message: 'Nieprawidłowy format maila',
 							},
+							onChange: inputChangeHandler,
 						})}
 						onFocus={() => setEmailIsActive(true)}
 						onBlur={() => setEmailIsActive(false)}
@@ -99,6 +107,7 @@ export const LoginForm = () => {
 								value: 6,
 								message: 'Hasło jest za krótkie',
 							},
+							onChange: inputChangeHandler,
 						})}
 						onFocus={() => setPasswordIsActive(true)}
 						onBlur={() => setPasswordIsActive(false)}
@@ -115,14 +124,16 @@ export const LoginForm = () => {
 						Zapomniałeś hasła ?
 					</span>
 				</Link>
+				{submitingError && (
+					<span className='text-sm text-error-color text-center block my-[10px]'>{submitingError}</span>
+				)}
 
 				<Button
-					variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
-					disabled={isSubmitting || Object.keys(errors).length > 0}>
+					variant={isSubmitting || Object.keys(errors).length > 0 || submitingError !== '' ? 'disabled' : 'default'}
+					disabled={isSubmitting || Object.keys(errors).length > 0 || submitingError !== ''}>
 					{isSubmitting ? <Loader /> : 'Zaloguj się'}
 				</Button>
 			</form>
-			{submitingError && <span className='text-sm text-error-color  block my-[4px]'>{submitingError}</span>}
 
 			{/* <DevTool control={control} /> */}
 
