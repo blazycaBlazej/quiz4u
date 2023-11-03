@@ -1,11 +1,12 @@
 'use server'
-import { get3SummarySavedQuizzes } from '@/lib/get3SummarySavedQuizzes'
+
 import { LatestQuiz } from './LatestQuiz'
 import { Suspense } from 'react'
 import { Loader } from '.'
 import Await from './Await'
 import Link from 'next/link'
 import Button from './Button'
+import { get3SummarySavedQuizzes } from '@/lib/get3SummarySavedQuizzes'
 
 export const LatestQuizzesWrapper = async ({ quizName }: { quizName: string }) => {
 	const data = get3SummarySavedQuizzes(quizName)

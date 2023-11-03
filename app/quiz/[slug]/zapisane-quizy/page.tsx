@@ -2,7 +2,6 @@
 import { Loader } from '@/components'
 import Await from '@/components/Await'
 import { LatestQuiz } from '@/components/LatestQuiz'
-
 import { getAllSummarySavedQuizzes } from '@/lib/getAllSummarySavedQuizzes'
 
 import { Suspense } from 'react'

@@ -23,8 +23,10 @@ const OneQuestion = ({ quizName, question }: onQuestionProps) => {
 	const router = useRouter()
 	const childRef = useRef<ChildComponentHandle>(null)
 	const [message, setMessage] = useState<string>('')
+	const [questionIsChecked, setQuestionIsChecked] = useState(false)
 
 	const nextQuestion = async () => {
+		setQuestionIsChecked(false)
 		childRef?.current?.setCheckedQuestion(false)
 		childRef?.current?.setMarkAnswer('')
 		childRef?.current?.setColor({
@@ -51,6 +53,7 @@ const OneQuestion = ({ quizName, question }: onQuestionProps) => {
 				'Brawo za próbę! Ale niestety, to nie ta odpowiedź.',
 			]
 			const randomIndex = Math.floor(Math.random() * InValidMessage.length)
+			setQuestionIsChecked(true)
 			childRef?.current?.setCheckedQuestion(true)
 			setMessage(InValidMessage[randomIndex])
 			childRef?.current?.setMarkAnswer('')
@@ -102,6 +105,7 @@ const OneQuestion = ({ quizName, question }: onQuestionProps) => {
 				'Bingo! Chyba masz supermoce, prawda?',
 			]
 			const randomIndex = Math.floor(Math.random() * ValidMessage.length)
+			setQuestionIsChecked(true)
 			childRef?.current?.setCheckedQuestion(true)
 			setMessage(ValidMessage[randomIndex])
 			childRef?.current?.setMarkAnswer('')
@@ -152,8 +156,8 @@ const OneQuestion = ({ quizName, question }: onQuestionProps) => {
 			<div className='flex justify-center items-center gap-[50px] max-w-[600px] w-full mt-[10px]'>
 				<Button
 					onClick={() => checkQuestion()}
-					disabled={childRef?.current?.getCheckedQuestion()}
-					variant={childRef?.current?.getCheckedQuestion() ? 'disabled' : 'orange'}
+					disabled={questionIsChecked}
+					variant={questionIsChecked ? 'disabled' : 'orange'}
 					rounded='none'
 					size='sm'>
 					Sprawdź pytanie
