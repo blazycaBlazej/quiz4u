@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { QuizQuestion } from '@/components/QuizQuestion'
 import { QuizAnswer } from '@/components/QuizAnswer'
 
@@ -39,7 +39,7 @@ interface SavedQuizProps {
 export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 	const [questionIndex, setQuestionIndex] = useState(0)
 
-	const initialQuiz: QuizItemCheckerState = []
+	const quiz: QuizItemCheckerState = []
 
 	let correctAnswer = 0
 
@@ -134,7 +134,7 @@ export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 			)}`
 		}
 
-		initialQuiz.push({
+		quiz.push({
 			id: i,
 			markAnswer: '',
 			color,
@@ -144,11 +144,9 @@ export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 		})
 	}
 
-	const [quiz, setQuiz] = useState<QuizItemCheckerState>(initialQuiz)
+	console.log(quiz)
 
-	const [numberOfCorrectAnswer, setNumberOfCorrectAnswer] = useState(correctAnswer)
-
-	const quizResult = ((numberOfCorrectAnswer / savedQuiz.length) * 100).toFixed(2)
+	const quizResult = ((correctAnswer / savedQuiz.length) * 100).toFixed(2)
 
 	const previousQuestion = () => {
 		if (questionIndex > 0) {
@@ -170,35 +168,18 @@ export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 						<button
 							key={number}
 							className={`border rounded-[10px] p-[10px] max-w-[43px]  w-full transition-colors
-				${
-					questionIndex === number - 1
-						? `colorful-box2 ${
-								quiz[number - 1].checkedQuestion
-									? 'opacity-30'
-									: 'bg-colorful-gradient-light dark:bg-colorful-gradient-dark text-black dark:text-white'
-						  } `
-						: ''
-				}
-		 
-		${
-			quiz[number - 1].checkedQuestion
-				? quiz[number - 1].isCorrectAnswer === true
-					? 'border-none bg-correctAnswerLight dark:bg-correctAnswerDark'
-					: quiz[number - 1].isCorrectAnswer === false
-					? 'border-none bg-incorrect-answer-quiz'
-					: 'border-none bg-element-active-backgorund-dark/50'
-				: ''
-		}
+							${
+								quiz[number - 1].isCorrectAnswer === true
+									? 'border-none bg-correctAnswerLight dark:bg-correctAnswerDark'
+									: quiz[number - 1].isCorrectAnswer === false
+									? 'border-none bg-incorrect-answer-quiz'
+									: 'border-none bg-element-active-backgorund-dark/50'
+							}
 
-		${
-			!quiz[number - 1].checkedQuestion
-				? quiz[number - 1].markAnswer
-					? 'bg-element-active-backgorund-dark/20 border-none'
-					: 'border-element-active-backgorund-dark'
-				: ''
-		}
-	  
-		`}
+							${
+								// active button
+								questionIndex === number - 1 ? 'opacity-30 ' : ''
+							}`}
 							onClick={() => setQuestionIndex(number - 1)}>
 							{number}
 						</button>
@@ -280,7 +261,7 @@ export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 								? 'text-correctAnswerLight dark:text-correctAnswerDark'
 								: 'text-black dark:text-white'
 						}`}>
-						Twój wynik to: {quizResult}% ({numberOfCorrectAnswer}/{savedQuiz.length})
+						Twój wynik to: {quizResult}% ({correctAnswer}/{savedQuiz.length})
 					</p>
 				</div>
 			</div>
