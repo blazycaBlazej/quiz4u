@@ -38,10 +38,13 @@ export const LatestQuizzesWrapper = async ({ quizName }: { quizName: string }) =
 											/>
 										))}
 
-										{data.savedQuizziesSummary.length === 3 ? (
-											<Button href={`/quiz/${quizName}/zapisane-quizy`} rounded={'sm'}>
-												Zobacz więcej
-											</Button>
+										{data.savedQuizziesCount > 3 ? (
+											<>
+												<span>Aktualna liczba zapisanych quizów: {data.savedQuizziesCount}</span>
+												<Button href={`/quiz/${quizName}/zapisane-quizy`} rounded={'sm'}>
+													Zobacz więcej
+												</Button>
+											</>
 										) : (
 											''
 										)}

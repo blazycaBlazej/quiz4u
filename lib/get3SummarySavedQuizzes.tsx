@@ -22,14 +22,20 @@ export const get3SummarySavedQuizzes = cache(async (quizName: string) => {
 					id: true,
 				},
 			})
+			const savedQuizziesCount = await prisma.savedQuiz.count({
+				where: {
+					userID: user.id,
+					quizName,
+				},
+			})
 
 			if (savedQuizziesSummary.length > 0) {
-				return { isLogged: true, savedQuizziesSummary: savedQuizziesSummary }
+				return { isLogged: true, savedQuizziesSummary: savedQuizziesSummary, savedQuizziesCount: savedQuizziesCount }
 			} else {
-				return { isLogged: true, savedQuizziesSummary: null }
+				return { isLogged: true, savedQuizziesSummary: null, savedQuizziesCount: 0 }
 			}
 		}
-		return { isLogged: false, savedQuizziesSummary: null }
+		return { isLogged: false, savedQuizziesSummary: null, savedQuizziesCount: 0 }
 	} catch (e) {
 		console.log('error: ', e)
 		return null
