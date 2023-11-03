@@ -44,7 +44,7 @@ export async function GET(req: NextRequest) {
 			}
 
 			const randomIDQuestions: questionIDArray =
-				await prisma.$queryRaw`SELECT questionID FROM savedquestions WHERE quizID = ${quiz.id} ORDER BY RAND() LIMIT ${numberQuestions};`
+				await prisma.$queryRaw`SELECT questionID FROM SavedQuestions WHERE quizID = ${quiz.id} ORDER BY RAND() LIMIT ${numberQuestions};`
 
 			const randomQuestions: quiz[] = await prisma.question.findMany({
 				where: {

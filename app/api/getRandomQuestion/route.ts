@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
 
 			if (quiz?.id) {
 				const randomQuestion: quiz[] | null =
-					await prisma.$queryRaw`SELECT * FROM question WHERE quizID = ${quiz.id} ORDER BY RAND() LIMIT 1;`
+					await prisma.$queryRaw`SELECT * FROM Question WHERE quizID = ${quiz.id} ORDER BY RAND() LIMIT 1;`
 
 				if (randomQuestion) {
 					if (randomQuestion.length > 0)
