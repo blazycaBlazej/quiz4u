@@ -4,6 +4,7 @@ import { QuizQuestion } from '@/components/QuizQuestion'
 import { QuizAnswer } from '@/components/QuizAnswer'
 import { bigConfetti } from '@/lib/lib'
 import { useRouter } from 'next/navigation'
+import { QuestionNavigationButton } from './QuestionNavigationButton '
 
 type QuizItemChecker = {
 	id: number
@@ -240,44 +241,31 @@ export const XQuestionsQuiz = ({ questions, questionNumber, reloadQuestions, qui
 			<div className='w-full'>
 				<div className='flex flex-wrap justify-start gap-2'>
 					{Array.from({ length: questionNumber as number }, (_, index) => index + 1).map((number) => (
-						<button
+						<QuestionNavigationButton
 							key={number}
-							className={`w-full max-w-[43px] rounded-[10px] border  p-[10px] transition-colors
-							${
-								questionIndex === number - 1
-									? `colorful-box2 
-									${
-										quiz[number - 1].checkedQuestion
-											? 'opacity-30'
-											: 'bg-colorful-gradient-light text-black dark:bg-colorful-gradient-dark dark:text-white'
-									} `
-									: ''
+							varaint={
+								quiz[number - 1].checkedQuestion
+									? quiz[number - 1].isCorrectAnswer === true
+										? 'correct'
+										: quiz[number - 1].isCorrectAnswer === false
+										? 'uncorrect'
+										: 'unanswered'
+									: 'default'
 							}
-                          
-                         		${
-															quiz[number - 1].checkedQuestion
-																? quiz[number - 1].isCorrectAnswer === true
-																	? 'border-none bg-correctAnswerLight dark:bg-correctAnswerDark'
-																	: quiz[number - 1].isCorrectAnswer === false
-																	? 'border-none bg-incorrect-answer-quiz'
-																	: 'border-none bg-element-active-backgorund-dark/50'
-																: ''
-														}
-								
-						
-                         		${
-															!quiz[number - 1].checkedQuestion
-																? quiz[number - 1].markAnswer
-																	? 'border-none bg-element-active-backgorund-dark/20'
-																	: 'border-element-active-backgorund-dark'
-																: ''
-														}
-                      
-                         `}
+							isActive={
+								questionIndex === number - 1 && quiz[number - 1].checkedQuestion
+									? 'activeChecked'
+									: questionIndex === number - 1
+									? 'active'
+									: 'default'
+							}
+							isChecked={
+								!quiz[number - 1].checkedQuestion ? (quiz[number - 1].markAnswer ? 'checked' : 'unChecked') : 'default'
+							}
 							onClick={() => setQuestionIndex(number - 1)}
 						>
 							{number}
-						</button>
+						</QuestionNavigationButton>
 					))}
 				</div>
 
