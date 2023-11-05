@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { MenuProvider } from './context/MenuProvider'
 import Overlay from '@/components/Overlay'
 import ThemeProvider from './context/ThemeProvider'
+
 export const metadata: Metadata = {
 	title: 'quiz4u',
 	description:
@@ -22,16 +23,9 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-	const menuElements = await getMenuItems()
+	const menu = await getMenuItems()
 	const user = await getIsLogged()
 
-	// if (!menuElements) {
-	// 	throw new Error('Błąd podczas pobierania menu.')
-	// }
-	// if (!user) {
-	// 	throw new Error('Błąd podczas pobierania menu.')
-	// }
-	// console.log('menu: ', menuElements)
 	return (
 		<html lang='en' className={`${nunito.className} dark`} style={{ colorScheme: 'dark' }}>
 			<body>
@@ -40,9 +34,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 						<MenuProvider>
 							<Overlay />
 							<div
-								className={`flex  min-h-screen bg-main-bgn-light text-light-text dark:bg-main-bgn-dark dark:text-dark-text`}
+								className={`flex min-h-screen bg-main-bgn-light text-light-text dark:bg-main-bgn-dark dark:text-dark-text`}
 							>
-								<Navbar isAdmin={user?.isAdmin} item={...menuElements} />
+								<Navbar isAdmin={user?.isAdmin} item={menu.menu} areQuizzesIsfetched={menu.areQuizzesIsfetched} />
 
 								<div className='flex w-full flex-col lg:ml-[280px]'>
 									<div className='fixed right-0 top-0 z-[998] w-full bg-main-bgn-light dark:bg-main-bgn-dark '>

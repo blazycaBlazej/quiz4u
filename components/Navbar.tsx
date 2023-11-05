@@ -11,13 +11,21 @@ import { useMenu } from '@/app/context/MenuProvider'
 import FlipMove from 'react-flip-move'
 import ThemeButton from './ThemeButton'
 
-interface NavbarProps {
-	item: NavbarElementProps[]
-	isAdmin: boolean | null | undefined
+interface MenuElements {
+	name: string
+	isNew: boolean
+	isActive?: boolean
+	pathname: string
 }
-export const Navbar = ({ item, isAdmin }: NavbarProps) => {
+
+interface NavbarProps {
+	item: MenuElements[]
+	isAdmin: boolean | null | undefined
+	areQuizzesIsfetched: boolean
+}
+export const Navbar = ({ item, isAdmin, areQuizzesIsfetched }: NavbarProps) => {
 	const pathname = usePathname()
-	const menuElements = Object.values(item)
+	const menuElements = item
 	const { isMenuOpen, toggleMenu } = useMenu()
 
 	return (
@@ -38,7 +46,7 @@ export const Navbar = ({ item, isAdmin }: NavbarProps) => {
 				{isMenuOpen && (
 					<nav
 						key='nav'
-						className={` fixed left-0 top-0 z-[999] flex h-screen min-h-screen w-[280px] flex-col border-r border-solid border-border-color-light bg-element-backgorund-light px-4 dark:border-border-color-dark dark:bg-element-backgorund-dark`}
+						className={`fixed left-0 top-0 z-[999] flex h-screen min-h-screen w-[280px] flex-col border-r border-solid border-border-color-light bg-element-backgorund-light px-4 dark:border-border-color-dark dark:bg-element-backgorund-dark lg:hidden `}
 					>
 						<div className='flex items-center gap-3'>
 							<span
@@ -51,7 +59,6 @@ export const Navbar = ({ item, isAdmin }: NavbarProps) => {
 								<Logo />
 							</span>
 						</div>
-
 						<ul>
 							{menuElements.map((element, index) => {
 								const isActive =
@@ -82,7 +89,12 @@ export const Navbar = ({ item, isAdmin }: NavbarProps) => {
 									</Link>
 								)
 							})}
+
+							{!areQuizzesIsfetched && (
+								<li className='m-[15px] text-lg text-white'>Błąd podczas pobierania quizów!.</li>
+							)}
 						</ul>
+
 						{isAdmin && (
 							<div className='mt-5'>
 								<span className='mb-2 block'>Panel administratora:</span>
@@ -147,6 +159,8 @@ export const Navbar = ({ item, isAdmin }: NavbarProps) => {
 							</Link>
 						)
 					})}
+
+					{!areQuizzesIsfetched && <li className='m-[15px] text-lg text-white'>Błąd podczas pobierania quizów!.</li>}
 				</ul>
 				{isAdmin && (
 					<div className='mt-5'>

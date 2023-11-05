@@ -60,7 +60,7 @@ export const LoginForm = () => {
 	}
 
 	return (
-		<main className='flex h-[calc(100vh-404px)] w-full flex-col items-center justify-center gap-[20px]'>
+		<main className='flex w-full flex-col items-center justify-center gap-[20px]'>
 			<span className='text-3xl text-black dark:text-white '>Logowanie</span>
 			<form className='w-full max-w-[410px]' onSubmit={handleSubmit(onSubmit)} noValidate>
 				<div className='relative mb-[20px] w-full max-w-[410px]'>
