@@ -1,4 +1,5 @@
 'use client'
+
 import Image from 'next/image'
 import React from 'react'
 import { IconChevronDown, IconMenu2 } from '@tabler/icons-react'
@@ -19,12 +20,13 @@ export const UserSection = ({ userName }: UserSectionProps) => {
 	const { isMenuOpen, toggleMenu } = useMenu()
 
 	return (
-		<div className=' flex h-[82px]  px-4 border-b border-solid border-border-color-light dark:border-border-color-dark w-full '>
+		<div className=' flex h-[82px]  w-full border-b border-solid border-border-color-light px-4 dark:border-border-color-dark '>
 			<div className='flex w-full justify-between'>
 				<div className='flex items-center gap-3'>
 					<span
 						onClick={toggleMenu}
-						className='block p-[10px] rounded-full cursor-pointer transition-colors hover:bg-element-active-backgorund-light dark:hover:bg-element-active-backgorund-dark'>
+						className='block cursor-pointer rounded-full p-[10px] transition-colors hover:bg-element-active-backgorund-light dark:hover:bg-element-active-backgorund-dark'
+					>
 						<IconMenu2 />
 					</span>
 					<span className='hidden sm:block'>
@@ -32,17 +34,17 @@ export const UserSection = ({ userName }: UserSectionProps) => {
 					</span>
 				</div>
 				{userName && (
-					<div className=' flex items-center gap-4 ml-auto pr-[30px]'>
+					<div className=' ml-auto flex items-center gap-4 pr-[30px]'>
 						<span className='text-black dark:text-white'>
 							Cześć, <span className='text-btn-violet-color'>{userName}</span>
 						</span>
 
 						<Menu as='div' className={'relative'}>
 							<Menu.Button>
-								<div className=' relative w-[42px] h-[42px] rounded-full  border-2 border-btn-violet-color cursor-pointer shadow-customNew '>
+								<div className=' relative h-[42px] w-[42px] cursor-pointer  rounded-full border-2 border-btn-violet-color shadow-customNew'>
 									<Image src={'/userMan.png'} width={42} height={42} alt='userImage' />
-									<div className='flex justify-center items-center absolute bg-btn-violet-color h-[17px] w-[17px] bottom-[-5px] right-0 rounded-full'>
-										<span className='text-black dark:text-white text-[14px] p-[5px]'>
+									<div className='absolute bottom-[-5px] right-0 flex h-[17px] w-[17px] items-center justify-center rounded-full bg-btn-violet-color'>
+										<span className='p-[5px] text-[14px] text-black dark:text-white'>
 											<IconChevronDown size={15} />
 										</span>
 									</div>
@@ -54,9 +56,11 @@ export const UserSection = ({ userName }: UserSectionProps) => {
 								enterTo='opacity-100 scale-100'
 								leave='transition transform ease-in duration-200'
 								leaveFrom='opacity-100 scale-100'
-								leaveTo='opacity-0 scale-0'>
+								leaveTo='opacity-0 scale-0'
+							>
 								<Menu.Items
-									className={`absolute right-0 flex flex-col w-[228px] mt-[28px] p-[10px] bg-element-backgorund-light dark:bg-element-backgorund-dark border border-border-color-light dark:border-border-color-dark rounded-[20px]`}>
+									className={`absolute right-0 mt-[28px] flex w-[228px] flex-col rounded-[20px] border border-border-color-light bg-element-backgorund-light p-[10px] dark:border-border-color-dark dark:bg-element-backgorund-dark`}
+								>
 									{userMenuElements.map((element, index) => {
 										const isActive = pathname === element.pathname
 										return (

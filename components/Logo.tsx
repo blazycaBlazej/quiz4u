@@ -4,7 +4,8 @@ import { roboto } from '../fonts/fonts'
 export const Logo = () => {
 	return (
 		<div
-			className={`${roboto.className} leading-none	flex flex-col gap-0 text-black dark:text-white  pt-[20px] pb-[18px] text-center tracking-wide`}>
+			className={`${roboto.className} flex flex-col gap-0 pb-[18px] pt-[20px] text-center leading-none tracking-wide text-black dark:text-white`}
+		>
 			<span className='text-[32px]'>
 				Quiz<span className='text-btn-violet-color'>4</span>u
 			</span>

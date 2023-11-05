@@ -1,7 +1,7 @@
 'use client'
+
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-
 import { FormEditQuizValues, QuizDataDeatails } from '@/types/types'
 import { CustomSwitch, Loader } from '.'
 import { useRouter } from 'next/navigation'
@@ -50,23 +50,23 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 	}
 
 	return quizDeatails ? (
-		<div className='flex flex-col justify-center items-center gap-[20px] w-full my-[25px]'>
-			<span className='text-3xl text-black dark:text-white  px-[15px]'>Edytuj detale quizu</span>
-			<div className='form-cointiner w-full flex flex-col px-[15px]'>
+		<div className='my-[25px] flex w-full flex-col items-center justify-center gap-[20px]'>
+			<span className='px-[15px] text-3xl text-black  dark:text-white'>Edytuj detale quizu</span>
+			<div className='form-cointiner flex w-full flex-col px-[15px]'>
 				<form className=' w-full' onSubmit={handleSubmit(onSubmit)} noValidate>
-					<div className='wrapper w-full flex flex-col  justify-center sm:flex-row sm:gap-[50px]'>
+					<div className='wrapper flex w-full flex-col  justify-center sm:flex-row sm:gap-[50px]'>
 						<div className='left-side w-full sm:max-w-[410px]'>
 							{/* name */}
-							<div className='w-full relative mb-[20px]'>
+							<div className='relative mb-[20px] w-full'>
 								<label
 									htmlFor='name'
-									className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-										nameIsActive || getValues('name') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-									}`}>
+									className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
+									${nameIsActive || getValues('name') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+								>
 									Nazwa quizu
 								</label>
 								<input
-									className=' h-[50px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-[20px] text-black dark:text-white'
+									className=' h-[50px] w-full rounded-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white'
 									type='text'
 									id='name'
 									defaultValue={quizDeatails?.name}
@@ -85,21 +85,19 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 									onFocus={() => setNameIsActive(true)}
 									onBlur={() => setNameIsActive(false)}
 								/>
-								<span className='text-sm text-error-color  block my-[4px]'>{errors.name?.message}</span>
+								<span className='my-[4px] block  text-sm text-error-color'>{errors.name?.message}</span>
 							</div>
 							{/* description */}
-							<div className='w-full relative mb-[5px]'>
+							<div className='relative mb-[5px] w-full'>
 								<label
 									htmlFor='description'
-									className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-										descriptionIsActive || getValues('description')
-											? 'top-[-10px] left-[15px]'
-											: 'top-[12px] left-[20px]'
-									}`}>
+									className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark
+									 ${descriptionIsActive || getValues('description') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+								>
 									Opis quizu*
 								</label>
 								<textarea
-									className='resize-none overflow-auto h-[310px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
+									className='h-[310px] w-full resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white '
 									id='description'
 									defaultValue={quizDeatails?.description}
 									{...register('description', {
@@ -111,11 +109,11 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 									onFocus={() => setDescriptionIsActive(true)}
 									onBlur={() => setDescriptionIsActive(false)}
 								/>
-								<span className='text-sm text-error-color  block my-[4px]'>{errors.description?.message}</span>
+								<span className='my-[4px] block  text-sm text-error-color'>{errors.description?.message}</span>
 							</div>
 						</div>
 
-						<div className='flex flex-col gap-2 max-w-[350px] w-full'>
+						<div className='flex w-full max-w-[350px] flex-col gap-2'>
 							<span className='text-lg text-black dark:text-white'>Opcje: </span>
 							<CustomSwitch
 								name={'isActive'}
@@ -169,11 +167,12 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 							/>
 						</div>
 					</div>
-					<div className='w-full flex flex-col items-center justify-center gap-[15px] mt-[30px]  '>
-						<div className='max-w-[410px] w-full'>
+					<div className='mt-[30px] flex w-full flex-col items-center justify-center gap-[15px]  '>
+						<div className='w-full max-w-[410px]'>
 							<Button
 								variant={isSubmitting || Object.keys(errors).length > 0 || !isDirty ? 'disabled' : 'default'}
-								disabled={isSubmitting || Object.keys(errors).length > 0 || !isDirty}>
+								disabled={isSubmitting || Object.keys(errors).length > 0 || !isDirty}
+							>
 								{isSubmitting ? <Loader /> : 'Edytuj quiz'}
 							</Button>
 						</div>

@@ -41,7 +41,7 @@ export const getSavedQuestionsWithPagination = cache(async (quizName: string, pa
 			const questions = await prisma.question.findMany({
 				where: {
 					id: {
-						in: questionsID.map(question => question.questionID),
+						in: questionsID.map((question) => question.questionID),
 					},
 				},
 			})

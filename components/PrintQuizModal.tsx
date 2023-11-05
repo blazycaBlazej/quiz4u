@@ -20,7 +20,7 @@ interface FormValues {
 
 export const PrintQuizModal = ({ quizName, questionsNumber, isOpen, closeModal, type }: PrintQuizProps) => {
 	const handlePrint = (questionsData: quiz[]) => {
-		questionsData.map(question => {
+		questionsData.map((question) => {
 			if (question.correctAnswer === 'answerA') question.correctAnswer = 'A'
 			else if (question.correctAnswer === 'answerB') question.correctAnswer = 'B'
 			else if (question.correctAnswer === 'answerC') question.correctAnswer = 'C'
@@ -29,16 +29,15 @@ export const PrintQuizModal = ({ quizName, questionsNumber, isOpen, closeModal, 
 		const printWindow = window.open('')
 		printWindow?.document.open()
 		printWindow?.document.write(`
-          <div style="font-family: 'Roboto', sans-serif; line-height: 1; display: flex; flex-direction: column; gap: 0px; color: black; padding-top: 26px; padding-bottom: 18px; text-align: center; letter-spacing: normal;">
-	<span style="font-size: 32px;">
-		Quiz<span style="color: #5721f2;">4</span>u
-	</span>
+			<div style="font-family: 'Roboto', sans-serif; line-height: 1; display: flex; flex-direction: column; gap: 0px; color: black; padding-top: 26px; padding-bottom: 18px; text-align: center; letter-spacing: normal;">
+				<span style="font-size: 32px;">
+					Quiz<span style="color: #5721f2;">4</span>u
+				</span>
 
-	<span style="font-size: 11px;">- zdaj za pierwszym -</span>
-	<span style="font-size: 11px;">www.quiz4u.pl</span>
-	<span style="font-size: 11px;">Test - ${quizName}</span>
-</div>
-
+				<span style="font-size: 11px;">- zdaj za pierwszym -</span>
+				<span style="font-size: 11px;">www.quiz4u.pl</span>
+				<span style="font-size: 11px;">Test - ${quizName}</span>
+			</div>
           `)
 
 		questionsData.forEach((question: quiz, index: number) => {
@@ -55,27 +54,26 @@ export const PrintQuizModal = ({ quizName, questionsNumber, isOpen, closeModal, 
 		})
 
 		printWindow?.document.write(`
-          <div style=" page-break-before: always; font-family: 'Roboto', sans-serif; line-height: 1; display: flex; flex-direction: column; gap: 0px; color: black; padding-top: 26px; padding-bottom: 18px; text-align: center; letter-spacing: normal;">
-	<span style="font-size: 32px;">
-		Quiz<span style="color: #5721f2;">4</span>u
-	</span>
+			<div style=" page-break-before: always; font-family: 'Roboto', sans-serif; line-height: 1; display: flex; flex-direction: column; gap: 0px; color: black; padding-top: 26px; padding-bottom: 18px; text-align: center; letter-spacing: normal;">
+				<span style="font-size: 32px;">
+					Quiz<span style="color: #5721f2;">4</span>u
+				</span>
 
-	<span style="font-size: 11px;">- zdaj za pierwszym -</span>
-	<span style="font-size: 11px;">www.quiz4u.pl</span>
-	<span style="font-size: 11px;">Test - ${quizName}</span>
-</div>
-
+				<span style="font-size: 11px;">- zdaj za pierwszym -</span>
+				<span style="font-size: 11px;">www.quiz4u.pl</span>
+				<span style="font-size: 11px;">Test - ${quizName}</span>
+			</div>
           `)
 
 		printWindow?.document.write(`
           <div style="display: flex; justify-content: center;">
-          <table style="border-collapse: collapse;">
-          <thead>
-              <tr>
-                   <th style="border: 1px solid black; padding: 5px;">NUMER PYTANIA</th>
-                   <th style="border: 1px solid black; padding: 5px;">ODPOWIEDŹ</th>
-              </tr>
-          </thead>
+          	<table style="border-collapse: collapse;">
+          	<thead>
+            		<tr>
+             	     	<th style="border: 1px solid black; padding: 5px;">NUMER PYTANIA</th>
+             	     	<th style="border: 1px solid black; padding: 5px;">ODPOWIEDŹ</th>
+              		</tr>
+          	</thead>
           <tbody>
 
           `)
@@ -144,11 +142,11 @@ export const PrintQuizModal = ({ quizName, questionsNumber, isOpen, closeModal, 
 	const maxQuestions = (questionsNumber as number) > 50 ? 50 : questionsNumber
 	return (
 		<Modal isOpen={isOpen} closeModal={closeModal} title={`Z ilu pytań ma składać się test - ${quizName} ?`}>
-			<form className='max-w-[410px] w-full' onSubmit={handleSubmit(onSubmit)} noValidate>
-				<div className='max-w-[410px] w-full relative mb-[5px]'>
+			<form className='w-full max-w-[410px]' onSubmit={handleSubmit(onSubmit)} noValidate>
+				<div className='relative mb-[5px] w-full max-w-[410px]'>
 					<label htmlFor='numberInput'>Wybierz liczbę od 1 do {maxQuestions}:</label>
 					<input
-						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[5px]  border-2 border-border-color-light dark:border-border-color-dark rounded-[20px] text-gray-900 '
+						className=' h-[50px] w-full max-w-[410px] rounded-[20px] border-2  border-border-color-light pl-[20px] pr-[5px] text-gray-900 dark:border-border-color-dark '
 						type='number'
 						id='numberQuestions'
 						autoComplete='off'
@@ -165,13 +163,14 @@ export const PrintQuizModal = ({ quizName, questionsNumber, isOpen, closeModal, 
 						})}
 					/>
 
-					<span className='text-sm text-error-color  block my-[4px]'>{errors.numberQuestions?.message}</span>
+					<span className='my-[4px] block  text-sm text-error-color'>{errors.numberQuestions?.message}</span>
 				</div>
-				{submitingError && <span className='text-sm text-error-color  block my-[4px]'>{submitingError}</span>}
+				{submitingError && <span className='my-[4px] block  text-sm text-error-color'>{submitingError}</span>}
 
 				<Button
 					variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
-					disabled={isSubmitting || Object.keys(errors).length > 0}>
+					disabled={isSubmitting || Object.keys(errors).length > 0}
+				>
 					{isSubmitting ? <Loader /> : 'Drukuj test'}
 				</Button>
 			</form>

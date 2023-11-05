@@ -1,4 +1,5 @@
 'use client'
+
 import { QuizAnswer } from '@/components/QuizAnswer'
 import { QuizQuestion } from '@/components/QuizQuestion'
 import { forwardRef, useImperativeHandle, useState } from 'react'
@@ -58,7 +59,7 @@ export const CompleteQuiz = forwardRef<ChildComponentHandle, CompleteQuizProps>(
 	}
 
 	return (
-		<div className='relative rounded-[20px] border border-solid border-border-color-light dark:border-border-color-dark max-w-[600px] w-full'>
+		<div className='relative w-full max-w-[600px] rounded-[20px] border border-solid border-border-color-light dark:border-border-color-dark'>
 			<QuizQuestion question={question.question} questionID={question.id} quizName={quizName} />
 			<QuizAnswer
 				letter={'A'}

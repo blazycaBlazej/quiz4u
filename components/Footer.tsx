@@ -8,7 +8,7 @@ import { menuElements } from '@/constans/constans'
 export const Footer = () => {
 	return (
 		<footer className='relative w-full p-[40px] text-black dark:text-white '>
-			<div className='flex justify-between items-start'>
+			<div className='flex items-start justify-between'>
 				<div className='flex flex-col'>
 					<Logo />
 					<div className='flex gap-3 '>

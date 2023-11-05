@@ -1,6 +1,4 @@
-import { getServerSession } from 'next-auth'
 import { NextRequest, NextResponse } from 'next/server'
-import { authOptions } from '../auth/[...nextauth]/route'
 import prisma from '@/lib/db/db'
 import { Prisma } from '@prisma/client'
 import { getIsAdmin } from '@/lib/getIsAdmin'
@@ -33,7 +31,7 @@ export async function POST(req: NextRequest) {
 		})
 		return NextResponse.json(
 			{ message: 'Quiz został utworzony', pathname: `/edytuj-quiz/${name}/detale` },
-			{ status: 200 }
+			{ status: 200 },
 		)
 	} catch (e) {
 		if (e instanceof Prisma.PrismaClientKnownRequestError) {

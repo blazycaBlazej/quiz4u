@@ -29,7 +29,7 @@ export const getSavedQuiz = cache(async (savedQuizID: number) => {
 				})
 
 				//sorting
-				const questions = questionsID.map(id => questionsUnSorted.find(question => question.id === id))
+				const questions = questionsID.map((id) => questionsUnSorted.find((question) => question.id === id))
 
 				if (questions) {
 					let array = []

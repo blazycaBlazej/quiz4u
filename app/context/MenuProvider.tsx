@@ -35,7 +35,7 @@ export const MenuProvider = ({ children }: MenuProviderProps) => {
 			setIsOverlay(false)
 		}
 
-		setMenuOpen(prev => !prev)
+		setMenuOpen((prev) => !prev)
 	}
 
 	const openMenu = () => {

@@ -66,22 +66,22 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 	}
 
 	return (
-		<main className='flex flex-col justify-center items-center gap-[20px] w-full my-[25px]'>
+		<main className='my-[25px] flex w-full flex-col items-center justify-center gap-[20px]'>
 			<span className='text-3xl text-black dark:text-white '>Dodaj nowe pytanie</span>
-			<form className='w-full flex flex-col items-center' onSubmit={handleSubmit(onSubmit)} noValidate>
-				<div className='flex flex-col justify-center items-center w-full px-[15px] gap-[10px] sm:flex-row sm:gap-[50px]'>
+			<form className='flex w-full flex-col items-center' onSubmit={handleSubmit(onSubmit)} noValidate>
+				<div className='flex w-full flex-col items-center justify-center gap-[10px] px-[15px] sm:flex-row sm:gap-[50px]'>
 					<div className='w-full sm:max-w-[410px]'>
 						{/* question */}
-						<div className='w-full relative mb-[5px] sm:max-w-[410px]'>
+						<div className='relative mb-[5px] w-full sm:max-w-[410px]'>
 							<label
 								htmlFor='question'
-								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-									questionIsActive || getValues('question') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-								}`}>
+								className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
+								${questionIsActive || getValues('question') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+							>
 								Opis quizu*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[400px]  w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white'
+								className='h-[400px] w-full resize-none  overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white'
 								id='question'
 								{...register('question', {
 									required: 'Musisz podać pytanie.',
@@ -93,10 +93,10 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 								onFocus={() => setQuestionIsActive(true)}
 								onBlur={() => setQuestionIsActive(false)}
 							/>
-							<span className='text-sm text-error-color  block'>{errors.question?.message}</span>
+							<span className='block text-sm  text-error-color'>{errors.question?.message}</span>
 						</div>
 						{/* correct Answer */}
-						<div className='w-full mb-[5px]'>
+						<div className='mb-[5px] w-full'>
 							<Controller
 								name='correctAnswer'
 								control={control}
@@ -121,22 +121,22 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 									</select>
 								)}
 							/>
-							<span className='text-sm text-error-color  block'>{errors.correctAnswer?.message}</span>
+							<span className='block text-sm  text-error-color'>{errors.correctAnswer?.message}</span>
 						</div>
 					</div>
 
 					<div className='w-full sm:max-w-[410px]'>
 						{/* answer A */}
-						<div className='w-full relative mb-[5px]'>
+						<div className='relative mb-[5px] w-full'>
 							<label
 								htmlFor='answerA'
-								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-									answerAIsActive || getValues('answerA') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-								}`}>
+								className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
+								${answerAIsActive || getValues('answerA') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+							>
 								Odpowiedź A*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
+								className='h-[100px] w-full resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white'
 								id='answerA'
 								{...register('answerA', {
 									required: 'Musisz podać odpowiedź A.',
@@ -148,19 +148,19 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 								onFocus={() => setAnswerAIsActive(true)}
 								onBlur={() => setAnswerAIsActive(false)}
 							/>
-							<span className='text-sm text-error-color  block'>{errors.answerA?.message}</span>
+							<span className='block text-sm  text-error-color'>{errors.answerA?.message}</span>
 						</div>
 						{/* answer B */}
-						<div className='w-full relative mb-[5px]'>
+						<div className='relative mb-[5px] w-full'>
 							<label
 								htmlFor='answerB'
-								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-									answerBIsActive || getValues('answerB') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-								}`}>
+								className={`transition-top-left pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
+								${answerBIsActive || getValues('answerB') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+							>
 								Odpowiedź B*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
+								className='h-[100px] w-full resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white'
 								id='answerB'
 								{...register('answerB', {
 									required: 'Musisz podać odpowiedź B.',
@@ -172,19 +172,19 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 								onFocus={() => setAnswerBIsActive(true)}
 								onBlur={() => setAnswerBIsActive(false)}
 							/>
-							<span className='text-sm text-error-color  block'>{errors.answerB?.message}</span>
+							<span className='block text-sm  text-error-color'>{errors.answerB?.message}</span>
 						</div>
 						{/* answer C */}
-						<div className='w-full relative mb-[5px]'>
+						<div className='relative mb-[5px] w-full'>
 							<label
 								htmlFor='answerC'
-								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-									answerCIsActive || getValues('answerC') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-								}`}>
+								className={`transition-top-left pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
+								${answerCIsActive || getValues('answerC') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+							>
 								Odpowiedź C*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
+								className='h-[100px] w-full resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white '
 								id='answerC'
 								{...register('answerC', {
 									required: 'Musisz podać odpowiedź C.',
@@ -196,19 +196,19 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 								onFocus={() => setAnswerCIsActive(true)}
 								onBlur={() => setAnswerCIsActive(false)}
 							/>
-							<span className='text-sm text-error-color  block'>{errors.answerC?.message}</span>
+							<span className='block text-sm  text-error-color'>{errors.answerC?.message}</span>
 						</div>
 						{/* answer D */}
-						<div className='w-full relative mb-[5px]'>
+						<div className='relative mb-[5px] w-full'>
 							<label
 								htmlFor='answerD'
-								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-									answerDIsActive || getValues('answerD') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-								}`}>
+								className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
+								${answerDIsActive || getValues('answerD') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+							>
 								Odpowiedź D*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-white dark:text-black'
+								className='h-[100px] w-full resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-white dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-black'
 								id='answerD'
 								{...register('answerD', {
 									required: 'Musisz podać odpowiedź D',
@@ -220,15 +220,16 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 								onFocus={() => setAnswerDIsActive(true)}
 								onBlur={() => setAnswerDIsActive(false)}
 							/>
-							<span className='text-sm text-error-color block '>{errors.answerD?.message}</span>
+							<span className='block text-sm text-error-color '>{errors.answerD?.message}</span>
 						</div>
 					</div>
 				</div>
 
-				<div className='max-w-[410px] w-full mt-[20px] px-[15px]'>
+				<div className='mt-[20px] w-full max-w-[410px] px-[15px]'>
 					<Button
 						variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
-						disabled={isSubmitting || Object.keys(errors).length > 0}>
+						disabled={isSubmitting || Object.keys(errors).length > 0}
+					>
 						{isSubmitting ? <Loader /> : 'Dodaj pytanie'}
 					</Button>
 				</div>

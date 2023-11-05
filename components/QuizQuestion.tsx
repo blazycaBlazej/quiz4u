@@ -11,7 +11,7 @@ interface QuizQuestion {
 
 export const QuizQuestion = ({ question, questionNummber, questionID, quizName }: QuizQuestion) => {
 	return (
-		<div className='wrapper relative flex justify-start w-full max-w-[600px] text-lg p-[20px] pr-[50px]'>
+		<div className='wrapper relative flex w-full max-w-[600px] justify-start p-[20px] pr-[50px] text-lg'>
 			{questionNummber ? (
 				<>
 					{questionNummber}. {question}
@@ -20,7 +20,7 @@ export const QuizQuestion = ({ question, questionNummber, questionID, quizName }
 				<>{question}</>
 			)}
 
-			<span className='absolute top-[20px] right-[20px] cursor-pointer transition-colors hover:text-white dark:hover:text-black'>
+			<span className='absolute right-[20px] top-[20px] cursor-pointer transition-colors hover:text-white dark:hover:text-black'>
 				<Suspense fallback={<Loading />}>
 					<SaveQuestion questionID={questionID} quizName={quizName} />
 				</Suspense>

@@ -1,4 +1,5 @@
 'use server'
+
 import { Loader } from '@/components'
 import OneQuestion from '@/components/OneQuestion'
 import { getRandomSavedQuestion } from '@/lib/getRandomSavedQuestion'

@@ -22,7 +22,7 @@ export default function page() {
 
 	const email = searchParams.get('email')
 	return (
-		<main className='flex flex-col justify-center items-center gap-[20px] h-[calc(100vh-404px)] w-full max-w-[410px] m-auto'>
+		<main className='m-auto flex h-[calc(100vh-404px)] w-full max-w-[410px] flex-col items-center justify-center gap-[20px]'>
 			<h2 className='w-full text-3xl text-black dark:text-white '>Wiadomość została wysłana</h2>
 			<p className='w-full'>
 				Link do zresetowania hasła otrzymasz pod adresem: <span className='text-black dark:text-white'>{email}</span>
@@ -32,7 +32,7 @@ export default function page() {
 			<Button onClick={clickHandler}>Wyślij ponownie email</Button>
 
 			<Link href='/logowanie'>
-				<span className='text-black dark:text-white  underline cursor-pointer  flex gap-2 text-right transition-colors hover:text-light-text dark:hover:text-dark-text'>
+				<span className='flex cursor-pointer  gap-2 text-right  text-black underline transition-colors hover:text-light-text dark:text-white dark:hover:text-dark-text'>
 					<IconArrowNarrowLeft /> Wróć do logowania
 				</span>
 			</Link>

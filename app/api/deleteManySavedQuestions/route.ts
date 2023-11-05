@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
 				})
 				return NextResponse.json(
 					{ message: `Wszystkie pytania z quizu: ${quizName} zostały usunięte.` },
-					{ status: 200 }
+					{ status: 200 },
 				)
 			}
 		} catch (e) {

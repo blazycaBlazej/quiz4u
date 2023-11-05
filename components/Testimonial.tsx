@@ -12,13 +12,14 @@ export const Testimonial = ({ testimonial }: testimonialObject) => {
 	return (
 		<div
 			key={id}
-			className='relative flex flex-col items-center justify-between gap-[20px] colorful-box2 bg-colorful-gradient-light dark:bg-colorful-gradient-dark   w-full px-[40px] py-[30px] rounded-[20px] md:max-w-[600px]'>
+			className='colorful-box2 relative flex w-full flex-col items-center justify-between gap-[20px] rounded-[20px]   bg-colorful-gradient-light px-[40px] py-[30px] dark:bg-colorful-gradient-dark md:max-w-[600px]'
+		>
 			<div className=''>
 				<p>{text}</p>
 			</div>
-			<div className='flex flex-col justify-center items-center overflow-hidden'>
+			<div className='flex flex-col items-center justify-center overflow-hidden'>
 				<Image className='rounded-full ' width={70} height={70} src={image} alt={'avatar'} />
-				<span className='mt-2 color-white'>{name}</span>
+				<span className='color-white mt-2'>{name}</span>
 				<div className='flex gap-1 text-[#FFD700]'>
 					<IconStarFilled size={18} />
 					<IconStarFilled size={18} />
@@ -27,7 +28,7 @@ export const Testimonial = ({ testimonial }: testimonialObject) => {
 					<IconStarFilled size={18} />
 				</div>
 			</div>
-			<div className='absolute top-[-20px] left-[0px]'>
+			<div className='absolute left-[0px] top-[-20px]'>
 				<IconQuote size={40} color={'white'} />
 			</div>
 			<div className='absolute bottom-[-20px] right-[0px]'>

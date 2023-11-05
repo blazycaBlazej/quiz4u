@@ -6,6 +6,7 @@ import { Loader } from './Loader'
 import { mutate } from 'swr'
 import Button from './Button'
 import { notification } from '@/lib/lib'
+
 type FormValues = {
 	question: string
 	answerA: string
@@ -76,22 +77,22 @@ export const EditQuestionForm = ({
 	}
 
 	return (
-		<main className='flex flex-col justify-center items-center gap-[20px] w-full my-[25px]'>
+		<main className='my-[25px] flex w-full flex-col items-center justify-center gap-[20px]'>
 			<span className='text-3xl text-black dark:text-white '>Edytuj pytanie</span>
-			<form className='w-full flex flex-col items-center' onSubmit={handleSubmit(onSubmit)} noValidate>
-				<div className='flex justify-center items-center w-full gap-[50px]'>
-					<div className='max-w-[410px] w-full'>
+			<form className='flex w-full flex-col items-center' onSubmit={handleSubmit(onSubmit)} noValidate>
+				<div className='flex w-full items-center justify-center gap-[50px]'>
+					<div className='w-full max-w-[410px]'>
 						{/* question */}
-						<div className='max-w-[410px] w-full relative mb-[5px]'>
+						<div className='relative mb-[5px] w-full max-w-[410px]'>
 							<label
 								htmlFor='question'
-								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-									questionIsActive || getValues('question') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-								}`}>
+								className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark
+								 ${questionIsActive || getValues('question') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+							>
 								Pytanie*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[400px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
+								className='h-[400px] w-full max-w-[410px] resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white'
 								id='question'
 								defaultValue={question}
 								{...register('question', {
@@ -104,10 +105,10 @@ export const EditQuestionForm = ({
 								onFocus={() => setQuestionIsActive(true)}
 								onBlur={() => setQuestionIsActive(false)}
 							/>
-							<span className='text-sm text-error-color  block'>{errors.question?.message}</span>
+							<span className='block text-sm  text-error-color'>{errors.question?.message}</span>
 						</div>
 						{/* correct Answer */}
-						<div className='max-w-[410px] w-full relative mb-[5px]'>
+						<div className='relative mb-[5px] w-full max-w-[410px]'>
 							<Controller
 								name='correctAnswer'
 								control={control}
@@ -118,7 +119,8 @@ export const EditQuestionForm = ({
 										defaultValue={value}
 										onChange={onChange}
 										ref={ref}
-										className='mt-[5px] bg-inherit text-black dark:text-white '>
+										className='mt-[5px] bg-inherit text-black dark:text-white'
+									>
 										<option className='text-main-bgn-light dark:text-main-bgn-dark' value='answerA'>
 											Prawidłowa odpowiedź A
 										</option>
@@ -134,22 +136,22 @@ export const EditQuestionForm = ({
 									</select>
 								)}
 							/>
-							<span className='text-sm text-error-color  block'>{errors.correctAnswer?.message}</span>
+							<span className='block text-sm  text-error-color'>{errors.correctAnswer?.message}</span>
 						</div>
 					</div>
 
-					<div className='max-w-[410px] w-full'>
+					<div className='w-full max-w-[410px]'>
 						{/* answer A */}
-						<div className='max-w-[410px] w-full relative mb-[5px]'>
+						<div className='relative mb-[5px] w-full max-w-[410px]'>
 							<label
 								htmlFor='answerA'
-								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-									answerAIsActive || getValues('answerA') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-								}`}>
+								className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
+								${answerAIsActive || getValues('answerA') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+							>
 								Odpowiedź A*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
+								className='h-[100px] w-full max-w-[410px] resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white '
 								id='answerA'
 								defaultValue={answerA}
 								{...register('answerA', {
@@ -162,19 +164,19 @@ export const EditQuestionForm = ({
 								onFocus={() => setAnswerAIsActive(true)}
 								onBlur={() => setAnswerAIsActive(false)}
 							/>
-							<span className='text-sm text-error-color  block'>{errors.answerA?.message}</span>
+							<span className='block text-sm  text-error-color'>{errors.answerA?.message}</span>
 						</div>
 						{/* answer B */}
-						<div className='max-w-[410px] w-full relative mb-[5px]'>
+						<div className='relative mb-[5px] w-full max-w-[410px]'>
 							<label
 								htmlFor='answerB'
-								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-									answerBIsActive || getValues('answerB') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-								}`}>
+								className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
+								${answerBIsActive || getValues('answerB') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+							>
 								Odpowiedź B*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
+								className='h-[100px] w-full max-w-[410px] resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white '
 								id='answerB'
 								defaultValue={answerB}
 								{...register('answerB', {
@@ -187,19 +189,19 @@ export const EditQuestionForm = ({
 								onFocus={() => setAnswerBIsActive(true)}
 								onBlur={() => setAnswerBIsActive(false)}
 							/>
-							<span className='text-sm text-error-color  block'>{errors.answerB?.message}</span>
+							<span className='block text-sm  text-error-color'>{errors.answerB?.message}</span>
 						</div>
 						{/* answer C */}
-						<div className='max-w-[410px] w-full relative mb-[5px]'>
+						<div className='relative mb-[5px] w-full max-w-[410px]'>
 							<label
 								htmlFor='answerC'
-								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-									answerCIsActive || getValues('answerC') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-								}`}>
+								className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
+								${answerCIsActive || getValues('answerC') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+							>
 								Odpowiedź C*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
+								className='h-[100px] w-full max-w-[410px] resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white '
 								id='answerC'
 								defaultValue={answerC}
 								{...register('answerC', {
@@ -212,19 +214,19 @@ export const EditQuestionForm = ({
 								onFocus={() => setAnswerCIsActive(true)}
 								onBlur={() => setAnswerCIsActive(false)}
 							/>
-							<span className='text-sm text-error-color  block'>{errors.answerC?.message}</span>
+							<span className='block text-sm  text-error-color'>{errors.answerC?.message}</span>
 						</div>
 						{/* answer D */}
-						<div className='max-w-[410px] w-full relative mb-[5px]'>
+						<div className='relative mb-[5px] w-full max-w-[410px]'>
 							<label
 								htmlFor='answerD'
-								className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-									answerDIsActive || getValues('answerD') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-								}`}>
+								className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
+								${answerDIsActive || getValues('answerD') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+							>
 								Odpowiedź D*
 							</label>
 							<textarea
-								className='resize-none overflow-auto h-[100px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
+								className='h-[100px] w-full max-w-[410px] resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white '
 								id='answerD'
 								defaultValue={answerD}
 								{...register('answerD', {
@@ -237,15 +239,16 @@ export const EditQuestionForm = ({
 								onFocus={() => setAnswerDIsActive(true)}
 								onBlur={() => setAnswerDIsActive(false)}
 							/>
-							<span className='text-sm text-error-color block '>{errors.answerD?.message}</span>
+							<span className='block text-sm text-error-color '>{errors.answerD?.message}</span>
 						</div>
 					</div>
 				</div>
 
-				<div className='max-w-[410px] w-full mt-[20px] '>
+				<div className='mt-[20px] w-full max-w-[410px] '>
 					<Button
 						variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
-						disabled={isSubmitting || Object.keys(errors).length > 0}>
+						disabled={isSubmitting || Object.keys(errors).length > 0}
+					>
 						{isSubmitting ? <Loader /> : 'Edytuj pytanie'}
 					</Button>
 				</div>

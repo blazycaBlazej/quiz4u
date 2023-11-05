@@ -1,4 +1,5 @@
 'use client'
+
 import { useRef, useState } from 'react'
 import confetti from 'canvas-confetti'
 import { CompleteQuiz } from '@/components/CompleteQuiz'
@@ -148,18 +149,19 @@ const OneQuestion = ({ quizName, question }: onQuestionProps) => {
 	}
 
 	return (
-		<div className='wrapper flex flex-col items-center justify-center w-full my-[50px]'>
+		<div className='wrapper my-[50px] flex w-full flex-col items-center justify-center'>
 			<CompleteQuiz ref={childRef} question={question} quizName={quizName} />
-			<div className='min-h-[30px] text-lg mt-[10px] text-black dark:text-white'>
+			<div className='mt-[10px] min-h-[30px] text-lg text-black dark:text-white'>
 				{message && <span>{message}</span>}
 			</div>
-			<div className='flex justify-center items-center gap-[50px] max-w-[600px] w-full mt-[10px]'>
+			<div className='mt-[10px] flex w-full max-w-[600px] items-center justify-center gap-[50px]'>
 				<Button
 					onClick={() => checkQuestion()}
 					disabled={questionIsChecked}
 					variant={questionIsChecked ? 'disabled' : 'orange'}
 					rounded='none'
-					size='sm'>
+					size='sm'
+				>
 					Sprawdź pytanie
 				</Button>
 

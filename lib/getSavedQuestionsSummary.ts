@@ -32,7 +32,7 @@ export const getSavedQuestionsSummary = cache(async () => {
 			// gry: 6
 			const savedQuestionsSummary: Record<string, number> = {}
 
-			savedQuestions.forEach(element => {
+			savedQuestions.forEach((element) => {
 				const quizName = element.question.quiz.name
 				if (!savedQuestionsSummary[quizName]) {
 					savedQuestionsSummary[quizName] = 0

@@ -6,11 +6,11 @@ import Image from 'next/image'
 export default function Home() {
 	return (
 		<main className='text-base xl:text-lg'>
-			<div className='relative flex justify-between items-center flex-col-reverse gap-[50px] lg:flex-row '>
+			<div className='relative flex flex-col-reverse items-center justify-between gap-[50px] lg:flex-row '>
 				<Image src={'/rocket.png'} width={300} height={300} alt='rocket' />
 				<div>
-					<h1 className=' text-black dark:text-white text-5xl py-3'>Witaj na Quizy4u!</h1>
-					<p className='text-[17px] max-w-[700px]'>
+					<h1 className=' py-3 text-5xl text-black dark:text-white'>Witaj na Quizy4u!</h1>
+					<p className='max-w-[700px] text-[17px]'>
 						Twoje źródło wiedzy i sukcesu na egzaminach! <br />
 						Czy przygotowania do egzaminów sprawiają Ci stres i niepewność?
 						<br />
@@ -20,9 +20,9 @@ export default function Home() {
 					</p>
 				</div>
 			</div>
-			<div className='pt-3 flex flex-col max-w-[700px] w-full m-auto lg:max-w-full'>
-				<h2 className=' text-black dark:text-white  text-4xl pb-3 '> Dlaczego warto wybrać Quizy4U?</h2>
-				<div className='flex items-center flex-col justify-between lg:flex-row '>
+			<div className='m-auto flex w-full max-w-[700px] flex-col pt-3 lg:max-w-full'>
+				<h2 className=' pb-3 text-4xl  text-black dark:text-white '> Dlaczego warto wybrać Quizy4U?</h2>
+				<div className='flex flex-col items-center justify-between lg:flex-row '>
 					<ul className='max-w-[700px]  '>
 						<li>
 							📚 Różnorodność Quizów: Oferujemy quizy dostosowane do Twojego poziomu nauki. Wybieraj spośród losowania

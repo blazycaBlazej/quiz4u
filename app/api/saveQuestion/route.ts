@@ -1,20 +1,8 @@
 import prisma from '@/lib/db/db'
 import { NextRequest, NextResponse } from 'next/server'
 
-interface savedQuestionsInterface {
-	id: number
-	userID: string
-	questionID: number
-}
-interface savedQuestionsArray {
-	savedQuestions: savedQuestionsInterface[]
-}
-
 export async function POST(request: NextRequest) {
 	const { questionID, userID, quizName } = await request.json()
-	console.log(questionID)
-	console.log(userID)
-	console.log(quizName)
 
 	if (!userID) {
 		return NextResponse.json({ message: 'Musisz być zalogowany, aby zapisać pytanie' }, { status: 403 })

@@ -7,32 +7,30 @@ export const NavbarElement = ({ index, name, isNew, isActive, isVisible, isAdmin
 		<li
 			onClick={name == 'Wyloguj' ? async () => await signOut() : undefined}
 			key={index}
-			className={`flex justify-between px-5 text-m py-[13px] transition-colors hover:bg-element-hover-backgorund-light dark:hover:bg-element-hover-backgorund-dark
+			className={`text-m flex justify-between rounded-[12px] px-5 py-[13px] transition-colors hover:bg-element-hover-backgorund-light
                
-               rounded-[12px] ${
-									isActive
-										? `text-black dark:text-white bg-element-active-backgorund-light dark:bg-element-active-backgorund-dark`
-										: ``
-								}`}>
-			<span className='flex gap-2 items-center'>
+               dark:hover:bg-element-hover-backgorund-dark 
+			${
+				isActive
+					? `bg-element-active-backgorund-light text-black dark:bg-element-active-backgorund-dark dark:text-white`
+					: ``
+			}`}
+		>
+			<span className='flex items-center gap-2'>
 				{icon}
 
 				{isAdmin && (
 					<span
-						className={`block h-2 w-2  rounded-full shadow ${
-							isVisible === true
-								? 'bg-green-500 shadow-customGreen'
-								: isVisible === false
-								? 'bg-red-600 shadow-customRed'
-								: ''
-						}`}></span>
+						className={`block h-2 w-2  rounded-full shadow 
+						${isVisible === true ? 'bg-green-500 shadow-customGreen' : isVisible === false ? 'bg-red-600 shadow-customRed' : ''}`}
+					></span>
 				)}
 
 				{name}
 			</span>
 			{isNew && (
-				<div className=' bg-btn-violet-color rounded-[12px] shadow-customNew'>
-					<span className='text-white  py-[4px] px-[8px] text-[12px]'>NEW</span>
+				<div className=' rounded-[12px] bg-btn-violet-color shadow-customNew'>
+					<span className='px-[8px]  py-[4px] text-[12px] text-white'>NEW</span>
 				</div>
 			)}
 		</li>

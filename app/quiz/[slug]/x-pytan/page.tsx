@@ -30,7 +30,7 @@ const xQuestions = ({ params }: { params: { slug: string } }) => {
 	const { data, error, isLoading } = useSWR(
 		`/api/getXQuestions?quizName=${quizName}&numberQuestions=${questionNumber}&type=${quizType}`,
 		fetcher,
-		{ revalidateOnFocus: false, revalidateOnReconnect: false }
+		{ revalidateOnFocus: false, revalidateOnReconnect: false },
 	)
 
 	const reloadQuestions = () => {

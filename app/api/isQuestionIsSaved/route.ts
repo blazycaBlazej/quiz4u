@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
 
 			if (userWithSavedQuestions) {
 				const questionIsSaved = userWithSavedQuestions.savedQuestions.find(
-					(question: savedQuestionsInterface) => question.questionID === +questionID
+					(question: savedQuestionsInterface) => question.questionID === +questionID,
 				)
 
 				if (questionIsSaved) {

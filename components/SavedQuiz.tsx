@@ -98,7 +98,7 @@ export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 			isCorrectAnswer = null
 			message = `Nie udzielono odpowiedzi na te pytanie. Poprawna odpowiedź to: ${savedQuiz[i].correctAnswer.replace(
 				'answer',
-				''
+				'',
 			)}`
 		} else if (savedQuiz[i].markAnswer !== savedQuiz[i].correctAnswer) {
 			color = {
@@ -130,7 +130,7 @@ export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 			isCorrectAnswer = false
 			message = `Niestety, to jest błędna odpowiedź. Poprawna odpowiedź to: ${savedQuiz[i].correctAnswer.replace(
 				'answer',
-				''
+				'',
 			)}`
 		}
 
@@ -161,13 +161,13 @@ export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 	}
 
 	return (
-		<div className='flex flex-col items-center justify-center w-full my-[25px]'>
+		<div className='my-[25px] flex w-full flex-col items-center justify-center'>
 			<div className='w-full'>
 				<div className='flex flex-wrap justify-start gap-2'>
-					{Array.from({ length: savedQuiz.length as number }, (_, index) => index + 1).map(number => (
+					{Array.from({ length: savedQuiz.length as number }, (_, index) => index + 1).map((number) => (
 						<button
 							key={number}
-							className={`border rounded-[10px] p-[10px] max-w-[43px]  w-full transition-colors
+							className={`w-full max-w-[43px] rounded-[10px] border  p-[10px] transition-colors
 							${
 								quiz[number - 1].isCorrectAnswer === true
 									? 'border-none bg-correctAnswerLight dark:bg-correctAnswerDark'
@@ -180,7 +180,8 @@ export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 								// active button
 								questionIndex === number - 1 ? 'opacity-30 ' : ''
 							}`}
-							onClick={() => setQuestionIndex(number - 1)}>
+							onClick={() => setQuestionIndex(number - 1)}
+						>
 							{number}
 						</button>
 					))}
@@ -188,8 +189,8 @@ export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 
 				<div className='mt-[25px] border-b border-solid border-border-color-light dark:border-border-color-dark'></div>
 
-				<div className='w-full flex justify-center mt-[25px]'>
-					<div className='flex flex-col rounded-[20px] border border-solid border-border-color-light dark:border-border-color-dark max-w-[600px] w-full'>
+				<div className='mt-[25px] flex w-full justify-center'>
+					<div className='flex w-full max-w-[600px] flex-col rounded-[20px] border border-solid border-border-color-light dark:border-border-color-dark'>
 						<QuizQuestion
 							questionNummber={questionIndex + 1}
 							question={savedQuiz[questionIndex].question}
@@ -232,35 +233,38 @@ export const SavedQuiz = ({ savedQuiz, quizName }: SavedQuizProps) => {
 				</div>
 
 				{quiz[questionIndex].message && (
-					<p className='text-lg text-center w-full mt-[25px] text-black dark:text-white'>
+					<p className='mt-[25px] w-full text-center text-lg text-black dark:text-white'>
 						{quiz[questionIndex].message}
 					</p>
 				)}
 
-				<div className='w-full flex flex-col items-center mt-[15px]'>
-					<div className='flex justify-center items-center gap-[50px] max-w-[600px] w-full mt-[10px]'>
+				<div className='mt-[15px] flex w-full flex-col items-center'>
+					<div className='mt-[10px] flex w-full max-w-[600px] items-center justify-center gap-[50px]'>
 						<button
 							onClick={() => previousQuestion()}
-							className={`flex justify-center px-[15px] py-[7px] text-lg bg-btn-violet-color text-white transition-colors hover:bg-btn-violet-color-hover ${
-								!questionIndex ? 'cursor-not-allowed' : 'cursor-pointer'
-							}`}>
+							className={`flex justify-center bg-btn-violet-color px-[15px] py-[7px] text-lg text-white transition-colors hover:bg-btn-violet-color-hover 
+							${!questionIndex ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+						>
 							Poprzednie pytanie
 						</button>
 						<button
 							onClick={() => nextQuestion()}
-							className='flex justify-center px-[15px] py-[7px] text-lg bg-btn-violet-color text-white cursor-pointer transition-colors hover:bg-btn-violet-color-hover'>
+							className='flex cursor-pointer justify-center bg-btn-violet-color px-[15px] py-[7px] text-lg text-white transition-colors hover:bg-btn-violet-color-hover'
+						>
 							Następne pytanie
 						</button>
 					</div>
 
 					<p
-						className={`text-lg text-center w-full mt-[25px]  ${
+						className={`mt-[25px] w-full text-center text-lg  
+						${
 							+quizResult < 50
 								? 'text-error-color'
 								: +quizResult > 80
 								? 'text-correctAnswerLight dark:text-correctAnswerDark'
 								: 'text-black dark:text-white'
-						}`}>
+						}`}
+					>
 						Twój wynik to: {quizResult}% ({correctAnswer}/{savedQuiz.length})
 					</p>
 				</div>

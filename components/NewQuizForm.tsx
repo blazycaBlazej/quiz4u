@@ -19,7 +19,7 @@ export const NewQuizForm = () => {
 		mode: 'onSubmit',
 	})
 
-	const { register, control, handleSubmit, formState, getValues } = form
+	const { register, handleSubmit, formState, getValues } = form
 	const { errors, isSubmitting } = formState
 
 	const router = useRouter()
@@ -50,19 +50,19 @@ export const NewQuizForm = () => {
 	}
 
 	return (
-		<main className='flex flex-col justify-center items-center gap-[20px] w-full'>
+		<main className='flex w-full flex-col items-center justify-center gap-[20px]'>
 			<span className='text-3xl text-black dark:text-white '>Dodaj nowy Quiz</span>
-			<form className='max-w-[410px] w-full' onSubmit={handleSubmit(onSubmit)} noValidate>
-				<div className='max-w-[410px] w-full relative mb-[20px]'>
+			<form className='w-full max-w-[410px]' onSubmit={handleSubmit(onSubmit)} noValidate>
+				<div className='relative mb-[20px] w-full max-w-[410px]'>
 					<label
 						htmlFor='quizName'
-						className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-							nameIsActive || getValues('name') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-						}`}>
+						className={`transition-top-left pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark
+						 ${nameIsActive || getValues('name') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+					>
 						Nazwa quizu
 					</label>
 					<input
-						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-[20px] text-black dark:text-white '
+						className=' h-[50px] w-full max-w-[410px] rounded-[20px] border-2 border-border-color-light bg-main-bgn-light pl-[20px] pr-[50px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white '
 						type='text'
 						id='quizName'
 						autoComplete='off'
@@ -80,20 +80,21 @@ export const NewQuizForm = () => {
 						onFocus={() => setNameIsActive(true)}
 						onBlur={() => setNameIsActive(false)}
 					/>
-					<span className='text-sm text-error-color  block my-[4px]'>{errors.name?.message}</span>
+					<span className='my-[4px] block  text-sm text-error-color'>{errors.name?.message}</span>
 				</div>
 
 				{/* description */}
-				<div className='max-w-[410px] w-full relative mb-[15px]'>
+				<div className='relative mb-[15px] w-full max-w-[410px]'>
 					<label
 						htmlFor='description'
-						className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-							descriptionIsActive || getValues('description') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-						}`}>
+						className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark ${
+							descriptionIsActive || getValues('description') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'
+						}`}
+					>
 						Opis quizu*
 					</label>
 					<textarea
-						className='resize-none overflow-auto h-[310px] max-w-[410px] w-full px-[20px] py-[10px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-l-[20px] text-black dark:text-white '
+						className='h-[310px] w-full max-w-[410px] resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white '
 						id='description'
 						{...register('description', {
 							maxLength: {
@@ -104,12 +105,13 @@ export const NewQuizForm = () => {
 						onFocus={() => setDescriptionIsActive(true)}
 						onBlur={() => setDescriptionIsActive(false)}
 					/>
-					<span className='text-sm text-error-color  block my-[4px]'>{errors.description?.message}</span>
+					<span className='my-[4px] block  text-sm text-error-color'>{errors.description?.message}</span>
 				</div>
 
 				<Button
 					variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
-					disabled={isSubmitting || Object.keys(errors).length > 0}>
+					disabled={isSubmitting || Object.keys(errors).length > 0}
+				>
 					{isSubmitting ? <Loader /> : 'Dodaj quiz'}
 				</Button>
 			</form>

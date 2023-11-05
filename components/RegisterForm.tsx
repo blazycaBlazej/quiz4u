@@ -1,7 +1,8 @@
 'use client'
+
 import React, { useState } from 'react'
 import { IconEye, IconEyeOff } from '@tabler/icons-react'
-import { get, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 import Link from 'next/link'
 import {
@@ -69,20 +70,20 @@ export const RegisterForm = () => {
 		}
 	}
 	return (
-		<main className='flex flex-col justify-center items-center gap-[20px] min-h-[calc(100vh-404px)] w-full'>
+		<main className='flex min-h-[calc(100vh-404px)] w-full flex-col items-center justify-center gap-[20px]'>
 			<span className='text-3xl text-black dark:text-white'>Rejestracja</span>
-			<form className='max-w-[410px] w-full' onSubmit={handleSubmit(onSubmit)} noValidate>
+			<form className='w-full max-w-[410px]' onSubmit={handleSubmit(onSubmit)} noValidate>
 				{/* login */}
-				<div className='max-w-[410px] w-full relative mb-[20px]'>
+				<div className='relative mb-[20px] w-full max-w-[410px]'>
 					<label
 						htmlFor='login'
-						className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-							loginIsActive || getValues('login') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-						}`}>
+						className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
+						${loginIsActive || getValues('login') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+					>
 						Login*
 					</label>
 					<input
-						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-[20px] text-black dark:text-white'
+						className=' h-[50px] w-full max-w-[410px] rounded-[20px] border-2 border-border-color-light bg-main-bgn-light pl-[20px] pr-[50px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white'
 						type='text'
 						id='login'
 						autoComplete='off'
@@ -97,7 +98,7 @@ export const RegisterForm = () => {
 								message: 'Login jest za długi, maksymalna ilość znaków to 15',
 							},
 							validate: {
-								loginValidation: async fieldValue => {
+								loginValidation: async (fieldValue) => {
 									const result = await loginValidationFunc(fieldValue)
 									return result
 								},
@@ -106,19 +107,19 @@ export const RegisterForm = () => {
 						onFocus={() => setLoginIsActive(true)}
 						onBlur={() => setLoginIsActive(false)}
 					/>
-					<span className='text-sm text-error-color  block my-[4px]'>{errors.login?.message}</span>
+					<span className='my-[4px] block  text-sm text-error-color'>{errors.login?.message}</span>
 				</div>
 				{/* email */}
-				<div className='max-w-[410px] w-full relative mb-[20px]'>
+				<div className='relative mb-[20px] w-full max-w-[410px]'>
 					<label
 						htmlFor='email'
-						className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-							emailIsActive || getValues('email') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-						}`}>
+						className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
+						${emailIsActive || getValues('email') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+					>
 						Email*
 					</label>
 					<input
-						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-[20px] text-black dark:text-white'
+						className=' h-[50px] w-full max-w-[410px] rounded-[20px] border-2 border-border-color-light bg-main-bgn-light pl-[20px] pr-[50px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white'
 						type='text'
 						id='email'
 						autoComplete='off'
@@ -129,7 +130,7 @@ export const RegisterForm = () => {
 								message: 'Nieprawidłowy format maila',
 							},
 							validate: {
-								emailValidation: async fieldValue => {
+								emailValidation: async (fieldValue) => {
 									const result = await emailValidationFunc(fieldValue)
 									return result
 								},
@@ -138,20 +139,20 @@ export const RegisterForm = () => {
 						onFocus={() => setEmailIsActive(true)}
 						onBlur={() => setEmailIsActive(false)}
 					/>
-					<span className='text-sm text-error-color  block my-[4px]'>{errors.email?.message}</span>
+					<span className='my-[4px] block  text-sm text-error-color'>{errors.email?.message}</span>
 				</div>
 
 				{/* password */}
 				<div className='relative mb-[20px]'>
 					<label
 						htmlFor='password'
-						className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-							passwordIsActive || getValues('password') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-						}`}>
+						className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
+						${passwordIsActive || getValues('password') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+					>
 						Hasło*
 					</label>
 					<input
-						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-bgn-light dark:bg-main-bgn-dark border-2 border-border-color-light dark:border-border-color-dark rounded-[20px] text-black dark:text-white'
+						className=' h-[50px] w-full max-w-[410px] rounded-[20px] border-2 border-border-color-light bg-main-bgn-light pl-[20px] pr-[50px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white'
 						type={showPassword ? 'text' : 'password'}
 						id='confirmPassword'
 						{...register('password', {
@@ -173,26 +174,25 @@ export const RegisterForm = () => {
 						onBlur={() => setPasswordIsActive(false)}
 					/>
 					<span
-						className='block absolute top-[12px] right-[20px] cursor-pointer text-black dark:text-white transition-colors hover:text-light-text dark:hover:text-dark-text'
-						onClick={() => setShowPassword(!showPassword)}>
+						className='absolute right-[20px] top-[12px] block cursor-pointer text-black transition-colors hover:text-light-text dark:text-white dark:hover:text-dark-text'
+						onClick={() => setShowPassword(!showPassword)}
+					>
 						{showPassword ? <IconEyeOff /> : <IconEye />}
 					</span>
-					<span className='text-sm text-error-color  block my-[4px]'>{errors.password?.message}</span>
+					<span className='my-[4px] block  text-sm text-error-color'>{errors.password?.message}</span>
 				</div>
 
 				{/*confirm password */}
 				<div className='relative mb-[20px]'>
 					<label
 						htmlFor='confirmPassword'
-						className={`absolute  pointer-events-none transition-top-left bg-main-bgn-light dark:bg-main-bgn-dark px-[4px] ${
-							confirmPasswordIsActive || getValues('confirmPassword')
-								? 'top-[-10px] left-[15px]'
-								: 'top-[12px] left-[20px]'
-						}`}>
+						className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
+						${confirmPasswordIsActive || getValues('confirmPassword') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+					>
 						Powtórz hasło*
 					</label>
 					<input
-						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-bgn-light dark:bg-main-bgn-dark border-2  border-border-color-light dark:border-border-color-dark rounded-[20px] text-black dark:text-white'
+						className=' h-[50px] w-full max-w-[410px] rounded-[20px] border-2 border-border-color-light bg-main-bgn-light pl-[20px]  pr-[50px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white'
 						type={showPassword ? 'text' : 'password'}
 						id='password'
 						{...register('confirmPassword', {
@@ -205,11 +205,12 @@ export const RegisterForm = () => {
 						onBlur={() => setConfirmPasswordIsActive(false)}
 					/>
 					<span
-						className='block absolute top-[12px] right-[20px] cursor-pointer text-black dark:text-white transition-colors hover:text-light-text dark:hover:text-dark-text'
-						onClick={() => setShowPassword(!showPassword)}>
+						className='absolute right-[20px] top-[12px] block cursor-pointer text-black transition-colors hover:text-light-text dark:text-white dark:hover:text-dark-text'
+						onClick={() => setShowPassword(!showPassword)}
+					>
 						{showPassword ? <IconEyeOff /> : <IconEye />}
 					</span>
-					<span className='text-sm text-error-color  block my-[4px]'>{errors.confirmPassword?.message}</span>
+					<span className='my-[4px] block  text-sm text-error-color'>{errors.confirmPassword?.message}</span>
 				</div>
 
 				<label className='flex gap-2'>
@@ -228,19 +229,20 @@ export const RegisterForm = () => {
 					/>
 					Akceptuję Regulamin i Politykę prywatności *.
 				</label>
-				<span className='text-sm text-error-color  block my-[4px]'>{errors.rules?.message}</span>
+				<span className='my-[4px] block  text-sm text-error-color'>{errors.rules?.message}</span>
 
 				<Button
 					variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
-					disabled={isSubmitting || Object.keys(errors).length > 0}>
+					disabled={isSubmitting || Object.keys(errors).length > 0}
+				>
 					{isSubmitting ? <Loader /> : 'Zarejstruj się'}
 				</Button>
 			</form>
-			{submitingError && <span className='text-sm text-error-color  block my-[4px]'>{submitingError}</span>}
+			{submitingError && <span className='my-[4px] block  text-sm text-error-color'>{submitingError}</span>}
 			{/* <DevTool control={control} /> */}
 
 			<Link href='/logowanie'>
-				<span className='text-black dark:text-white underline cursor-pointer block text-right transition-colors hover:text-light-text dark:hover:text-dark-text'>
+				<span className='block cursor-pointer text-right text-black underline transition-colors hover:text-light-text dark:text-white dark:hover:text-dark-text'>
 					Masz konto ? - Kliknji aby zalogować się
 				</span>
 			</Link>

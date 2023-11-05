@@ -1,11 +1,10 @@
 'use client'
-import { useEffect, useState } from 'react'
+
+import { useState } from 'react'
 import useSWR, { mutate } from 'swr'
 import { useSession } from 'next-auth/react'
 import { IconError404, IconStar, IconStarFilled } from '@tabler/icons-react'
-
 import { Loader } from '.'
-
 import { notification } from '@/lib/lib'
 
 interface SaveQuestionProps {
@@ -43,7 +42,7 @@ const SaveQuestion = ({ questionID, quizName }: SaveQuestionProps) => {
 		{
 			revalidateOnFocus: false,
 			revalidateOnReconnect: false,
-		}
+		},
 	)
 
 	const saveQuestion = async () => {
@@ -106,7 +105,7 @@ const SaveQuestion = ({ questionID, quizName }: SaveQuestionProps) => {
 					<span>
 						<IconStarFilled
 							onClick={deletedSavedQuestion}
-							className={`text-light-text dark:text-dark-text hover:text-light-text/50 hover:dark:text-dark-text/60`}
+							className={`text-light-text hover:text-light-text/50 dark:text-dark-text hover:dark:text-dark-text/60`}
 							width={28}
 							height={28}
 						/>

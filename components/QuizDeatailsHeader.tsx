@@ -1,4 +1,5 @@
 'use client'
+
 import { IconEye, IconTrash } from '@tabler/icons-react'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -7,7 +8,6 @@ import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import Button from './Button'
 import { notification } from '@/lib/lib'
-import { useMenu } from '@/app/context/MenuProvider'
 
 interface QuizDeatailsHeaderProps {
 	quizName: string
@@ -71,26 +71,27 @@ export const QuizDeatailsHeader = ({ quizName }: QuizDeatailsHeaderProps) => {
 	}
 
 	return (
-		<div className='header flex justify-between items-center'>
-			<h1 className='text-[27px] text-black dark:text-white mx-[20px] my-[15px] '>Quiz: {quizName}</h1>
-			<div className='flex gap-[10px] mr-[33px]'>
+		<div className='header flex items-center justify-between'>
+			<h1 className='mx-[20px] my-[15px] text-[27px] text-black dark:text-white '>Quiz: {quizName}</h1>
+			<div className='mr-[33px] flex gap-[10px]'>
 				<Link href={`/quiz/${quizName}`}>
-					<span className='block  cursor-pointer text-black dark:text-white transition-colors hover:text-light-text dark:hover:text-dark-text'>
+					<span className='block  cursor-pointer text-black transition-colors hover:text-light-text dark:text-white dark:hover:text-dark-text'>
 						<IconEye width='40' height='40' />
 					</span>
 				</Link>
 				<span
 					onClick={openModal}
-					className='block  cursor-pointer text-black dark:text-white transition-colors hover:text-error-color'>
+					className='block  cursor-pointer text-black transition-colors hover:text-error-color dark:text-white'
+				>
 					<IconTrash width='40' height='40' />
 				</span>
 				<Modal isOpen={isOpen} closeModal={closeModal} title={`Czy na pewnwo chcesz usunąć quiz: ${quizName} ?`}>
 					<>
-						<span className='block mb-[8px]'>Aby usunąć quiz wpisz poniżej nazwę quizu:</span>
-						<form className='max-w-[410px] w-full' onSubmit={handleSubmit(onSubmit)} noValidate>
-							<div className='max-w-[410px] w-full relative mb-[5px]'>
+						<span className='mb-[8px] block'>Aby usunąć quiz wpisz poniżej nazwę quizu:</span>
+						<form className='w-full max-w-[410px]' onSubmit={handleSubmit(onSubmit)} noValidate>
+							<div className='relative mb-[5px] w-full max-w-[410px]'>
 								<input
-									className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px]  border-2 border-border-color-light dark:border-border-color-dark rounded-[20px] text-gray-900 '
+									className=' h-[50px] w-full max-w-[410px] rounded-[20px] border-2  border-border-color-light pl-[20px] pr-[50px] text-gray-900 dark:border-border-color-dark '
 									type='text'
 									id='quizName'
 									autoComplete='off'
@@ -98,13 +99,14 @@ export const QuizDeatailsHeader = ({ quizName }: QuizDeatailsHeaderProps) => {
 										required: 'Pole jest wymagane',
 									})}
 								/>
-								<span className='text-sm text-error-color  block my-[4px]'>{errors.quizName?.message}</span>
+								<span className='my-[4px] block  text-sm text-error-color'>{errors.quizName?.message}</span>
 							</div>
-							{submitingError && <span className='text-sm text-error-color  block my-[4px]'>{submitingError}</span>}
+							{submitingError && <span className='my-[4px] block  text-sm text-error-color'>{submitingError}</span>}
 
 							<Button
 								variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
-								disabled={isSubmitting || Object.keys(errors).length > 0}>
+								disabled={isSubmitting || Object.keys(errors).length > 0}
+							>
 								{isSubmitting ? <Loader /> : 'Usuń quiz'}
 							</Button>
 						</form>

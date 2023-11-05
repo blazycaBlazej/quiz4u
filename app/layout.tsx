@@ -24,6 +24,13 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	const menuElements = await getMenuItems()
 	const user = await getIsLogged()
+
+	// if (!menuElements) {
+	// 	throw new Error('Błąd podczas pobierania menu.')
+	// }
+	// if (!user) {
+	// 	throw new Error('Błąd podczas pobierania menu.')
+	// }
 	// console.log('menu: ', menuElements)
 	return (
 		<html lang='en' className={`${nunito.className} dark`} style={{ colorScheme: 'dark' }}>
@@ -33,16 +40,17 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 						<MenuProvider>
 							<Overlay />
 							<div
-								className={`flex  min-h-screen bg-main-bgn-light text-light-text dark:text-dark-text dark:bg-main-bgn-dark`}>
+								className={`flex  min-h-screen bg-main-bgn-light text-light-text dark:bg-main-bgn-dark dark:text-dark-text`}
+							>
 								<Navbar isAdmin={user?.isAdmin} item={...menuElements} />
 
-								<div className='lg:ml-[280px] flex flex-col w-full'>
-									<div className='fixed w-full right-0 top-0 z-[998] bg-main-bgn-light dark:bg-main-bgn-dark '>
+								<div className='flex w-full flex-col lg:ml-[280px]'>
+									<div className='fixed right-0 top-0 z-[998] w-full bg-main-bgn-light dark:bg-main-bgn-dark '>
 										<UserSection userName={user?.login} />
 									</div>
 
-									<div className='max-w-[1200px] w-full mx-auto m '>
-										<div className='mt-[90px] mx-[20px] mb-[10px] '>
+									<div className='m mx-auto w-full max-w-[1200px] '>
+										<div className='mx-[20px] mb-[10px] mt-[90px] '>
 											{children}
 
 											{/* <Footer /> */}

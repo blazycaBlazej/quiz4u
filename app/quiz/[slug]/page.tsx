@@ -2,7 +2,6 @@
 
 import { getNumberQuestionInQuiz } from '@/lib/getNumberQuestionsInQuiz'
 import { getQuizDeatails } from '@/lib/getQuizDeatails'
-import { getIsAdmin } from '@/lib/getIsAdmin'
 import QuizDeatails from '@/components/QuizDeatails'
 import { LatestQuizzesWrapper } from '@/components/LatestQuizzesWrapper'
 
@@ -16,7 +15,7 @@ export default async function QuizPage({ params }: { params: { slug: string } })
 	}
 
 	return (
-		<main className='flex flex-col w-full'>
+		<main className='flex w-full flex-col'>
 			<QuizDeatails
 				quizDeatails={quizDeatails}
 				questionsNumber={questionsNumber}

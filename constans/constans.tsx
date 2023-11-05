@@ -1751,4 +1751,4 @@ const questionsMusic = [
 		answerD: 'Nirvana',
 		correctAnswer: 'answerA',
 	},
-]
+];

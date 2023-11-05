@@ -49,7 +49,7 @@ export async function GET(req: NextRequest) {
 			const randomQuestions: quiz[] = await prisma.question.findMany({
 				where: {
 					id: {
-						in: randomIDQuestions.map(question => question.questionID),
+						in: randomIDQuestions.map((question) => question.questionID),
 					},
 				},
 			})

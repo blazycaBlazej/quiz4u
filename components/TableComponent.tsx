@@ -57,34 +57,38 @@ function Table({ data, columns, renderSubComponent, getRowCanExpand }: TableProp
 			<span className='flex w-full justify-center text-3xl text-black dark:text-white'>Edytuj detale quizu</span>
 			<div className='flex w-full justify-end'>
 				<button
-					className='text-black dark:text-white transition-colors cursor-pointer hover:text-light-text dark:hover:text-dark-text'
-					onClick={() => table.setPageIndex(0)}>
+					className='cursor-pointer text-black transition-colors hover:text-light-text dark:text-white dark:hover:text-dark-text'
+					onClick={() => table.setPageIndex(0)}
+				>
 					<IconChevronLeftPipe />
 				</button>
 				<button
-					className='text-black dark:text-white transition-colors cursor-pointer hover:text-light-text dark:hover:text-dark-text'
+					className='cursor-pointer text-black transition-colors hover:text-light-text dark:text-white dark:hover:text-dark-text'
 					onClick={() => table.previousPage()}
-					disabled={!table.getCanPreviousPage()}>
+					disabled={!table.getCanPreviousPage()}
+				>
 					<IconChevronLeft />
 				</button>
 				<button
-					className='text-black dark:text-white transition-colors cursor-pointer hover:text-light-text dark:hover:text-dark-text'
+					className='cursor-pointer text-black transition-colors hover:text-light-text dark:text-white dark:hover:text-dark-text'
 					onClick={() => table.nextPage()}
-					disabled={!table.getCanNextPage()}>
+					disabled={!table.getCanNextPage()}
+				>
 					<IconChevronRight />
 				</button>
 				<button
-					className='text-black dark:text-white transition-colors cursor-pointer hover:text-light-text dark:hover:text-dark-text'
-					onClick={() => table.setPageIndex(table.getPageCount() - 1)}>
+					className='cursor-pointer text-black transition-colors hover:text-light-text dark:text-white dark:hover:text-dark-text'
+					onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+				>
 					<IconChevronRightPipe />
 				</button>
 			</div>
 			<div className='overflow-x-auto'>
 				<table className='w-full'>
 					<thead className='text-black dark:text-white'>
-						{table.getHeaderGroups().map(headerGroup => (
+						{table.getHeaderGroups().map((headerGroup) => (
 							<tr key={headerGroup.id}>
-								{headerGroup.headers.map(header => (
+								{headerGroup.headers.map((header) => (
 									<th key={header.id}>
 										{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
 									</th>
@@ -93,12 +97,13 @@ function Table({ data, columns, renderSubComponent, getRowCanExpand }: TableProp
 						))}
 					</thead>
 					<tbody className='text-base '>
-						{table.getRowModel().rows.map(row => (
+						{table.getRowModel().rows.map((row) => (
 							<>
 								<tr
 									key={row.id}
-									className='border-t-[1px] hover:bg-element-backgorund-light dark:hover:dark:bg-element-backgorund-dark/90'>
-									{row.getVisibleCells().map(cell => (
+									className='border-t-[1px] hover:bg-element-backgorund-light dark:hover:dark:bg-element-backgorund-dark/90'
+								>
+									{row.getVisibleCells().map((cell) => (
 										<td key={cell.id} className='p-[16px]'>
 											{flexRender(cell.column.columnDef.cell, cell.getContext())}
 										</td>
@@ -133,7 +138,7 @@ interface Question {
 interface TableComponentProps {
 	quizName: string
 }
-const fetcher = (url: string) => fetch(url).then(res => res.json())
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 export const TableComponent = ({ quizName }: TableComponentProps) => {
 	const { data, error, isLoading } = useSWR(`/api/getQuestions?quizName=${quizName}`, fetcher)
@@ -214,7 +219,7 @@ export const TableComponent = ({ quizName }: TableComponentProps) => {
 				return row.getCanExpand() ? (
 					<Menu as='div' className=''>
 						<Menu.Button>
-							<IconDotsVertical className='z-[-1] cursor-pointer transition-colors text-black dark:text-white hover:text-btn-violet-color' />
+							<IconDotsVertical className='z-[-1] cursor-pointer text-black transition-colors hover:text-btn-violet-color dark:text-white' />
 						</Menu.Button>
 						<Transition
 							enter=' transition transform ease-out duration-200'
@@ -222,26 +227,30 @@ export const TableComponent = ({ quizName }: TableComponentProps) => {
 							enterTo='opacity-100 scale-100'
 							leave='transition transform ease-in duration-200'
 							leaveFrom='opacity-100 scale-100'
-							leaveTo='opacity-0 scale-0'>
+							leaveTo='opacity-0 scale-0'
+						>
 							<Menu.Items
 								as='div'
-								className={`absolute right-0 flex flex-col w-[110px] bg-element-backgorund-light dark:bg-element-backgorund-dark border border-border-color-light dark:border-border-color-dark rounded `}>
+								className={`absolute right-0 flex w-[110px] flex-col rounded border border-border-color-light bg-element-backgorund-light dark:border-border-color-dark dark:bg-element-backgorund-dark `}
+							>
 								<Menu.Item>
 									<span
 										onClick={row.getToggleExpandedHandler()}
-										className='p-[8px] text-black dark:text-white transition-colors cursor-pointer hover:bg-element-hover-backgorund-light dark:hover:bg-element-hover-backgorund-dark'>
+										className='cursor-pointer p-[8px] text-black transition-colors hover:bg-element-hover-backgorund-light dark:text-white dark:hover:bg-element-hover-backgorund-dark'
+									>
 										{row.getIsExpanded() ? 'Pokaż mniej' : 'Pokaż więcej'}
 									</span>
 								</Menu.Item>
 								<Menu.Item>
-									<span className='p-[8px] text-sm  text-black dark:text-white transition-colors cursor-pointer hover:bg-element-hover-backgorund-light dark:hover:bg-element-hover-backgorund-dark'>
+									<span className='cursor-pointer p-[8px]  text-sm text-black transition-colors hover:bg-element-hover-backgorund-light dark:text-white dark:hover:bg-element-hover-backgorund-dark'>
 										Edytuj
 									</span>
 								</Menu.Item>
 								<Menu.Item>
 									<span
 										onClick={() => delateElement(rowData.id)}
-										className='p-[8px] text-sm  text-black dark:text-white transition-colors cursor-pointer hover:bg-element-hover-backgorund-light dark:hover:bg-element-hover-backgorund-dark'>
+										className='cursor-pointer p-[8px]  text-sm text-black transition-colors hover:bg-element-hover-backgorund-light dark:text-white dark:hover:bg-element-hover-backgorund-dark'
+									>
 										Usuń
 									</span>
 								</Menu.Item>

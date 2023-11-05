@@ -1,9 +1,8 @@
 'use client'
-import Image from 'next/image'
+
 import React, { useState } from 'react'
-import { IconArrowNarrowLeft, IconLoader } from '@tabler/icons-react'
+import { IconArrowNarrowLeft } from '@tabler/icons-react'
 import { useForm } from 'react-hook-form'
-import { DevTool } from '@hookform/devtools'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Button from '@/components/Button'
@@ -28,20 +27,20 @@ export default function page() {
 		router.push(`/email-wyslany?email=${data.email}`)
 	}
 	return (
-		<main className='flex flex-col justify-center items-center gap-[20px] h-[calc(100vh-404px)] w-full'>
-			<h2 className='max-w-[410px] w-full text-3xl text-black dark:text-white'>Zapomniałeś hasła ?</h2>
-			<p className='max-w-[410px] w-full'>Wprowadź swój adres e-mail, aby otrzymać instrukcje resetowania hasła.</p>
-			<form className='max-w-[410px] w-full' onSubmit={handleSubmit(onSubmit)} noValidate>
-				<div className='max-w-[410px] w-full relative mb-[20px]'>
+		<main className='flex h-[calc(100vh-404px)] w-full flex-col items-center justify-center gap-[20px]'>
+			<h2 className='w-full max-w-[410px] text-3xl text-black dark:text-white'>Zapomniałeś hasła ?</h2>
+			<p className='w-full max-w-[410px]'>Wprowadź swój adres e-mail, aby otrzymać instrukcje resetowania hasła.</p>
+			<form className='w-full max-w-[410px]' onSubmit={handleSubmit(onSubmit)} noValidate>
+				<div className='relative mb-[20px] w-full max-w-[410px]'>
 					<label
 						htmlFor='email'
-						className={`absolute  pointer-events-none transition-top-left px-[4px] ${
-							emailIsActive || getValues('email') ? 'top-[-10px] left-[15px]' : 'top-[12px] left-[20px]'
-						} bg-main-bgn-light dark:bg-main-bgn-dark `}>
+						className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark
+						${emailIsActive || getValues('email') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'} `}
+					>
 						Email*
 					</label>
 					<input
-						className=' h-[50px] max-w-[410px] w-full pl-[20px] pr-[50px] bg-main-bgn-light dark:bg-main-bgn-dark border-2  border-border-color rounded-[20px] text-black dark:text-white'
+						className=' border-border-color h-[50px] w-full max-w-[410px] rounded-[20px] border-2 bg-main-bgn-light pl-[20px]  pr-[50px] text-black dark:bg-main-bgn-dark dark:text-white'
 						type='text'
 						id='email'
 						autoComplete='off'
@@ -55,18 +54,19 @@ export default function page() {
 						onFocus={() => setEmailIsActive(true)}
 						onBlur={() => setEmailIsActive(false)}
 					/>
-					<span className='text-sm text-error-color  block my-[4px]'>{errors.email?.message}</span>
+					<span className='my-[4px] block  text-sm text-error-color'>{errors.email?.message}</span>
 				</div>
 
 				<Button
 					variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
-					disabled={isSubmitting || Object.keys(errors).length > 0}>
+					disabled={isSubmitting || Object.keys(errors).length > 0}
+				>
 					{isSubmitting ? <Loader /> : 'Resetuj hasło'}
 				</Button>
 			</form>
 
 			<Link href='/logowanie'>
-				<span className='text-black dark:text-white underline cursor-pointer  flex gap-2 text-right transition-colors hover:text-light-text dark:hover:text-dark-text'>
+				<span className='flex cursor-pointer gap-2 text-right  text-black underline transition-colors hover:text-light-text dark:text-white dark:hover:text-dark-text'>
 					<IconArrowNarrowLeft /> Wróć do logowania
 				</span>
 			</Link>

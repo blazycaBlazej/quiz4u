@@ -36,7 +36,7 @@ export async function GET(req: NextRequest) {
 			if (type !== 'printTest' && type !== 'randomizeXQuestions' && type !== 'randomize20Questions') {
 				return NextResponse.json(
 					{ message: `W quizie: ${quizName} wyłączona jest opcja drukowania pytań.` },
-					{ status: 422 }
+					{ status: 422 },
 				)
 			}
 

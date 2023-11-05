@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
 
 		return NextResponse.json(
 			{ message: 'Quiz został zaktualizowany.', pathname: `/edytuj-quiz/${name}/detale` },
-			{ status: 200 }
+			{ status: 200 },
 		)
 	} catch (e) {
 		console.log('errror: ', e)
@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
 			if (e.code === 'P2002') {
 				return NextResponse.json(
 					{ message: `Nie możesz zmienić nazwy quizu na '${name}', ponieważ quiz o tej nazwiie już istnieje` },
-					{ status: 422 }
+					{ status: 422 },
 				)
 			}
 		}

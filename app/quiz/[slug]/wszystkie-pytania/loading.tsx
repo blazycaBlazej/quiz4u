@@ -1,4 +1,5 @@
 'use client'
+
 import { IconLoader2 } from '@tabler/icons-react'
 
 const Loading = (): React.JSX.Element => {

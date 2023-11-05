@@ -1,6 +1,5 @@
 import { AllQuestionsListWrapper } from '@/components/AllQuestionsListWrapper'
 import Await from '@/components/Await'
-
 import { Suspense } from 'react'
 import Loading from './loading'
 import { getQuestionsWithPagination } from '@/lib/getSavedQuestionsWithPagination'
@@ -21,12 +20,12 @@ const xQuestions = async ({
 
 	return (
 		<div className='w-full'>
-			<h3 className='text-3xl text-black dark:text-white  mt-[25px] w-full text-center'>
+			<h3 className='mt-[25px] w-full text-center  text-3xl text-black dark:text-white'>
 				Wysztkie pytania w quzie - {quizName}
 			</h3>
 			<Suspense fallback={<Loading />}>
 				<Await promise={dataPromise}>
-					{data => (
+					{(data) => (
 						<AllQuestionsListWrapper
 							data={data}
 							quizName={quizName}

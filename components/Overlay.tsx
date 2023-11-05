@@ -1,4 +1,5 @@
 'use client'
+
 import { useMenu } from '@/app/context/MenuProvider'
 import React from 'react'
 import FlipMove from 'react-flip-move'
@@ -17,8 +18,9 @@ const Overlay = () => {
 			leaveAnimation={{
 				from: { opacity: '0.8' },
 				to: { opacity: '0' },
-			}}>
-			{isOverlay && <div className='fixed top-0 left-0 w-full h-full bg-[black] z-[999] '></div>}
+			}}
+		>
+			{isOverlay && <div className='fixed left-0 top-0 z-[999] h-full w-full bg-[black] '></div>}
 		</FlipMove>
 	)
 }

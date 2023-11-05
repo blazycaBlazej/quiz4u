@@ -4,6 +4,7 @@ import { cache } from 'react'
 import prisma from './db/db'
 
 export const getMenuItems = cache(async () => {
+	// try {
 	const session = await getServerSession(authOptions)
 	const menu = [{ name: 'Strona główna', isNew: false, pathname: '/' }]
 	const quizzes = await prisma.quiz.findMany({
@@ -15,7 +16,7 @@ export const getMenuItems = cache(async () => {
 		},
 	})
 
-	quizzes.map(quiz => {
+	quizzes.map((quiz) => {
 		if (quiz.isActive || session?.user?.isAdmin) {
 			menu.push(quiz)
 		}
@@ -24,9 +25,11 @@ export const getMenuItems = cache(async () => {
 	if (!session) {
 		menu.push(
 			{ name: 'Rejestracja', isNew: false, pathname: '/rejestracja' },
-			{ name: 'Logowanie', isNew: false, pathname: '/logowanie' }
+			{ name: 'Logowanie', isNew: false, pathname: '/logowanie' },
 		)
 	}
-
 	return menu
+	// } catch {
+	// 	return null
+	// }
 })

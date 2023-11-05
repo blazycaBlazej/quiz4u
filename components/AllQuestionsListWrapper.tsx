@@ -1,10 +1,10 @@
 'use client'
+
 import Link from 'next/link'
 import { QuestionListView } from './QuestionListView'
 import { ChangeEvent } from 'react'
-
 import { useRouter } from 'next/navigation'
-import { IconChevronDownLeft, IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
+import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
 import Button from './Button'
 
 type dataPromise = {
@@ -60,18 +60,18 @@ export const AllQuestionsListWrapper = ({ data, quizName, currentPage, perPage, 
 		router.push(
 			`/${type === 'normal' ? 'quiz' : 'zapisane-pytania'}/${quizName}/wszystkie-pytania?strona=${1}&na-stronie=${
 				e.target.value
-			}`
+			}`,
 		)
 	}
 
 	return (
-		<div className='flex flex-col w-full items-center'>
+		<div className='flex w-full flex-col items-center'>
 			{data ? (
 				<>
-					<div className='flex items-center justify-center flex-col w-full max-w-[600px] my-[20px] gap-[10px]'>
+					<div className='my-[20px] flex w-full max-w-[600px] flex-col items-center justify-center gap-[10px]'>
 						<div className='flex gap-2 '>
 							<span className='text-black dark:text-white'>Pytań na stronie: </span>
-							<select onChange={e => changeHandler(e)} name='' id=''>
+							<select onChange={(e) => changeHandler(e)} name='' id=''>
 								<option value='5'>5</option>
 								<option value='10' selected>
 									10
@@ -92,30 +92,28 @@ export const AllQuestionsListWrapper = ({ data, quizName, currentPage, perPage, 
 							variant={currentPage === 1 ? 'disabled' : 'default'}
 							disabled={currentPage === 1}
 							rounded='sm'
-							size='sm'>
+							size='sm'
+						>
 							<IconChevronLeft />
 						</Button>
 						<div className='flex items-center'>
-							{pagination.map(element =>
+							{pagination.map((element) =>
 								element === '...' ? (
 									<span className='p-[5px]'>{element}</span>
 								) : (
 									<Link
 										href={`/${
 											type === 'normal' ? 'quiz' : 'zapisane-pytania'
-										}/${quizName}/wszystkie-pytania?strona=${element}&na-stronie=${perPage}`}>
+										}/${quizName}/wszystkie-pytania?strona=${element}&na-stronie=${perPage}`}
+									>
 										<span
-											className={`py-[4px] px-[9px] ml-[3px] rounded-md
-											cursor-pointer transition-colors 
-											hover:bg-element-active-backgorund-light/30	dark:hover:bg-element-active-backgorund-dark/30										}  ${
-												element === currentPage
-													? 'text-black dark:text-white bg-element-active-backgorund-dark/30 '
-													: ''
-											}`}>
+											className={`ml-[3px] cursor-pointer rounded-md px-[9px] py-[4px] transition-colors hover:bg-element-active-backgorund-light/30 dark:hover:bg-element-active-backgorund-dark/30	
+											${element === currentPage ? 'bg-element-active-backgorund-dark/30 text-black dark:text-white ' : ''}`}
+										>
 											{element}
 										</span>
 									</Link>
-								)
+								),
 							)}
 						</div>
 
@@ -126,7 +124,8 @@ export const AllQuestionsListWrapper = ({ data, quizName, currentPage, perPage, 
 							variant={currentPage === lastPage ? 'disabled' : 'default'}
 							disabled={currentPage === lastPage}
 							rounded='sm'
-							size='sm'>
+							size='sm'
+						>
 							<IconChevronRight />
 						</Button>
 					</div>

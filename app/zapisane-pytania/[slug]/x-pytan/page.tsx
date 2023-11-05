@@ -1,4 +1,5 @@
 'use client'
+
 import useSWR, { mutate } from 'swr'
 import { Loader } from '@/components'
 import { useSearchParams } from 'next/navigation'
@@ -29,7 +30,7 @@ const xSavedQuestions = ({ params }: { params: { slug: string } }) => {
 	const { data, error, isLoading } = useSWR(
 		`/api/getXSavedQuestions?quizName=${quizName}&numberQuestions=${questionNumber}`,
 		fetcher,
-		{ revalidateOnFocus: false, revalidateOnReconnect: false }
+		{ revalidateOnFocus: false, revalidateOnReconnect: false },
 	)
 
 	const reloadQuestions = () => {

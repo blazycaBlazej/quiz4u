@@ -43,20 +43,20 @@ const ThemeButton = () => {
 	}
 
 	return (
-		<div className='flex w-full justify-end mb-[10px]  mt-auto'>
-			<div className='flex justify-between items-center gap-1 p-[5px] text-black dark:text-white'>
+		<div className='mb-[10px] mt-auto flex w-full  justify-end'>
+			<div className='flex items-center justify-between gap-1 p-[5px] text-black dark:text-white'>
 				<div
 					onClick={setLightTheme}
-					className={`cursor-pointer transition-colors p-2 rounded-full  ${
-						resolvedTheme === 'light' ? 'bg-btn-violet-color' : 'hover:bg-btn-violet-color-hover'
-					}`}>
+					className={`cursor-pointer rounded-full p-2 transition-colors  
+					${resolvedTheme === 'light' ? 'bg-btn-violet-color' : 'hover:bg-btn-violet-color-hover'}`}
+				>
 					<IconSun width={20} height={20} className='' />
 				</div>
 				<div
 					onClick={setDarkTheme}
-					className={`cursor-pointer transition-colors p-2 rounded-full ${
-						resolvedTheme === 'dark' ? 'bg-btn-violet-color' : 'hover:bg-btn-violet-color-hover '
-					}`}>
+					className={`cursor-pointer rounded-full p-2 transition-colors 
+					${resolvedTheme === 'dark' ? 'bg-btn-violet-color' : 'hover:bg-btn-violet-color-hover '}`}
+				>
 					<IconMoon width={20} height={20} className='' />
 				</div>
 			</div>
