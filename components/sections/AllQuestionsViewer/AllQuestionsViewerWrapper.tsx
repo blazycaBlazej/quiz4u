@@ -1,7 +1,7 @@
 'use client'
 
 import Pagination from '@/components/ui/Pagination'
-import { QuestionView } from './QuestionLView'
+import { QuestionView } from './QuestionView'
 
 type dataPromise = {
 	questions: {
@@ -25,7 +25,7 @@ interface AllQuestionsListWrapper {
 }
 export const AllQuestionsViewerWrapper = ({ data, quizName, currentPage, perPage }: AllQuestionsListWrapper) => {
 	return (
-		<div className='flex w-full flex-col items-center'>
+		<div className='mb-[20px] flex w-full flex-col items-center'>
 			{data ? (
 				<>
 					<Pagination questionsNumber={data.questionsNumber} perPage={perPage} currentPage={currentPage} />
