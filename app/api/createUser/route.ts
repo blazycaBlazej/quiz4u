@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { hashPassword } from '@/lib/db/clientFunctions'
+
 import prisma from '@/lib/db/db'
 import { Prisma } from '@prisma/client'
+import { hashPassword } from '@/lib/lib'
 
 export async function POST(req: NextRequest) {
 	const data = await req.json()

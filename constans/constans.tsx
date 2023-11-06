@@ -40,8 +40,8 @@ export const quizzes = [
 	{ name: 'Technik Dekarz', isNew: true, pathname: '/quiz5', image: '/roofer.png' },
 ]
 export const userMenuElements = [
-	{ name: 'Profil', pathname: '/profil', icon: user },
-	{ name: 'Ustawienia', pathname: '/ustawienia', icon: settings },
+	// { name: 'Profil', pathname: '/profil', icon: user },
+	{ name: 'Ustawienia', pathname: '/konto/ustawienia', icon: settings },
 	{ name: 'Zapisane pytania', pathname: '/zapisane-pytania', icon: savedQuestions },
 	// { name: 'Zapisane quizy', pathname: '/zapisane-quizy', icon: savedQuizzes },
 	{ name: 'Wyloguj', pathname: '#', icon: logout },
@@ -1751,4 +1751,4 @@ const questionsMusic = [
 		answerD: 'Nirvana',
 		correctAnswer: 'answerA',
 	},
-];
+]

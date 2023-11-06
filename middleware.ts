@@ -10,5 +10,6 @@ export const config = {
 		'/edytuj-quiz/:path*/zarzadzaj-pytaniami',
 		'/quiz/:path*/zapisane-quizy',
 		'/quiz/:path*/zapisane-quizy/:path*',
+		'/konto/ustawienia',
 	],
 }

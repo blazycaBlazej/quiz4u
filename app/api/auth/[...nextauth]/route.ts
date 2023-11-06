@@ -1,5 +1,5 @@
-import { verifyPassword } from '@/lib/db/clientFunctions'
 import prisma from '@/lib/db/db'
+import { verifyPassword } from '@/lib/lib'
 import { AuthOptions } from 'next-auth'
 import NextAuth from 'next-auth/next'
 import CredentialsProvider from 'next-auth/providers/credentials'

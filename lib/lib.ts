@@ -2,6 +2,7 @@ import confetti from 'canvas-confetti'
 import { ClassValue, clsx } from 'clsx'
 import { toast } from 'react-toastify'
 import { twMerge } from 'tailwind-merge'
+import { hash, compare } from 'bcryptjs'
 
 export function getCorrectAnswerMessage() {
 	const correctMessage = [
@@ -85,4 +86,14 @@ export function notification(type: string, message: string) {
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
+}
+
+export async function hashPassword(password: string): Promise<string> {
+	const heshedPassword = await hash(password, 12)
+	return heshedPassword
+}
+
+export async function verifyPassword(password: string, heshedPassword: string) {
+	const isValid = await compare(password, heshedPassword)
+	return isValid
 }
