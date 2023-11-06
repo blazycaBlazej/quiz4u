@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import Pagination from './Pagination'
+import Pagination from '../../ui/Pagination'
 import QuestionsManagerTable from './QuestionsManagerTable'
 import { quiz } from '@/types/types'
 
@@ -20,12 +20,7 @@ const QuestionManager: FC<QuestionManagerProps> = ({ data, quizName, currentPage
 	else
 		return (
 			<div className='mb-[25px]' style={{ width: 'calc(100% - 30px)' }}>
-				<Pagination
-					questionsNumber={data.questionsNumber}
-					perPage={perPage}
-					currentPage={currentPage}
-					url={`/edytuj-quiz/${quizName}/zarzadzaj-pytaniami`}
-				/>
+				<Pagination questionsNumber={data.questionsNumber} perPage={perPage} currentPage={currentPage} />
 				<QuestionsManagerTable questions={data.questions} />
 			</div>
 		)

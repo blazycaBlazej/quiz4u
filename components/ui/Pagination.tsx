@@ -3,19 +3,19 @@
 import Button from '@/components/ui/Button'
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import React, { ChangeEvent, FC } from 'react'
 
 interface PaginationProps {
 	questionsNumber: number
 	perPage: number
 	currentPage: number
-	url: string
 }
 
-const Pagination: FC<PaginationProps> = ({ questionsNumber, perPage, currentPage, url }) => {
+const Pagination: FC<PaginationProps> = ({ questionsNumber, perPage, currentPage }) => {
 	const lastPage = typeof questionsNumber === 'number' ? Math.ceil(questionsNumber / perPage) : 10
 	const router = useRouter()
+	const pathname = usePathname()
 
 	const getPagination = (currentPage: number, lastPage: number) => {
 		let pages: (number | string)[] = []
@@ -41,7 +41,7 @@ const Pagination: FC<PaginationProps> = ({ questionsNumber, perPage, currentPage
 	const pagination = getPagination(currentPage, lastPage)
 
 	const changeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-		router.push(`${url}?strona=${1}&na-stronie=${e.target.value}`)
+		router.push(`${pathname}?strona=${1}&na-stronie=${e.target.value}`)
 	}
 
 	return (
@@ -61,7 +61,7 @@ const Pagination: FC<PaginationProps> = ({ questionsNumber, perPage, currentPage
 			</div>
 			<div className='flex items-center gap-[20px]'>
 				<Button
-					href={`${url}?strona=${currentPage === 1 ? currentPage : currentPage - 1}&na-stronie=${perPage}`}
+					href={`${pathname}?strona=${currentPage === 1 ? currentPage : currentPage - 1}&na-stronie=${perPage}`}
 					variant={currentPage === 1 ? 'disabled' : 'default'}
 					disabled={currentPage === 1}
 					rounded='sm'
@@ -76,7 +76,7 @@ const Pagination: FC<PaginationProps> = ({ questionsNumber, perPage, currentPage
 								{element}
 							</span>
 						) : (
-							<Link key={index} href={`${url}?strona=${element}&na-stronie=${perPage}`}>
+							<Link key={index} href={`${pathname}?strona=${element}&na-stronie=${perPage}`}>
 								<span
 									className={`ml-[3px] cursor-pointer rounded-md px-[9px] py-[4px] transition-colors hover:bg-element-active-backgorund-light/30 dark:hover:bg-element-active-backgorund-dark/30	${
 										element === currentPage ? 'bg-element-active-backgorund-dark/30 text-black dark:text-white' : ''
@@ -90,7 +90,7 @@ const Pagination: FC<PaginationProps> = ({ questionsNumber, perPage, currentPage
 				</div>
 
 				<Button
-					href={`${url}?strona=${currentPage === lastPage ? currentPage : currentPage + 1}&na-stronie=${perPage}`}
+					href={`${pathname}?strona=${currentPage === lastPage ? currentPage : currentPage + 1}&na-stronie=${perPage}`}
 					variant={currentPage === lastPage ? 'disabled' : 'default'}
 					disabled={currentPage === lastPage}
 					rounded='sm'

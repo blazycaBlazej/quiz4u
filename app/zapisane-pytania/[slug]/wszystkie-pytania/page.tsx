@@ -1,10 +1,10 @@
-import { AllQuestionsViewerWrapper } from '@/components/sections/AllQuestionsViewerViewer/AllQuestionsViewerWrapper'
+import { AllQuestionsViewerWrapper } from '@/components/sections/AllQuestionsViewer/AllQuestionsViewerWrapper'
 import Await from '@/components/Await'
 import { getSavedQuestionsWithPagination } from '@/lib/getQuestionsWithPagination'
 import { Suspense } from 'react'
 import Loading from './loading'
 
-const xQuestions = async ({
+const xQuestionsPage = async ({
 	params,
 	searchParams,
 }: {
@@ -23,16 +23,11 @@ const xQuestions = async ({
 			<h3 className='mt-[25px] w-full text-center  text-3xl text-black dark:text-white'>
 				Wysztkie zapisane pytania z quizu - {quizName}
 			</h3>
+
 			<Suspense fallback={<Loading />}>
 				<Await promise={dataPromise}>
 					{(data) => (
-						<AllQuestionsViewerWrapper
-							data={data}
-							quizName={quizName}
-							currentPage={currentPage}
-							perPage={perPage}
-							type='savedQuestions'
-						/>
+						<AllQuestionsViewerWrapper data={data} quizName={quizName} currentPage={currentPage} perPage={perPage} />
 					)}
 				</Await>
 			</Suspense>
@@ -40,4 +35,4 @@ const xQuestions = async ({
 	)
 }
 
-export default xQuestions
+export default xQuestionsPage

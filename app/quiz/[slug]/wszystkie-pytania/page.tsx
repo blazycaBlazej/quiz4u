@@ -2,9 +2,9 @@ import Await from '@/components/Await'
 import { Suspense } from 'react'
 import Loading from './loading'
 import { getQuestionsWithPagination } from '@/lib/getSavedQuestionsWithPagination'
-import { AllQuestionsViewerWrapper } from '@/components/sections/AllQuestionsViewerViewer/AllQuestionsViewerWrapper'
+import { AllQuestionsViewerWrapper } from '@/components/sections/AllQuestionsViewer/AllQuestionsViewerWrapper'
 
-const xQuestions = async ({
+const xSavedQuestionsPage = async ({
 	params,
 	searchParams,
 }: {
@@ -26,13 +26,7 @@ const xQuestions = async ({
 			<Suspense fallback={<Loading />}>
 				<Await promise={dataPromise}>
 					{(data) => (
-						<AllQuestionsViewerWrapper
-							data={data}
-							quizName={quizName}
-							currentPage={currentPage}
-							perPage={perPage}
-							type='normal'
-						/>
+						<AllQuestionsViewerWrapper data={data} quizName={quizName} currentPage={currentPage} perPage={perPage} />
 					)}
 				</Await>
 			</Suspense>
@@ -40,4 +34,4 @@ const xQuestions = async ({
 	)
 }
 
-export default xQuestions
+export default xSavedQuestionsPage
