@@ -1,8 +1,8 @@
-import { AllQuestionsListWrapper } from '@/components/sections/AllQuestionsViewerViewer/AllQuestionsViewerWrapper'
 import Await from '@/components/Await'
 import { Suspense } from 'react'
 import Loading from './loading'
 import { getQuestionsWithPagination } from '@/lib/getSavedQuestionsWithPagination'
+import { AllQuestionsViewerWrapper } from '@/components/sections/AllQuestionsViewerViewer/AllQuestionsViewerWrapper'
 
 const xQuestions = async ({
 	params,
@@ -26,7 +26,7 @@ const xQuestions = async ({
 			<Suspense fallback={<Loading />}>
 				<Await promise={dataPromise}>
 					{(data) => (
-						<AllQuestionsListWrapper
+						<AllQuestionsViewerWrapper
 							data={data}
 							quizName={quizName}
 							currentPage={currentPage}
