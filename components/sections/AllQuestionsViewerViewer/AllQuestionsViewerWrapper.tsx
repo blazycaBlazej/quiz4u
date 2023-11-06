@@ -1,11 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { QuestionListView } from './QuestionListView'
+import { QuestionView } from './QuestionLView'
 import { ChangeEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
-import Button from './Button'
+import Button from '../../ui/Button'
 
 type dataPromise = {
 	questions: {
@@ -28,7 +28,7 @@ interface AllQuestionsListWrapper {
 	perPage: number
 	type: string
 }
-export const AllQuestionsListWrapper = ({ data, quizName, currentPage, perPage, type }: AllQuestionsListWrapper) => {
+export const AllQuestionsViewerWrapper = ({ data, quizName, currentPage, perPage, type }: AllQuestionsListWrapper) => {
 	const lastPage = typeof data?.questionsNumber === 'number' ? Math.ceil(data?.questionsNumber / perPage) : 10
 
 	const router = useRouter()
@@ -134,7 +134,7 @@ export const AllQuestionsListWrapper = ({ data, quizName, currentPage, perPage, 
 						<div className='mt-[25px] border-b border-solid border-border-color-light dark:border-border-color-dark'></div>
 						{data.questions.map((element, index) => (
 							<div key={index}>
-								<QuestionListView
+								<QuestionView
 									id={index + 1 + (currentPage - 1) * perPage}
 									quizName={quizName}
 									questionID={element.id}

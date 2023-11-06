@@ -2,9 +2,9 @@
 
 import { LatestQuiz } from './LatestQuiz'
 import { Suspense } from 'react'
-import { Loader } from '.'
-import Await from './Await'
-import Button from './Button'
+import { Loader } from '../..'
+import Await from '../../Await'
+import Button from '../../ui/Button'
 import { get3SummarySavedQuizzes } from '@/lib/get3SummarySavedQuizzes'
 
 export const LatestQuizzesWrapper = async ({ quizName }: { quizName: string }) => {

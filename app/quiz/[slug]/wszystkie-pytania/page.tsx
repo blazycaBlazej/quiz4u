@@ -1,4 +1,4 @@
-import { AllQuestionsListWrapper } from '@/components/AllQuestionsListWrapper'
+import { AllQuestionsListWrapper } from '@/components/sections/AllQuestionsViewerViewer/AllQuestionsViewerWrapper'
 import Await from '@/components/Await'
 import { Suspense } from 'react'
 import Loading from './loading'

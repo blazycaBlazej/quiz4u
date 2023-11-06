@@ -1,7 +1,7 @@
 'use client'
 
-import { QuizAnswer } from '@/components/QuizAnswer'
-import { QuizQuestion } from '@/components/QuizQuestion'
+import { QuizAnswer } from '@/components/quiz/QuizAnswer'
+import { QuizQuestion } from '@/components/quiz/QuizQuestion'
 import { forwardRef, useImperativeHandle, useState } from 'react'
 import { quiz } from '@/types/types'
 

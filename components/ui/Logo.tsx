@@ -1,5 +1,5 @@
 import React from 'react'
-import { roboto } from '../fonts/fonts'
+import { roboto } from '../../fonts/fonts'
 
 export const Logo = () => {
 	return (

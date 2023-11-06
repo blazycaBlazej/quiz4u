@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Loader } from './Loader'
-import Button from './Button'
+import { Loader } from '../ui/Loader'
+import { mutate } from 'swr'
+import Button from '../ui/Button'
 import { notification } from '@/lib/lib'
 
 type FormValues = {
@@ -15,45 +16,55 @@ type FormValues = {
 	correctAnswer: string
 }
 
-interface AddQuestionForm {
-	quizID: number | undefined
+type EditQuestionsFormProps = {
+	question: string
+	answerA: string
+	answerB: string
+	answerC: string
+	answerD: string
+	correctAnswer: string
+	questionId: number
+	quizName: string
 }
 
-export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
-	const [questionIsActive, setQuestionIsActive] = useState(false)
-	const [answerAIsActive, setAnswerAIsActive] = useState(false)
-	const [answerBIsActive, setAnswerBIsActive] = useState(false)
-	const [answerCIsActive, setAnswerCIsActive] = useState(false)
-	const [answerDIsActive, setAnswerDIsActive] = useState(false)
+export const EditQuestionForm = ({
+	questionId,
+	question,
+	answerA,
+	answerB,
+	answerC,
+	answerD,
+	correctAnswer,
+	quizName,
+}: EditQuestionsFormProps) => {
+	const [questionIsActive, setQuestionIsActive] = useState(true)
+	const [answerAIsActive, setAnswerAIsActive] = useState(true)
+	const [answerBIsActive, setAnswerBIsActive] = useState(true)
+	const [answerCIsActive, setAnswerCIsActive] = useState(true)
+	const [answerDIsActive, setAnswerDIsActive] = useState(true)
 
 	const form = useForm<FormValues>({
 		mode: 'onSubmit',
 	})
 
-	const { register, control, handleSubmit, formState, getValues, reset } = form
+	const { register, control, handleSubmit, formState, getValues } = form
 	const { errors, isSubmitting } = formState
 
 	const onSubmit = async (data: FormValues) => {
-		if (quizID) {
+		if (questionId) {
 			try {
 				const { question, answerA, answerB, answerC, answerD, correctAnswer } = data
-				const res = await fetch('/api/addQuestion', {
+				const res = await fetch('/api/editQuestion', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
 					},
-					body: JSON.stringify({ quizID, question, answerA, answerB, answerC, answerD, correctAnswer }),
+					body: JSON.stringify({ questionId, question, answerA, answerB, answerC, answerD, correctAnswer }),
 				})
 				const result = await res.json()
 				if (res.status === 200) {
-					reset()
-					setQuestionIsActive(false)
-					setAnswerAIsActive(false)
-					setAnswerBIsActive(false)
-					setAnswerCIsActive(false)
-					setAnswerDIsActive(false)
-
 					notification('success', result.message)
+					mutate(`/api/getQuestions?quizName=${quizName}`)
 					return
 				}
 				notification('error', result.message)
@@ -67,22 +78,23 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 
 	return (
 		<main className='my-[25px] flex w-full flex-col items-center justify-center gap-[20px]'>
-			<span className='text-3xl text-black dark:text-white '>Dodaj nowe pytanie</span>
+			<span className='text-3xl text-black dark:text-white '>Edytuj pytanie</span>
 			<form className='flex w-full flex-col items-center' onSubmit={handleSubmit(onSubmit)} noValidate>
-				<div className='flex w-full flex-col items-center justify-center gap-[10px] px-[15px] sm:flex-row sm:gap-[50px]'>
-					<div className='w-full sm:max-w-[410px]'>
+				<div className='flex w-full items-center justify-center gap-[50px]'>
+					<div className='w-full max-w-[410px]'>
 						{/* question */}
-						<div className='relative mb-[5px] w-full sm:max-w-[410px]'>
+						<div className='relative mb-[5px] w-full max-w-[410px]'>
 							<label
 								htmlFor='question'
-								className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
-								${questionIsActive || getValues('question') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
+								className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark
+								 ${questionIsActive || getValues('question') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
 							>
-								Opis quizu*
+								Pytanie*
 							</label>
 							<textarea
-								className='h-[400px] w-full resize-none  overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white'
+								className='h-[400px] w-full max-w-[410px] resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white'
 								id='question'
+								defaultValue={question}
 								{...register('question', {
 									required: 'Musisz podać pytanie.',
 									maxLength: {
@@ -96,16 +108,19 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 							<span className='block text-sm  text-error-color'>{errors.question?.message}</span>
 						</div>
 						{/* correct Answer */}
-						<div className='mb-[5px] w-full'>
+						<div className='relative mb-[5px] w-full max-w-[410px]'>
 							<Controller
 								name='correctAnswer'
 								control={control}
+								defaultValue={correctAnswer}
 								rules={{ required: 'Musisz podać poprawną odpowiedź' }}
-								render={({ field }) => (
-									<select className='mt-[5px] bg-inherit text-black dark:text-white ' {...field}>
-										<option className='text-main-bgn-light dark:text-main-bgn-dark' value=''>
-											Wybierz prawidłową odpowiedź
-										</option>
+								render={({ field: { onChange, value, ref } }) => (
+									<select
+										defaultValue={value}
+										onChange={onChange}
+										ref={ref}
+										className='mt-[5px] bg-inherit text-black dark:text-white'
+									>
 										<option className='text-main-bgn-light dark:text-main-bgn-dark' value='answerA'>
 											Prawidłowa odpowiedź A
 										</option>
@@ -125,9 +140,9 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 						</div>
 					</div>
 
-					<div className='w-full sm:max-w-[410px]'>
+					<div className='w-full max-w-[410px]'>
 						{/* answer A */}
-						<div className='relative mb-[5px] w-full'>
+						<div className='relative mb-[5px] w-full max-w-[410px]'>
 							<label
 								htmlFor='answerA'
 								className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
@@ -136,8 +151,9 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 								Odpowiedź A*
 							</label>
 							<textarea
-								className='h-[100px] w-full resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white'
+								className='h-[100px] w-full max-w-[410px] resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white '
 								id='answerA'
+								defaultValue={answerA}
 								{...register('answerA', {
 									required: 'Musisz podać odpowiedź A.',
 									maxLength: {
@@ -151,17 +167,18 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 							<span className='block text-sm  text-error-color'>{errors.answerA?.message}</span>
 						</div>
 						{/* answer B */}
-						<div className='relative mb-[5px] w-full'>
+						<div className='relative mb-[5px] w-full max-w-[410px]'>
 							<label
 								htmlFor='answerB'
-								className={`transition-top-left pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
+								className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
 								${answerBIsActive || getValues('answerB') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
 							>
 								Odpowiedź B*
 							</label>
 							<textarea
-								className='h-[100px] w-full resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white'
+								className='h-[100px] w-full max-w-[410px] resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white '
 								id='answerB'
+								defaultValue={answerB}
 								{...register('answerB', {
 									required: 'Musisz podać odpowiedź B.',
 									maxLength: {
@@ -175,17 +192,18 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 							<span className='block text-sm  text-error-color'>{errors.answerB?.message}</span>
 						</div>
 						{/* answer C */}
-						<div className='relative mb-[5px] w-full'>
+						<div className='relative mb-[5px] w-full max-w-[410px]'>
 							<label
 								htmlFor='answerC'
-								className={`transition-top-left pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
+								className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
 								${answerCIsActive || getValues('answerC') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
 							>
 								Odpowiedź C*
 							</label>
 							<textarea
-								className='h-[100px] w-full resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white '
+								className='h-[100px] w-full max-w-[410px] resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white '
 								id='answerC'
+								defaultValue={answerC}
 								{...register('answerC', {
 									required: 'Musisz podać odpowiedź C.',
 									maxLength: {
@@ -199,7 +217,7 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 							<span className='block text-sm  text-error-color'>{errors.answerC?.message}</span>
 						</div>
 						{/* answer D */}
-						<div className='relative mb-[5px] w-full'>
+						<div className='relative mb-[5px] w-full max-w-[410px]'>
 							<label
 								htmlFor='answerD'
 								className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
@@ -208,8 +226,9 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 								Odpowiedź D*
 							</label>
 							<textarea
-								className='h-[100px] w-full resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-white dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-black'
+								className='h-[100px] w-full max-w-[410px] resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white '
 								id='answerD'
+								defaultValue={answerD}
 								{...register('answerD', {
 									required: 'Musisz podać odpowiedź D',
 									maxLength: {
@@ -225,12 +244,12 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 					</div>
 				</div>
 
-				<div className='mt-[20px] w-full max-w-[410px] px-[15px]'>
+				<div className='mt-[20px] w-full max-w-[410px] '>
 					<Button
 						variant={isSubmitting || Object.keys(errors).length > 0 ? 'disabled' : 'default'}
 						disabled={isSubmitting || Object.keys(errors).length > 0}
 					>
-						{isSubmitting ? <Loader /> : 'Dodaj pytanie'}
+						{isSubmitting ? <Loader /> : 'Edytuj pytanie'}
 					</Button>
 				</div>
 			</form>

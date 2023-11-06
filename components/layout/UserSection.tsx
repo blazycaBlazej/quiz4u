@@ -9,7 +9,7 @@ import { NavbarElement } from './NavbarElement'
 import { usePathname } from 'next/navigation'
 import { userMenuElements } from '@/constans/constans'
 import { useMenu } from '@/app/context/MenuProvider'
-import { Logo } from '.'
+import { Logo } from '..'
 
 type UserSectionProps = {
 	userName: string | null | undefined

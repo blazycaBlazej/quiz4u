@@ -1,6 +1,5 @@
 'use server'
-import { Loader } from '@/components'
-import { SavedQuiz } from '@/components/SavedQuiz'
+import { SavedQuiz } from '@/components/sections/SavedQuiz'
 import { getSavedQuiz } from '@/lib/getSavedQuiz'
 
 interface savedQuiz {

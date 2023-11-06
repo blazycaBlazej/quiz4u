@@ -6,8 +6,8 @@ import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { Loader } from './Loader'
-import Button from './Button'
+import { Loader } from '../ui/Loader'
+import Button from '../ui/Button'
 
 type FormValues = {
 	email: string

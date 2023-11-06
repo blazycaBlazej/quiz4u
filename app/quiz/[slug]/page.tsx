@@ -2,8 +2,8 @@
 
 import { getNumberQuestionInQuiz } from '@/lib/getNumberQuestionsInQuiz'
 import { getQuizDeatails } from '@/lib/getQuizDeatails'
-import QuizDeatails from '@/components/QuizDeatails'
-import { LatestQuizzesWrapper } from '@/components/LatestQuizzesWrapper'
+import QuizDeatails from '@/components/sections/quizIDeatails/QuizDeatails'
+import { LatestQuizzesWrapper } from '@/components/sections/latestQuiz/LatestQuizzesWrapper'
 
 export default async function QuizPage({ params }: { params: { slug: string } }) {
 	const quizName = decodeURIComponent(params.slug)

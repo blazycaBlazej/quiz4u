@@ -5,7 +5,7 @@ import { IconArrowNarrowLeft, IconLoader } from '@tabler/icons-react'
 
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
-import Button from '@/components/Button'
+import Button from '@/components/ui/Button'
 
 type FormValues = {
 	email: string

@@ -5,7 +5,7 @@ import { IconArrowNarrowLeft } from '@tabler/icons-react'
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import Button from '@/components/Button'
+import Button from '@/components/ui/Button'
 import { Loader } from '@/components'
 
 type FormValues = {

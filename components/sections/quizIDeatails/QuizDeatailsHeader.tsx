@@ -3,10 +3,10 @@
 import { IconEye, IconTrash } from '@tabler/icons-react'
 import Link from 'next/link'
 import { useState } from 'react'
-import { Loader, Modal } from '.'
+import { Loader, Modal } from '../..'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
-import Button from './Button'
+import Button from '../../ui/Button'
 import { notification } from '@/lib/lib'
 
 interface QuizDeatailsHeaderProps {

@@ -3,8 +3,8 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
-import { Loader } from './Loader'
-import Button from './Button'
+import { Loader } from '../ui/Loader'
+import Button from '../ui/Button'
 import { notification } from '@/lib/lib'
 
 type FormValues = {

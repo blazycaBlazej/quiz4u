@@ -4,7 +4,7 @@ import { useState } from 'react'
 import useSWR, { mutate } from 'swr'
 import { useSession } from 'next-auth/react'
 import { IconError404, IconStar, IconStarFilled } from '@tabler/icons-react'
-import { Loader } from '.'
+import { Loader } from '..'
 import { notification } from '@/lib/lib'
 
 interface SaveQuestionProps {

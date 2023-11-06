@@ -2,13 +2,13 @@
 import { IconDice1, IconEye, IconGrain, IconNumber20Small, IconPrinter, IconTrash } from '@tabler/icons-react'
 import Link from 'next/link'
 import { useState } from 'react'
-import { Loader, Modal } from '.'
+import { Loader, Modal } from '..'
 import { notification } from '@/lib/lib'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { NumberQuestionsModal } from './NumberQuestionsModal'
-import { PrintQuizModal } from './PrintQuizModal'
-import Button from './Button'
+import { NumberQuestionsModal } from '../modal/NumberQuestionsModal'
+import { PrintQuizModal } from '../modal/PrintQuizModal'
+import Button from '../ui/Button'
 
 interface SavedQuestionsCardProps {
 	quizName: string

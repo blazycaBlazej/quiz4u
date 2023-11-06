@@ -1,4 +1,4 @@
-import { QuizQuestion } from './QuizQuestion'
+import { QuizQuestion } from '../../quiz/QuizQuestion'
 
 interface QuestionCompleteProps {
 	quizName: string
@@ -12,7 +12,7 @@ interface QuestionCompleteProps {
 	id: number
 }
 
-export const QuestionListView = ({
+export const QuestionView = ({
 	quizName,
 	questionID,
 	question,

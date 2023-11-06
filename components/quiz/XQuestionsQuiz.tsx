@@ -1,10 +1,10 @@
 import { quiz } from '@/types/types'
 import { useEffect, useRef, useState } from 'react'
-import { QuizQuestion } from '@/components/QuizQuestion'
-import { QuizAnswer } from '@/components/QuizAnswer'
+import { QuizQuestion } from '@/components/quiz/QuizQuestion'
+import { QuizAnswer } from '@/components/quiz/QuizAnswer'
 import { bigConfetti } from '@/lib/lib'
 import { useRouter } from 'next/navigation'
-import { QuestionNavigationButton } from './QuestionNavigationButton '
+import { QuestionNavigationButton } from './QuestionNavigationButton'
 
 type QuizItemChecker = {
 	id: number

@@ -2,8 +2,8 @@
 
 import { useRef, useState } from 'react'
 import confetti from 'canvas-confetti'
-import { CompleteQuiz } from '@/components/CompleteQuiz'
-import Button from '@/components/Button'
+import { CompleteQuiz } from '@/components/quiz/CompleteQuiz'
+import Button from '@/components/ui/Button'
 import { useRouter } from 'next/navigation'
 
 interface ChildComponentHandle {

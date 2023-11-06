@@ -1,9 +1,9 @@
 'use client'
 
-import { Loader, Modal } from '.'
+import { Loader, Modal } from '..'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
-import Button from './Button'
+import Button from '../ui/Button'
 
 interface PrintQuizProps {
 	quizName: string

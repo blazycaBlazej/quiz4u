@@ -19,9 +19,9 @@ import {
 	getExpandedRowModel,
 } from '@tanstack/react-table'
 import React, { useState } from 'react'
-import { EditQuestionForm } from './EditQuestionForm'
+import { EditQuestionForm } from '../form/EditQuestionForm'
 import useSWR, { mutate } from 'swr'
-import { Loader } from '.'
+import { Loader } from '..'
 
 type Table = {
 	id: number
@@ -140,7 +140,7 @@ interface TableComponentProps {
 }
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
-export const TableComponent = ({ quizName }: TableComponentProps) => {
+export const QuestionManager = ({ quizName }: TableComponentProps) => {
 	const { data, error, isLoading } = useSWR(`/api/getQuestions?quizName=${quizName}`, fetcher)
 
 	const delateElement = async (id: number) => {

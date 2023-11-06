@@ -2,8 +2,8 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { NumberQuestionsModal } from '@/components/NumberQuestionsModal'
-import { PrintQuizModal } from '@/components/PrintQuizModal'
+
+import { PrintQuizModal } from '@/components/modal/PrintQuizModal'
 import { QuizDataDeatails } from '@/types/types'
 import { IconDeviceFloppy, IconPrinter } from '@tabler/icons-react'
 import {
@@ -16,6 +16,7 @@ import {
 	IconMessage2,
 	IconGrain,
 } from '@tabler/icons-react'
+import { NumberQuestionsModal } from '../../modal/NumberQuestionsModal'
 
 interface QuizDeatailsProps {
 	quizDeatails: QuizDataDeatails

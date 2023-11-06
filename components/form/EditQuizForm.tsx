@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FormEditQuizValues, QuizDataDeatails } from '@/types/types'
-import { CustomSwitch, Loader } from '.'
+import { CustomSwitch, Loader } from '..'
 import { useRouter } from 'next/navigation'
-import Button from './Button'
+import Button from '../ui/Button'
 import { notification } from '@/lib/lib'
 
 interface quizDeatailsComponentProps {

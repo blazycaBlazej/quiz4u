@@ -3,7 +3,7 @@
 import useSWR, { mutate } from 'swr'
 import { Loader } from '@/components'
 import { useSearchParams } from 'next/navigation'
-import { XQuestionsQuiz } from '@/components/XQuestionsQuiz'
+import { XQuestionsQuiz } from '@/components/quiz/XQuestionsQuiz'
 
 const fetcher = async (url: string) => {
 	const res = await fetch(url)

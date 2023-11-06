@@ -10,8 +10,8 @@ import {
 	loginValidation as loginValidationFunc,
 } from '@/lib/db/serverFunctions'
 import { FormValues } from '@/types/types'
-import { Loader } from './Loader'
-import Button from './Button'
+import { Loader } from '../ui/Loader'
+import Button from '../ui/Button'
 import { notification } from '@/lib/lib'
 
 export const RegisterForm = () => {

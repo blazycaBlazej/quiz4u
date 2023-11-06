@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { Logo } from './Logo'
+import { Logo } from '../ui/Logo'
 import Link from 'next/link'
 import { NavbarElement } from './NavbarElement'
 import { usePathname } from 'next/navigation'
@@ -9,7 +9,7 @@ import { NavbarElementProps } from '@/types/types'
 import { IconCirclePlus, IconMenu2 } from '@tabler/icons-react'
 import { useMenu } from '@/app/context/MenuProvider'
 import FlipMove from 'react-flip-move'
-import ThemeButton from './ThemeButton'
+import ThemeButton from '../ui/ThemeButton'
 
 interface MenuElements {
 	name: string

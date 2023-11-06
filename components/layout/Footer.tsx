@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import { Logo } from '.'
+import { Logo } from '..'
 
 import { IconBrandFacebookFilled, IconBrandInstagram } from '@tabler/icons-react'
 import { menuElements } from '@/constans/constans'

@@ -1,6 +1,6 @@
 import { MostPopularQuizis, Testimonials } from '@/components'
-import { FAQ } from '@/components/FAQ'
-import { LearnGuide } from '@/components/LearnGuide'
+import { FAQ } from '@/components/sections/FAQ'
+import { LearnGuide } from '@/components/sections/LearnGuide'
 import Image from 'next/image'
 
 export default function Home() {

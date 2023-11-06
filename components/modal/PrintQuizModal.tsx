@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { Loader, Modal } from '.'
+import { Loader, Modal } from '..'
 import { useForm } from 'react-hook-form'
 import { quiz } from '@/types/types'
-import Button from './Button'
+import Button from '../ui/Button'
 
 interface PrintQuizProps {
 	quizName: string

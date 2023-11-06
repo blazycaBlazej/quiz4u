@@ -3,7 +3,7 @@ import { Footer, Navbar } from '../components'
 import './globals.css'
 
 import type { Metadata } from 'next'
-import { UserSection } from '@/components/UserSection'
+import { UserSection } from '@/components/layout/UserSection'
 import AuthProvider from './context/AuthProvider'
 
 import { getMenuItems } from '@/lib/getMenuItems'
@@ -11,7 +11,7 @@ import { getIsLogged } from '@/lib/getIsLogged'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { MenuProvider } from './context/MenuProvider'
-import Overlay from '@/components/Overlay'
+import Overlay from '@/components/ui/Overlay'
 import ThemeProvider from './context/ThemeProvider'
 
 export const metadata: Metadata = {

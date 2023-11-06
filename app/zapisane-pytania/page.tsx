@@ -1,4 +1,4 @@
-import SavedQuestionsCard from '@/components/SavedQuestionsCard'
+import SavedQuestionsCard from '@/components/sections/SavedQuestionsCard'
 import { getSavedQuestionsSummary } from '@/lib/getSavedQuestionsSummary'
 
 export default async function SavedQuestionsPage() {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Testimonial } from '.'
+import { Testimonial } from '../..'
 import { testimonials } from '@/constans/constans'
 
 export const Testimonials = () => {

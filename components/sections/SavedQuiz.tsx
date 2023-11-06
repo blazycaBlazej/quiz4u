@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
-import { QuizQuestion } from '@/components/QuizQuestion'
-import { QuizAnswer } from '@/components/QuizAnswer'
+import { QuizQuestion } from '@/components/quiz/QuizQuestion'
+import { QuizAnswer } from '@/components/quiz/QuizAnswer'
 
 type QuizItemChecker = {
 	id: number

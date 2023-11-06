@@ -1,7 +1,7 @@
 'use server'
 
 import { Loader } from '@/components'
-import OneQuestion from '@/components/OneQuestion'
+import OneQuestion from '@/components/quiz/OneQuestion'
 import { getRandomQuestion } from '@/lib/getRandomQuestion'
 import { Suspense } from 'react'
 
