@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
@@ -15,8 +15,20 @@ model User {
   password       String
   newsletter     Boolean
   isAdmin        Boolean
+  isActive       Boolean          @default(false)
+  createdAt      DateTime         @default(now())
+  updateddAt     DateTime         @updatedAt
+  token          VerifyToken[]
   savedQuestions SavedQuestions[]
   savedQuizzies  SavedQuiz[]
+}
+
+model VerifyToken {
+  id         Int      @id @default(autoincrement())
+  token      String   @db.Text    
+  userId     String   @unique
+  updateddAt     DateTime         @updatedAt
+  user       User     @relation(fields: [userId], references: [id])
 }
 
 model SavedQuestions {
@@ -30,15 +42,15 @@ model SavedQuestions {
 }
 
 model SavedQuiz {
-  id             Int      @id @default(autoincrement())
-  user           User     @relation(fields: [userID], references: [id])
-  quiz           Quiz     @relation(fields: [quizName], references: [name])
-  userID         String
-  quizName       String
-  questionNumber Int
+  id                    Int      @id @default(autoincrement())
+  user                  User     @relation(fields: [userID], references: [id])
+  quiz                  Quiz     @relation(fields: [quizName], references: [name])
+  userID                String
+  quizName              String
+  questionNumber        Int
   numberOfCorrectAnswer Int
-  solvedQuizData Json
-createdAt DateTime @default(now())
+  solvedQuizData        Json
+  createdAt             DateTime @default(now())
 }
 
 model Quiz {

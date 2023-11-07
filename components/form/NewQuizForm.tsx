@@ -11,7 +11,7 @@ type FormValues = {
 	name: string
 	description: string
 }
-export const NewQuizForm = () => {
+export default function NewQuizForm() {
 	const [nameIsActive, setNameIsActive] = useState(false)
 	const [descriptionIsActive, setDescriptionIsActive] = useState(false)
 

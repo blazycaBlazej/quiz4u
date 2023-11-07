@@ -3,6 +3,7 @@ import { ClassValue, clsx } from 'clsx'
 import { toast } from 'react-toastify'
 import { twMerge } from 'tailwind-merge'
 import { hash, compare } from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
 export function getCorrectAnswerMessage() {
 	const correctMessage = [
@@ -96,4 +97,12 @@ export async function hashPassword(password: string): Promise<string> {
 export async function verifyPassword(password: string, heshedPassword: string) {
 	const isValid = await compare(password, heshedPassword)
 	return isValid
+}
+
+export function genereteJSWT(id: string) {
+	if (process.env.JWT_SECRET) {
+		const token = jwt.sign({ userId: id }, process.env.JWT_SECRET, { expiresIn: '1m' })
+		return token
+	}
+	return null
 }
