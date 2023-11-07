@@ -10,7 +10,7 @@ import { FAQ } from './sections/FAQ'
 import { Footer } from './layout/Footer'
 import { LoginForm } from './form/LoginForm'
 import { RegisterForm } from './form/RegisterForm'
-import { NewQuizForm } from './form/NewQuizForm'
+
 import { Loader } from './ui/Loader'
 import { CustomSwitch } from './ui/CustomSwitch'
 import { Modal } from './modal/Modal'
@@ -27,7 +27,6 @@ export {
 	Footer,
 	LoginForm,
 	RegisterForm,
-	NewQuizForm,
 	Loader,
 	CustomSwitch,
 	Modal,

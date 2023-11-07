@@ -7,8 +7,10 @@ export const Testimonials = () => {
 		<section className='w-full '>
 			<h2 className='pb-6 text-4xl text-black dark:text-white'>Opinie użytkowników naszej platformy:</h2>
 			<div className='flex flex-col gap-4 md:flex-row '>
-				{testimonials.map((element) => (
-					<Testimonial testimonial={element} />
+				{testimonials.map((element, index) => (
+					<React.Fragment key={index}>
+						<Testimonial testimonial={element} />
+					</React.Fragment>
 				))}
 			</div>
 		</section>
