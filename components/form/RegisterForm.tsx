@@ -13,6 +13,7 @@ import { FormValues } from '@/types/types'
 import { Loader } from '../ui/Loader'
 import Button from '../ui/Button'
 import { notification } from '@/lib/lib'
+import { useRouter } from 'next/navigation'
 
 export const RegisterForm = () => {
 	const checkConfirmPassword = () => {
@@ -46,6 +47,8 @@ export const RegisterForm = () => {
 	const { register, handleSubmit, formState, getValues, setError, clearErrors } = form
 	const { errors, isSubmitting } = formState
 
+	const router = useRouter()
+
 	const onSubmit = async (data: FormValues) => {
 		try {
 			const res = await fetch('/api/createUser', {
@@ -59,9 +62,10 @@ export const RegisterForm = () => {
 			const result = await res.json()
 
 			if (res.status === 200) {
+				router.push(`/email-wyslany?email=${data.email}`)
 				setSubmitingError('')
 				form.reset()
-				notification('success', `${result.message} Zaloguj się.`)
+				notification('success', `${result.message}`)
 			} else {
 				setSubmitingError(result.message)
 			}

@@ -1,23 +1,35 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { IconEye, IconEyeOff } from '@tabler/icons-react'
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Loader } from '../ui/Loader'
 import Button from '../ui/Button'
+import { notification } from '@/lib/lib'
 
 type FormValues = {
 	email: string
 	password: string
 }
 export const LoginForm = () => {
+	const params = useSearchParams()
+	const accounIsActived: null | string = params.get('isActived')
+
 	const [showPassword, setShowPassword] = useState(false)
 	const [emailIsActive, setEmailIsActive] = useState(false)
 	const [passwordIsActive, setPasswordIsActive] = useState(false)
 	const [submitingError, setSubmitingError] = useState('')
+	const [isInitialLoad, setIsInitialLoad] = useState(true)
+
+	useEffect(() => {
+		if (accounIsActived === 'true' && isInitialLoad) {
+			notification('success', 'Twoje konto zostało aktywowane! Możesz się zalogować.')
+			setIsInitialLoad(false)
+		}
+	}, [accounIsActived, isInitialLoad])
 
 	const form = useForm<FormValues>({
 		mode: 'onSubmit',
@@ -37,19 +49,16 @@ export const LoginForm = () => {
 				redirect: false,
 			})
 
-			if (res?.error === 'error') {
-				setSubmitingError('Błąd serwera, spróbuj zalogować się później.')
-				return
-			}
 			if (!res?.ok) {
-				setSubmitingError('Dane logowania są nieprawidłowe.')
+				if (res?.error) {
+					setSubmitingError(res.error)
+				}
 				return
 			}
-
 			router.replace('/')
 			router.refresh()
 		} catch (e) {
-			setSubmitingError('Błąd serwera, spróbuj zalogować się później.')
+			setSubmitingError('Błąd serwera, spróbuj zalogować się później. 2')
 		}
 	}
 

@@ -15,20 +15,27 @@ export const authOptions: AuthOptions = {
 				if (credentials) {
 					const { email, password } = credentials
 
+					let user
 					try {
-						const user = await prisma.user.findUnique({
+						user = await prisma.user.findUnique({
 							where: {
 								email,
 							},
 						})
+					} catch (e) {
+						throw new Error('Błąd serwera, spróbuj zalogować się później.')
+					}
 
-						if (user) {
-							console.log(user)
-							const isValid = await verifyPassword(password, user.password)
-							if (isValid) return user
+					if (user) {
+						if (!user.isActive) {
+							throw new Error('Twoje konto nie zostało zweryfikowane.')
 						}
-					} catch (error) {
-						throw new Error('error')
+						const isValid = await verifyPassword(password, user.password)
+						if (isValid) {
+							return user
+						} else throw new Error('Dane do logowania są nieprawidłowe')
+					} else {
+						throw new Error('Dane do logowania są nieprawidłowe')
 					}
 				}
 
