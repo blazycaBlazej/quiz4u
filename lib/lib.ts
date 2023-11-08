@@ -1,9 +1,6 @@
 import confetti from 'canvas-confetti'
 import { ClassValue, clsx } from 'clsx'
-import { toast } from 'react-toastify'
 import { twMerge } from 'tailwind-merge'
-import { hash, compare } from 'bcryptjs'
-import jwt from 'jsonwebtoken'
 
 export function getCorrectAnswerMessage() {
 	const correctMessage = [
@@ -58,7 +55,8 @@ export function bigConfetti() {
 	}, 250)
 }
 
-export function notification(type: string, message: string) {
+export async function notification(type: string, message: string) {
+	const { toast } = await import('react-toastify')
 	if (type === 'success') {
 		toast.success(message, {
 			position: 'top-right',
@@ -90,17 +88,20 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export async function hashPassword(password: string): Promise<string> {
+	const { hash } = await import('bcryptjs')
 	const heshedPassword = await hash(password, 12)
 	return heshedPassword
 }
 
 export async function verifyPassword(password: string, heshedPassword: string) {
+	const { compare } = await import('bcryptjs')
 	const isValid = await compare(password, heshedPassword)
 	return isValid
 }
 
-export function genereteJSWT(id: string) {
+export async function genereteJSWT(id: string) {
 	if (process.env.JWT_SECRET) {
+		const jwt = await import('jsonwebtoken')
 		const token = jwt.sign({ userId: id }, process.env.JWT_SECRET, { expiresIn: '24h' })
 		return token
 	}

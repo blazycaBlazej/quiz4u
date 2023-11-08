@@ -2,8 +2,7 @@
 import { IconDice1, IconEye, IconGrain, IconNumber20Small, IconPrinter, IconTrash } from '@tabler/icons-react'
 import Link from 'next/link'
 import { useState } from 'react'
-import { Loader, Modal } from '..'
-import { notification } from '@/lib/lib'
+import { Modal } from '..'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { NumberQuestionsModal } from '../modal/NumberQuestionsModal'
@@ -31,6 +30,7 @@ const SavedQuestionsCard = ({ quizName, numberQuestions }: SavedQuestionsCardPro
 	}
 
 	const deleteManySavedQuestions = async () => {
+		const { notification } = await import('@/lib/lib')
 		setIsLoading(true)
 		try {
 			const userID = session?.user?.id
@@ -45,12 +45,12 @@ const SavedQuestionsCard = ({ quizName, numberQuestions }: SavedQuestionsCardPro
 
 			if (res.ok) {
 				router.refresh()
-				notification('success', result.message)
+				await notification('success', result.message)
 			} else {
-				notification('error', result.message)
+				await notification('error', result.message)
 			}
 		} catch (e) {
-			notification('error', 'Coś poszło nie tak.')
+			await notification('error', 'Coś poszło nie tak.')
 		}
 		setIsLoading(false)
 		closeDeleteModal()

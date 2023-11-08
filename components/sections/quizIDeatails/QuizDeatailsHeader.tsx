@@ -7,7 +7,6 @@ import { Loader, Modal } from '../..'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import Button from '../../ui/Button'
-import { notification } from '@/lib/lib'
 
 interface QuizDeatailsHeaderProps {
 	quizName: string
@@ -61,7 +60,8 @@ export const QuizDeatailsHeader = ({ quizName }: QuizDeatailsHeaderProps) => {
 			setSubmitingError(result.message)
 			if (res.status === 200) {
 				setSubmitingError('')
-				notification('success', result.message)
+				const { notification } = await import('@/lib/lib')
+				await notification('success', result.message)
 				router.replace('/')
 				router.refresh()
 			}

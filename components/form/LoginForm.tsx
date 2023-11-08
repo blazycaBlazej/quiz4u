@@ -8,7 +8,6 @@ import { signIn } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Loader } from '../ui/Loader'
 import Button from '../ui/Button'
-import { notification } from '@/lib/lib'
 
 type FormValues = {
 	email: string
@@ -25,9 +24,14 @@ export const LoginForm = () => {
 	const [isInitialLoad, setIsInitialLoad] = useState(true)
 
 	useEffect(() => {
-		if (accounIsActived === 'true' && isInitialLoad) {
+		async function notificationFunc() {
+			const { notification } = await import('@/lib/lib')
 			notification('success', 'Twoje konto zostało aktywowane! Możesz się zalogować.')
+		}
+
+		if (accounIsActived === 'true' && isInitialLoad) {
 			setIsInitialLoad(false)
+			notificationFunc()
 		}
 	}, [accounIsActived, isInitialLoad])
 
@@ -69,7 +73,7 @@ export const LoginForm = () => {
 	}
 
 	return (
-		<main className='flex w-full flex-col items-center justify-center gap-[20px]'>
+		<main className='mt-[100px] flex w-full flex-col items-center justify-center gap-[20px]'>
 			<span className='text-3xl text-black dark:text-white '>Logowanie</span>
 			<form className='w-full max-w-[410px]' onSubmit={handleSubmit(onSubmit)} noValidate>
 				<div className='relative mb-[20px] w-full max-w-[410px]'>

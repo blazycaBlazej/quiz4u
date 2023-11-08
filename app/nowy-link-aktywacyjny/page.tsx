@@ -18,7 +18,7 @@ export default function page() {
 		const { notification } = await import('@/lib/lib')
 
 		if (!token) {
-			notification('error', 'Nie powinneś tutaj być!')
+			await notification('error', 'Nie powinneś tutaj być!')
 			setIsLoading(false)
 			router.replace('/')
 		} else {
@@ -33,10 +33,10 @@ export default function page() {
 			const result = await res.json()
 
 			if (res.status === 200) {
-				notification('success', `${result.message}`)
+				await notification('success', `${result.message}`)
 				router.replace(`/email-wyslany?email=${result.email}`)
 			} else {
-				notification('error', `${result.message}`)
+				await notification('error', `${result.message}`)
 			}
 		}
 

@@ -5,7 +5,6 @@ import { IconEye, IconEyeOff } from '@tabler/icons-react'
 import { useForm } from 'react-hook-form'
 import { Loader } from '../ui/Loader'
 import Button from '../ui/Button'
-import { notification } from '@/lib/lib'
 
 export interface FormValues {
 	currentPasssword: string
@@ -58,9 +57,10 @@ export const ChangePasswordForm = () => {
 
 				const result = await res.json()
 				if (res.status === 200) {
+					const { notification } = await import('@/lib/lib')
 					setSubmitingError('')
 					form.reset()
-					notification('success', `${result.message}`)
+					await notification('success', `${result.message}`)
 				} else {
 					setSubmitingError(result.message)
 				}

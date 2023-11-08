@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
 				const now = new Date()
 				const fiveMinutesAgo = new Date(now.getTime() - 5 * 60 * 1000)
 				if (res.updateddAt <= fiveMinutesAgo) {
-					const token = genereteJSWT(user.id)
+					const token = await genereteJSWT(user.id)
 					if (token) {
 						await prisma.verifyToken.update({
 							where: {

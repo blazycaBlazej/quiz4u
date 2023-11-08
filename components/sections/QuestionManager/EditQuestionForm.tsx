@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { Loader } from '../../ui/Loader'
 import Button from '../../ui/Button'
-import { notification } from '@/lib/lib'
 import FlipMove from 'react-flip-move'
 import { useRouter } from 'next/navigation'
 
@@ -56,6 +55,7 @@ export const EditQuestionForm = ({
 	const router = useRouter()
 
 	const onSubmit = async (data: FormValues) => {
+		const { notification } = await import('@/lib/lib')
 		if (questionId) {
 			try {
 				const { question, answerA, answerB, answerC, answerD, correctAnswer } = data
@@ -68,17 +68,17 @@ export const EditQuestionForm = ({
 				})
 				const result = await res.json()
 				if (res.status === 200) {
-					notification('success', result.message)
+					await notification('success', result.message)
 					router.refresh()
 					toggleEditHandler(questionId)
 					return
 				}
-				notification('error', result.message)
+				await notification('error', result.message)
 			} catch (e) {
-				notification('error', 'Coś poszło nie tak.')
+				await notification('error', 'Coś poszło nie tak.')
 			}
 		} else {
-			notification('error', 'Coś poszło nie tak.')
+			await notification('error', 'Coś poszło nie tak.')
 		}
 	}
 

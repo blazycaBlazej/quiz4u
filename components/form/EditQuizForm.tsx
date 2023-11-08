@@ -6,7 +6,6 @@ import { FormEditQuizValues, QuizDataDeatails } from '@/types/types'
 import { CustomSwitch, Loader } from '..'
 import { useRouter } from 'next/navigation'
 import Button from '../ui/Button'
-import { notification } from '@/lib/lib'
 
 interface quizDeatailsComponentProps {
 	quizDeatails: QuizDataDeatails | null
@@ -24,6 +23,7 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 	const { errors, isSubmitting, isDirty } = formState
 	const router = useRouter()
 	const onSubmit = async (data: FormEditQuizValues) => {
+		const { notification } = await import('@/lib/lib')
 		if (isDirty) {
 			try {
 				const res = await fetch('/api/editQuiz', {
@@ -37,15 +37,15 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 				if (res.status === 200) {
 					router.refresh()
 					router.push(result.pathname)
-					notification('success', result.message)
+					await notification('success', result.message)
 				} else {
-					notification('error', result.message)
+					await notification('error', result.message)
 				}
 			} catch (e) {
-				notification('error', 'Błąd serwera, spróbuj edytować quiz później')
+				await notification('error', 'Błąd serwera, spróbuj edytować quiz później')
 			}
 		} else {
-			notification('error', 'Żadne pole nie zostało zmienione.')
+			await notification('error', 'Żadne pole nie zostało zmienione.')
 		}
 	}
 

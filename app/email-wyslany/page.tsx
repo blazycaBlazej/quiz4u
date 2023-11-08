@@ -22,7 +22,9 @@ export default function page() {
 
 		const result = await res.json()
 
-		res.status === 200 ? notification('success', `${result.message}`) : notification('error', `${result.message}`)
+		res.status === 200
+			? await notification('success', `${result.message}`)
+			: await notification('error', `${result.message}`)
 
 		setIsLoading(false)
 	}

@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
 			},
 		})
 
-		const token = genereteJSWT(user.id)
+		const token = await genereteJSWT(user.id)
 		if (token) {
 			await prisma.verifyToken.create({
 				data: {

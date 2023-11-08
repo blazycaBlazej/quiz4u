@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { Loader } from '../ui/Loader'
 import Button from '../ui/Button'
-import { notification } from '@/lib/lib'
 
 type FormValues = {
 	name: string
@@ -25,6 +24,7 @@ export default function NewQuizForm() {
 	const router = useRouter()
 
 	const onSubmit = async (data: FormValues) => {
+		const { notification } = await import('@/lib/lib')
 		try {
 			const { name, description } = data
 
@@ -40,12 +40,12 @@ export default function NewQuizForm() {
 			if (res.status === 200) {
 				router.replace(result.pathname)
 				router.refresh()
-				notification('success', result.message)
+				await notification('success', result.message)
 			} else {
-				notification('error', result.message)
+				await notification('error', result.message)
 			}
 		} catch (e) {
-			notification('error', 'Błąd serwera, spróbuj zalogować się później.')
+			await notification('error', 'Błąd serwera, spróbuj zalogować się później.')
 		}
 	}
 

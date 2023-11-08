@@ -12,7 +12,6 @@ import {
 import { FormValues } from '@/types/types'
 import { Loader } from '../ui/Loader'
 import Button from '../ui/Button'
-import { notification } from '@/lib/lib'
 import { useRouter } from 'next/navigation'
 
 export const RegisterForm = () => {
@@ -65,7 +64,8 @@ export const RegisterForm = () => {
 				router.push(`/email-wyslany?email=${data.email}`)
 				setSubmitingError('')
 				form.reset()
-				notification('success', `${result.message}`)
+				const { notification } = await import('@/lib/lib')
+				await notification('success', `${result.message}`)
 			} else {
 				setSubmitingError(result.message)
 			}
@@ -74,7 +74,7 @@ export const RegisterForm = () => {
 		}
 	}
 	return (
-		<main className='flex min-h-[calc(100vh-404px)] w-full flex-col items-center justify-center gap-[20px]'>
+		<main className='mt-[100px] flex w-full flex-col items-center justify-center gap-[20px]'>
 			<span className='text-3xl text-black dark:text-white'>Rejestracja</span>
 			<form className='w-full max-w-[410px]' onSubmit={handleSubmit(onSubmit)} noValidate>
 				{/* login */}
@@ -218,20 +218,29 @@ export const RegisterForm = () => {
 				</div>
 
 				<label className='flex gap-2'>
-					<input className='cursor-pointer' type='checkbox' id='newsletter' {...register('newsletter')} /> Chcę
-					otrzymwać wiadomości o nowościach.
+					<div className='flex items-center justify-center gap-2'>
+						<input
+							className='h-[16px] w-[16px] cursor-pointer'
+							type='checkbox'
+							id='newsletter'
+							{...register('newsletter')}
+						/>{' '}
+						<span>Chcę otrzymwać wiadomości o nowościach.</span>
+					</div>
 				</label>
 
 				<label className='flex gap-2'>
-					<input
-						className='cursor-pointer'
-						type='checkbox'
-						id='rules'
-						{...register('rules', {
-							required: 'Akceptacja regulaminu jest wymagana.',
-						})}
-					/>
-					Akceptuję Regulamin i Politykę prywatności *.
+					<div className='flex items-center justify-center gap-2'>
+						<input
+							className='h-[16px] w-[16px] cursor-pointer'
+							type='checkbox'
+							id='rules'
+							{...register('rules', {
+								required: 'Akceptacja regulaminu jest wymagana.',
+							})}
+						/>
+						<span>Akceptuję Regulamin i Politykę prywatności *.</span>
+					</div>
 				</label>
 				<span className='my-[4px] block  text-sm text-error-color'>{errors.rules?.message}</span>
 

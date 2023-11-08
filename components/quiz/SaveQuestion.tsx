@@ -59,13 +59,13 @@ const SaveQuestion = ({ questionID, quizName }: SaveQuestionProps) => {
 
 			if (res.ok) {
 				mutate(`/api/isQuestionIsSaved?questionID=${questionID}&userID=${userID}`)
-				notification('success', result.message)
+				await notification('success', result.message)
 			} else {
 				mutate(`/api/isQuestionIsSaved?questionID=${questionID}&userID=${userID}`)
-				notification('error', result.message)
+				await notification('error', result.message)
 			}
 		} catch (e) {
-			notification('error', 'Coś poszło nie tak.')
+			await notification('error', 'Coś poszło nie tak.')
 		}
 		setIsLoading2(false)
 	}
@@ -84,13 +84,13 @@ const SaveQuestion = ({ questionID, quizName }: SaveQuestionProps) => {
 
 			if (res.ok) {
 				mutate(`/api/isQuestionIsSaved?questionID=${questionID}&userID=${userID}`)
-				notification('success', result.message)
+				await notification('success', result.message)
 			} else {
 				mutate(`/api/isQuestionIsSaved?questionID=${questionID}&userID=${userID}`)
-				notification('error', result.message)
+				await notification('error', result.message)
 			}
 		} catch (e) {
-			notification('error', 'Coś poszło nie tak.')
+			await notification('error', 'Coś poszło nie tak.')
 		}
 		setIsLoading2(false)
 	}
@@ -100,7 +100,11 @@ const SaveQuestion = ({ questionID, quizName }: SaveQuestionProps) => {
 				isLoading || isLoading2 ? (
 					<Loader />
 				) : error ? (
-					<IconError404 onClick={() => notification('error', 'Coś poszło nie tak.')} width={28} height={28} />
+					<IconError404
+						onClick={async () => await notification('error', 'Coś poszło nie tak.')}
+						width={28}
+						height={28}
+					/>
 				) : data === true ? (
 					<span>
 						<IconStarFilled
@@ -123,7 +127,7 @@ const SaveQuestion = ({ questionID, quizName }: SaveQuestionProps) => {
 			) : (
 				<span>
 					<IconStar
-						onClick={() => notification('error', 'Aby zapisać pytanie musisz się zalogować.')}
+						onClick={async () => await notification('error', 'Aby zapisać pytanie musisz się zalogować.')}
 						width={28}
 						height={28}
 					/>

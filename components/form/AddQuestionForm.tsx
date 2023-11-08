@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { Loader } from '../ui/Loader'
 import Button from '../ui/Button'
-import { notification } from '@/lib/lib'
 
 type FormValues = {
 	question: string
@@ -34,6 +33,7 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 	const { errors, isSubmitting } = formState
 
 	const onSubmit = async (data: FormValues) => {
+		const { notification } = await import('@/lib/lib')
 		if (quizID) {
 			try {
 				const { question, answerA, answerB, answerC, answerD, correctAnswer } = data
@@ -53,15 +53,15 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 					setAnswerCIsActive(false)
 					setAnswerDIsActive(false)
 
-					notification('success', result.message)
+					await notification('success', result.message)
 					return
 				}
-				notification('error', result.message)
+				await notification('error', result.message)
 			} catch (e) {
-				notification('error', 'Coś poszło nie tak.')
+				await notification('error', 'Coś poszło nie tak.')
 			}
 		} else {
-			notification('error', 'Coś poszło nie tak.')
+			await notification('error', 'Coś poszło nie tak.')
 		}
 	}
 
