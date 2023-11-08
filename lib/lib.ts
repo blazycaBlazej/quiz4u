@@ -99,10 +99,10 @@ export async function verifyPassword(password: string, heshedPassword: string) {
 	return isValid
 }
 
-export async function genereteJSWT(id: string) {
+export async function genereteJSWT(id: string, expiration: string) {
 	if (process.env.JWT_SECRET) {
 		const jwt = await import('jsonwebtoken')
-		const token = jwt.sign({ userId: id }, process.env.JWT_SECRET, { expiresIn: '24h' })
+		const token = jwt.sign({ userId: id }, process.env.JWT_SECRET, { expiresIn: expiration })
 		return token
 	}
 	return null

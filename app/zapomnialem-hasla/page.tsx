@@ -4,30 +4,50 @@ import React, { useState } from 'react'
 import { IconArrowNarrowLeft } from '@tabler/icons-react'
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import Button from '@/components/ui/Button'
 import { Loader } from '@/components'
+import { useRouter } from 'next/navigation'
 
 type FormValues = {
 	email: string
-	password: string
 }
 
-export default function page() {
-	const router = useRouter()
-	const [emailIsActive, setEmailIsActive] = useState(false)
-
+export default function ResetPasswordPage() {
 	const form = useForm<FormValues>({
 		mode: 'onSubmit',
 	})
+
+	const [emailIsActive, setEmailIsActive] = useState(false)
+	const router = useRouter()
+
 	const { register, handleSubmit, formState, getValues } = form
 	const { errors, isSubmitting } = formState
 
-	const onSubmit = (data: FormValues) => {
-		router.push(`/email-wyslany?email=${data.email}`)
+	const onSubmit = async (data: FormValues) => {
+		const { notification } = await import('@/lib/lib')
+
+		const { email } = data
+
+		const res = await fetch('/api/newResetToken', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ email }),
+		})
+
+		const result = await res.json()
+
+		if (res.status === 200) {
+			await notification('success', `${result.message}`)
+			router.replace('/')
+		} else {
+			await notification('error', `${result.message}`)
+		}
 	}
+
 	return (
-		<main className='flex h-[calc(100vh-404px)] w-full flex-col items-center justify-center gap-[20px]'>
+		<main className='mt-[150px] flex w-full flex-col items-center justify-center gap-[20px]'>
 			<h2 className='w-full max-w-[410px] text-3xl text-black dark:text-white'>Zapomniałeś hasła ?</h2>
 			<p className='w-full max-w-[410px]'>Wprowadź swój adres e-mail, aby otrzymać instrukcje resetowania hasła.</p>
 			<form className='w-full max-w-[410px]' onSubmit={handleSubmit(onSubmit)} noValidate>

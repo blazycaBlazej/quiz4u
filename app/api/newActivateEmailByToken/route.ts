@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/db/db'
-import { genereteJSWT } from '@/lib/lib'
-import { sendCreateAccountMail } from '@/lib/sendCreateAccountMail'
 
 export async function POST(req: NextRequest) {
 	const { token } = await req.json()
@@ -27,7 +25,8 @@ export async function POST(req: NextRequest) {
 			const now = new Date()
 			const fiveMinutesAgo = new Date(now.getTime() - 5 * 60 * 1000)
 			if (res.updateddAt <= fiveMinutesAgo) {
-				const token = await genereteJSWT(res.userId)
+				const { genereteJSWT } = await import('@/lib/lib')
+				const token = await genereteJSWT(res.userId, '24h')
 				if (token) {
 					await prisma.verifyToken.update({
 						where: {
@@ -37,6 +36,7 @@ export async function POST(req: NextRequest) {
 							token,
 						},
 					})
+					const { sendCreateAccountMail } = await import('@/lib/sendCreateAccountMail')
 					await sendCreateAccountMail(res.user.email, res.user.login, token)
 					return NextResponse.json({ message: 'Nowy link został wysłany.', email: res.user.email }, { status: 200 })
 				} else {
