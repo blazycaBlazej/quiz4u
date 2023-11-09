@@ -255,7 +255,3 @@ Po prawidłowym wypełnieniu formularza i kliknięciu przycisku pojawia sie info
 ## Reset hasła - potwierdzenie
 
 ![](/READMEimages/resetPasswordConfirm.png)
-
-# Mam nadzieję, że ktoś to zobaczył bo trochę czasu mi to zajeło xd
-
-![](/READMEimages/image-1.png)
