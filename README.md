@@ -4,13 +4,11 @@
 
 # Prezentacja aplikacji - komputer 🖥️
 
-[](https://youtu.be/Qn0NIxYsEms)
+[youtu.be/Qn0NIxYsEms](https://youtu.be/Qn0NIxYsEms)
 
 # Prezentacja aplikacji - smartfon 📱
 
-[](https://www.youtube.com/watch?v=eusa6lJT_0Q)
-
-in progress
+[youtube.com/watch?v=eusa6lJT_0Q](https://www.youtube.com/watch?v=eusa6lJT_0Q)
 
 # Technologie użyte w projekcie 🔧
 
