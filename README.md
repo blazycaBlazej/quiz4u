@@ -4,9 +4,11 @@
 
 # Prezentacja aplikacji - komputer 🖥️
 
-in progress
+[](https://youtu.be/Qn0NIxYsEms)
 
 # Prezentacja aplikacji - smartfon 📱
+
+[](https://www.youtube.com/watch?v=eusa6lJT_0Q)
 
 in progress
 
@@ -56,27 +58,75 @@ Quiz4u to interaktywna strona internetowa, którą stworzyłem jako część moj
 
 ![](/READMEimages/lightMode.png)
 
+## Panel administratora - edycja detali quizy
+
+Administrator może zmieniać opis, nazwę oraz tryby gry quizu.
+
+![](/READMEimages/EditDeatails.png)
+
+## Panel administratora - aktywny quiz
+
+Diody obok nazwy quizu w menu pokazują administratorowi czy quiz jest widczony dla użytkownika.
+
+![](/READMEimages/editQuizVisibility.png)
+
+## Panel administratora - tworzenie quizu
+
+Administrator może stowrzyć nowy quiz.
+
+![](/READMEimages/createQuiz.png)
+
+## Panel administratora - usuwanie quizu
+
+Administrator może usunąć istniejący quiz.
+
+![](/READMEimages/deleteQuiz.png)
+
+## Panel administratora - dodawanie pytań do quizu
+
+Administrator może dodawać nowe pytania do quizu z poziomu strony.
+
+![](/READMEimages/addQuestion.png)
+
+## Panel administratora - zarządzanie pytaniami
+
+Administrator może zobaczyć wszystkie pytania które posiada quiz i zarządzać nimi.
+
+![](/READMEimages/adminAllQuestions.png)
+
+## Panel administratora - zarządzanie pytaniami
+
+Administrator może edytować pytania.
+
+![](/READMEimages/editQuestion.png)
+
+## Panel administratora - zarządzanie pytaniami
+
+Administrator może usuwać pytania.
+
+## ![](/READMEimages/deleteQuestion.png)
+
 ## Strona rejestracji
 
-Formluarz zaczyna być walidowany w momencie kiedy użytkownik pierwszy raz naciścnie przycisk, następnie walidowany jest co wpisany znak.
+Formluarz zaczyna być walidowany w momencie kiedy użytkownik pierwszy raz wyśle formularz, następnie walidowany jest co wpisany znak.
 
 ![](/READMEimages/registerPage.png)
 
 ## Strona po rejestracji użytkownika
 
-Po rejestracji użytkownika zostaje wysłany do niego email z linikiem.
+Po rejestracji użytkownika zostaje wysłany do niego email z linikiem aktywacyjnym.
 
 ![](/READMEimages/emailSendPAge.png)
 
 ## Próba logowania na nieaktywowane konto
 
-Gdy będziemy chcieli się zalogować dostaniemy błąd ponieważ konto nie zostało aktywowane.
+Gdy będziemy chcieli się zalogować bez potwierdzenia adresu email dostaniemy błąd ponieważ konto nie zostało aktywowane.
 
 ![](/READMEimages/loginError.png)
 
 ## Otrzymany email
 
-Gdy naciśniemy w przycisk konto zostanie aktywowane.
+Gdy naciśniemy przycisk nasze konto zostanie aktywowane.
 
 ![](/READMEimages/activateEmail.png)
 
@@ -94,7 +144,7 @@ Gdy naciśniemy w przycisk konto zostanie aktywowane.
 
 ## Quiz - 1 pytanie - prawidłowa odpowiedź
 
-Przy prawidłowej odpowiedzi pojawia się confetti
+Przy prawidłowej odpowiedzi pojawia się confetti.
 
 ![](/READMEimages/1questionCorrect.png)
 
@@ -104,13 +154,13 @@ Przy prawidłowej odpowiedzi pojawia się confetti
 
 ## Quiz - 20 pytań
 
-Jak wynik będzie większy od 90% to pjawi się duże confetti w nagrodę 😁
+Jak wynik będzie większy od 90% to pojawi się confetti w nagrodę 😁
 
 ![](/READMEimages/20questions.png)
 
 ## Quiz - X pytań
 
-Możemy wygenrowac quiz do maskymalnie 50 pytań chyba, że quiz nie posiada tyle pytań to do maksymalnej ilości pytań, która jest w bazie
+Możemy wygenrowac quiz do maskymalnie 50 pytań chyba, że quiz nie posiada tyle pytań to do maksymalnej ilości pytań, która jest w bazie.
 
 ![](/READMEimages/Xquestions.png)
 
@@ -120,7 +170,7 @@ Możemy wygenrowac quiz do maskymalnie 50 pytań chyba, że quiz nie posiada tyl
 
 ## Quiz - pokaż wszystkie pytania
 
-Pytania pobierane są z bazy po określonej ilości podanej przez użytkownika (domyślnie po 10)
+Pytania pobierane są z bazy po określonej ilości podanej przez użytkownika (domyślnie po 10).
 
 ![](/READMEimages/allQuestions.png)
 
@@ -132,7 +182,7 @@ Możemy wygenrować test maskymalnie z 50 pytaniami chyba, że quiz nie posiada 
 
 ## Quiz - drukwoanie testu - modal error
 
-Błąd ponieważ podałem 51 pytań
+Błąd ponieważ podałem 51 pytań.
 
 ![](/READMEimages/printError.png)
 
@@ -144,11 +194,11 @@ Błąd ponieważ podałem 51 pytań
 
 ![](/READMEimages/testCorrectAnswer.png)
 
-Na końcu testu znajdują się odpowiedzi dla całego testu
+Na końcu testu znajdują się odpowiedzi dla całego testu.
 
 ## Quiz - zapisane quziy
 
-Wszyste quizy gdzie jest więcej niż jedno pytanie zapisują się i można je oglądać
+Wszyste quizy gdzie jest więcej niż jedno pytanie zapisują się i można je przeglądać.
 
 ![](/READMEimages/savedQuizzes.png)
 
@@ -158,13 +208,13 @@ Wszyste quizy gdzie jest więcej niż jedno pytanie zapisują się i można je o
 
 ## Quiz - zapisywanie pytań
 
-Użytkownik może zapisywać pytani klikając w gwiazdkę
+Użytkownik może zapisywać pytania klikając w gwiazdkę.
 
 ![](/READMEimages/saveQuestion.png)
 
 ## Quiz - zapisane pytanie
 
-Gdy użytkownik zapisze pytanie to gwiazdka się zmieni w wypełnioną oraz pojawi się komunikat
+Gdy użytkownik zapisze pytanie to gwiazdka się zmieni w wypełnioną oraz pojawi się komunikat.
 
 ![](/READMEimages/savedQuestion.png)
 
@@ -182,19 +232,19 @@ Użytkownik może zmienić swoje hasło w ustawieniach.
 
 ## Reset hasła
 
-Użytkownik może zresetować hasło jeśli go zapomniał
+Użytkownik może zresetować hasło jeśli go zapomni.
 
 ![](/READMEimages/resetPassword.png)
 
 ## Reset hasła
 
-Po wpisaniu maila i naciśnieciu przycisku pojawia sie informacja że instrukcja została wysłana na maila i użytkownik zostaje przekierowany na stronę główną.
+Po wpisaniu maila i kliknięciu przycisku pojawia sie informacja że instrukcja została wysłana na maila i użytkownik zostaje przekierowany na stronę główną.
 
 ![](/READMEimages/resetPasswordNotification.png)
 
 ## Reset hasła - mail
 
-Użytkwnik dostaje maila z przekierowaniem na stronę z formularzem do zaminy hasła
+Użytkwnik dostaje maila z przekierowaniem na stronę z formularzem do zaminy hasła.
 
 ![](/READMEimages/resetPasswordMail.png)
 
@@ -202,7 +252,7 @@ Użytkwnik dostaje maila z przekierowaniem na stronę z formularzem do zaminy ha
 
 ![](/READMEimages/resetPasswordForm.png)
 
-Po prawidłowym wypełnieniu formularza i naciśnieciu przycisku pojawia sie informacja że hasło zostało zmienione i użytkownik zostaje przekierowany na logowania.
+Po prawidłowym wypełnieniu formularza i kliknięciu przycisku pojawia sie informacja że hasło zostało zmienione i użytkownik zostaje przekierowany na stronę logowania.
 
 ## Reset hasła - potwierdzenie
 
