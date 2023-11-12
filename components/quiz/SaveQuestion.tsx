@@ -36,19 +36,15 @@ const SaveQuestion = ({ questionID, quizName }: SaveQuestionProps) => {
 		throw error
 	}
 
-	const { data, error, isLoading } = useSWR(
-		`/api/isQuestionIsSaved?questionID=${questionID}&userID=${userID}`,
-		fetcher,
-		{
-			revalidateOnFocus: false,
-			revalidateOnReconnect: false,
-		},
-	)
+	const { data, error, isLoading } = useSWR(`/api/savedQuestion?questionID=${questionID}&userID=${userID}`, fetcher, {
+		revalidateOnFocus: false,
+		revalidateOnReconnect: false,
+	})
 
 	const saveQuestion = async () => {
 		setIsLoading2(true)
 		try {
-			const res = await fetch('/api/saveQuestion', {
+			const res = await fetch('/api/savedQuestion', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -58,10 +54,10 @@ const SaveQuestion = ({ questionID, quizName }: SaveQuestionProps) => {
 			const result = await res.json()
 
 			if (res.ok) {
-				mutate(`/api/isQuestionIsSaved?questionID=${questionID}&userID=${userID}`)
+				mutate(`/api/savedQuestion?questionID=${questionID}&userID=${userID}`)
 				await notification('success', result.message)
 			} else {
-				mutate(`/api/isQuestionIsSaved?questionID=${questionID}&userID=${userID}`)
+				mutate(`/api/savedQuestion?questionID=${questionID}&userID=${userID}`)
 				await notification('error', result.message)
 			}
 		} catch (e) {
@@ -73,8 +69,8 @@ const SaveQuestion = ({ questionID, quizName }: SaveQuestionProps) => {
 	const deletedSavedQuestion = async () => {
 		setIsLoading2(true)
 		try {
-			const res = await fetch('/api/deleteOneSavedQuestion', {
-				method: 'POST',
+			const res = await fetch('/api/savedQuestion', {
+				method: 'DELETE',
 				headers: {
 					'Content-Type': 'application/json',
 				},
@@ -83,10 +79,10 @@ const SaveQuestion = ({ questionID, quizName }: SaveQuestionProps) => {
 			const result = await res.json()
 
 			if (res.ok) {
-				mutate(`/api/isQuestionIsSaved?questionID=${questionID}&userID=${userID}`)
+				mutate(`/api/savedQuestion?questionID=${questionID}&userID=${userID}`)
 				await notification('success', result.message)
 			} else {
-				mutate(`/api/isQuestionIsSaved?questionID=${questionID}&userID=${userID}`)
+				mutate(`/api/savedQuestion?questionID=${questionID}&userID=${userID}`)
 				await notification('error', result.message)
 			}
 		} catch (e) {

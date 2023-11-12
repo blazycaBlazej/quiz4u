@@ -26,8 +26,8 @@ export const EditQuizForm = ({ quizDeatails }: quizDeatailsComponentProps) => {
 		const { notification } = await import('@/lib/lib')
 		if (isDirty) {
 			try {
-				const res = await fetch('/api/editQuiz', {
-					method: 'POST',
+				const res = await fetch('/api/quiz', {
+					method: 'PUT',
 					headers: {
 						'Content-Type': 'application/json',
 					},

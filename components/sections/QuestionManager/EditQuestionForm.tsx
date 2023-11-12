@@ -59,8 +59,8 @@ export const EditQuestionForm = ({
 		if (questionId) {
 			try {
 				const { question, answerA, answerB, answerC, answerD, correctAnswer } = data
-				const res = await fetch('/api/editQuestion', {
-					method: 'POST',
+				const res = await fetch('/api/question', {
+					method: 'PUT',
 					headers: {
 						'Content-Type': 'application/json',
 					},

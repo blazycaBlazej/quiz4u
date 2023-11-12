@@ -37,7 +37,7 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 		if (quizID) {
 			try {
 				const { question, answerA, answerB, answerC, answerD, correctAnswer } = data
-				const res = await fetch('/api/addQuestion', {
+				const res = await fetch('/api/question', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',

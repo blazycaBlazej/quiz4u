@@ -28,7 +28,7 @@ export default function NewQuizForm() {
 		try {
 			const { name, description } = data
 
-			const res = await fetch('/api/createQuiz', {
+			const res = await fetch('/api/quiz', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

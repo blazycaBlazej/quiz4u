@@ -29,8 +29,8 @@ const ManagerOptions: FC<ManagerOptionsProps> = ({ rowId, optionIsOpen, setOptio
 
 		async function delateElement() {
 			try {
-				const res = await fetch('/api/deleteQuestion', {
-					method: 'POST',
+				const res = await fetch('/api/question', {
+					method: 'DELETE',
 					headers: {
 						'Content-Type': 'application/json',
 					},

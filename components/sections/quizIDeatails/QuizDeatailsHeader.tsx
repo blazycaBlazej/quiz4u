@@ -47,8 +47,8 @@ export const QuizDeatailsHeader = ({ quizName }: QuizDeatailsHeaderProps) => {
 		}
 
 		try {
-			const res = await fetch('/api/delateQuiz', {
-				method: 'POST',
+			const res = await fetch('/api/quiz', {
+				method: 'DELETE',
 				headers: {
 					'Content-Type': 'application/json',
 				},
