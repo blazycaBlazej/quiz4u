@@ -2,6 +2,10 @@
 
 [quiz4u.vercel.app](https://quiz4u.vercel.app)
 
+KONTO ADMINA:
+email: admin123@wp.pl
+hasło: wsxqaz11
+
 # Prezentacja aplikacji - komputer 🖥️
 
 [youtu.be/Qn0NIxYsEms](https://youtu.be/Qn0NIxYsEms)
