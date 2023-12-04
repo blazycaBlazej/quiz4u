@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useLayoutEffect } from 'react'
 import confetti from 'canvas-confetti'
 import { CompleteQuiz } from '@/components/quiz/CompleteQuiz'
 import Button from '@/components/ui/Button'

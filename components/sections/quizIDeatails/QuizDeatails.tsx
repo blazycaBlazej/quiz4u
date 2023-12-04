@@ -57,7 +57,7 @@ const QuizDeatails = ({ quizDeatails, quizName, questionsNumber, savedQuizzes }:
 			<div className='my-[20px] border-b border-solid border-border-color-light dark:border-border-color-dark'></div>
 			<div className='flex h-[100%] w-full flex-col items-stretch justify-between gap-5 sm:flex-row '>
 				<div className='box flex h-auto w-[100%] grow flex-col gap-4 bg-light-box p-[24px] dark:bg-dark-box sm:w-[50%]'>
-					<h2 className='text-2xl text-black  dark:text-white'>Dostępn opcje nauki:</h2>
+					<h2 className='text-2xl text-black  dark:text-white'>Dostępne opcje nauki:</h2>
 					{quizDeatails?.randomize1Question ||
 					quizDeatails?.randomize20Questions ||
 					quizDeatails?.randomizeXQuestions ||

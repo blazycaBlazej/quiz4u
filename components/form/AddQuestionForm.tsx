@@ -78,7 +78,7 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 								className={`transition-top-left  pointer-events-none absolute bg-main-bgn-light px-[4px] dark:bg-main-bgn-dark 
 								${questionIsActive || getValues('question') ? 'left-[15px] top-[-10px]' : 'left-[20px] top-[12px]'}`}
 							>
-								Opis quizu*
+								Pytanie*
 							</label>
 							<textarea
 								className='h-[400px] w-full resize-none  overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-black dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white'
@@ -208,7 +208,7 @@ export const AddQuestionForm = ({ quizID }: AddQuestionForm) => {
 								Odpowiedź D*
 							</label>
 							<textarea
-								className='h-[100px] w-full resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-white dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-black'
+								className='h-[100px] w-full resize-none overflow-auto rounded-l-[20px] border-2 border-border-color-light bg-main-bgn-light px-[20px] py-[10px] text-white dark:border-border-color-dark dark:bg-main-bgn-dark dark:text-white'
 								id='answerD'
 								{...register('answerD', {
 									required: 'Musisz podać odpowiedź D',

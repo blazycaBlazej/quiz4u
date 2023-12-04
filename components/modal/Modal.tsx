@@ -43,7 +43,7 @@ export const Modal = ({ isOpen, closeModal, title, children }: modalProps) => {
 								<div className='mt-2'>{children}</div>
 								<span
 									onClick={closeModal}
-									className='absolute right-2 top-2 cursor-pointer transition-colors hover:text-black'
+									className='absolute right-2 top-2 cursor-pointer transition-colors hover:text-btn-violet-color dark:text-black hover:dark:text-btn-violet-color'
 								>
 									<IconX />
 								</span>

@@ -21,7 +21,7 @@ export default function Home() {
 				</div>
 			</div>
 			<div className='m-auto flex w-full max-w-[700px] flex-col pt-3 lg:max-w-full'>
-				<h2 className=' pb-3 text-4xl  text-black dark:text-white '> Dlaczego warto wybrać Quizy4U?</h2>
+				<h2 className=' pb-3 text-4xl  text-black dark:text-white '> Dlaczego warto wybrać Quiz4u?</h2>
 				<div className='flex flex-col items-center justify-between lg:flex-row '>
 					<ul className='max-w-[700px]  '>
 						<li>
@@ -44,9 +44,9 @@ export default function Home() {
 					<Image src={'/chart.svg'} width={400} height={400} alt='chart' />
 				</div>
 			</div>
-			<MostPopularQuizis />
+			{/* <MostPopularQuizis /> */}
 			<LearnGuide />
-			<Testimonials />
+			{/* <Testimonials /> */}
 			<FAQ />
 		</main>
 	)
